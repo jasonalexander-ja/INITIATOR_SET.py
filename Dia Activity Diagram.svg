@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="87cm" height="117cm" viewBox="26 -1 1732 2336" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <polygon style="fill: #ffffff" points="702,0.5 1008.3,0.5 1020.3,12.5 1020.3,130.5 702,130.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="702,0.5 1008.3,0.5 1020.3,12.5 1020.3,130.5 702,130.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #ff8500" points="1008.3,0.5 1008.3,12.5 1020.3,12.5 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="709" y="25.4">
+      <tspan x="709" y="25.4">It is assumed that mRNA sequences have </tspan>
+      <tspan x="709" y="41.4">already been processed by the </tspan>
+      <tspan x="709" y="57.4">transcription modules or are being </tspan>
+      <tspan x="709" y="73.4">checked as-is. Full length ideally, </tspan>
+      <tspan x="709" y="89.4">but lack of UTRs should be detectable </tspan>
+      <tspan x="709" y="105.4">if not from the sequence itself, then </tspan>
+      <tspan x="709" y="121.4">at least from the FASTA headers.</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="1030,48.5 1220.8,48.5 1232.8,60.5 1232.8,130.5 1030,130.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1030,48.5 1220.8,48.5 1232.8,60.5 1232.8,130.5 1030,130.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #ff8500" points="1220.8,48.5 1220.8,60.5 1232.8,60.5 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1037" y="73.4">
+      <tspan x="1037" y="73.4">These data are from lab </tspan>
+      <tspan x="1037" y="89.4">experiments and provide </tspan>
+      <tspan x="1037" y="105.4">the benchmark for our </tspan>
+      <tspan x="1037" y="121.4">AIC mapping.</tspan>
+    </text>
+  </g>
+  <ellipse style="fill: #ff8500" cx="915" cy="151.5" rx="10" ry="10"/>
+  <g>
+    <ellipse style="fill: #ffffff" cx="1591.5" cy="330.3" rx="15" ry="15"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" cx="1591.5" cy="330.3" rx="15" ry="15"/>
+    <ellipse style="fill: #ff8500" cx="1591.5" cy="330.3" rx="10" ry="10"/>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="106" cy="1584.1" rx="15" ry="15"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" cx="106" cy="1584.1" rx="15" ry="15"/>
+    <ellipse style="fill: #ff8500" cx="106" cy="1584.1" rx="10" ry="10"/>
+  </g>
+  <g>
+    <ellipse style="fill: #ffffff" cx="724.5" cy="2319.3" rx="15" ry="15"/>
+    <ellipse style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" cx="724.5" cy="2319.3" rx="15" ry="15"/>
+    <ellipse style="fill: #ff8500" cx="724.5" cy="2319.3" rx="10" ry="10"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="27" y="133.5" width="85.35" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="27" y="133.5" width="85.35" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="69.675" y="155.4">
+      <tspan x="69.675" y="155.4">Input AICs</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="903.995,151.5 893.995,151.5 122.35,151.5 116.822,151.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="124.586,146.5 114.586,151.5 124.586,156.5 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="905,151.5 493,151.5 493,207.5 351.822,207.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="359.586,202.5 349.586,207.5 359.586,212.5 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="178" y="189.5" width="169.35" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="178" y="189.5" width="169.35" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="262.675" y="211.4">
+      <tspan x="262.675" y="211.4">Input Protein Sequence</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="621.5" y="201.3" width="162.7" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="621.5" y="201.3" width="162.7" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="702.85" y="223.2">
+      <tspan x="702.85" y="223.2">Input mRNA sequence</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="905,151.5 702.85,151.5 702.85,196.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="697.85,189.064 702.85,199.064 707.85,189.064 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1366" y="307.1" width="131.85" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="1366" y="307.1" width="131.85" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1431.92" y="329">
+      <tspan x="1431.92" y="329">Save to database</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="655.5" y="360.9" width="94.9" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="655.5" y="360.9" width="94.9" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="702.95" y="382.8">
+      <tspan x="702.95" y="382.8">Detect AICs</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="383" y="358.7" width="202.95" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="383" y="358.7" width="202.95" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="484.475" y="380.6">
+      <tspan x="484.475" y="380.6">Use GC Count Module/Plugin</tspan>
+      <tspan x="484.475" y="396.6">to obtain GC counts</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="393.5" y="470.5" width="181.05" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="393.5" y="470.5" width="181.05" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="484.025" y="492.4">
+      <tspan x="484.025" y="492.4">Predict IRES formation</tspan>
+      <tspan x="484.025" y="508.4">and RNA folding patterns</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="375" y="636.3" width="220.45" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="375" y="636.3" width="220.45" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="485.225" y="658.2">
+      <tspan x="485.225" y="658.2">Identify uORF positioning</tspan>
+      <tspan x="485.225" y="674.2">and uORF translation likelihood</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="376.5" y="767.1" width="219.75" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="376.5" y="767.1" width="219.75" height="68" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="486.375" y="789">
+      <tspan x="486.375" y="789">Check the ability of a ribosome</tspan>
+      <tspan x="486.375" y="805">to assemble around the mRNA</tspan>
+      <tspan x="486.375" y="821">sequence at any given AIC.</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="829" y="242.9" width="172.85" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="829" y="242.9" width="172.85" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="915.425" y="264.8">
+      <tspan x="915.425" y="264.8">Input snoRNA sequence</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1263.5" y="189.7" width="179.1" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="1263.5" y="189.7" width="179.1" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1353.05" y="211.6">
+      <tspan x="1353.05" y="211.6">Input search protocols</tspan>
+      <tspan x="1353.05" y="227.6">for each online database</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="662" y="656.5" width="118.45" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="662" y="656.5" width="118.45" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="721.225" y="678.4">
+      <tspan x="721.225" y="678.4">Calculate</tspan>
+      <tspan x="721.225" y="694.4">Kozak Contexts</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1031.5" y="240.3" width="192.65" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="1031.5" y="240.3" width="192.65" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1127.83" y="262.2">
+      <tspan x="1127.83" y="262.2">Input verified AIC test data</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="915,162.505 915,202.703 915.425,202.703 915.425,238.428 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="910.425,230.664 915.425,240.664 920.425,230.664 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="915,151.5 915,151.5 1127.82,151.5 1127.82,235.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1122.82,228.064 1127.82,238.064 1132.82,228.064 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="926.005,151.5 1353.05,151.5 1353.05,185.228 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1348.05,177.464 1353.05,187.464 1358.05,177.464 "/>
+  </g>
+  <rect style="fill: #ff8500" x="639" y="296.5" width="126" height="8"/>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="702.85,237.3 702.85,266.9 702,266.9 702,292.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="697,284.264 702,294.264 707,284.264 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="653,301.5 653,330.1 484.475,330.1 484.475,354.228 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="479.475,346.464 484.475,356.464 489.475,346.464 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="558.739" y="320.1">[Full length mRNA]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="702,304.5 702,321.5 702.95,321.5 702.95,356.428 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="697.95,348.664 702.95,358.664 707.95,348.664 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="692.476" y="311.5">[Full length mRNA]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="749.25,304.5 749.25,344.5 1366,344.5 1366,347.572 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1361,335.336 1366,345.336 1371,335.336 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="915.425,278.9 915.425,325.1 1361.53,325.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1353.76,330.1 1363.76,325.1 1353.76,320.1 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1127.83,276.3 1127.83,307.1 1361.53,307.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1353.76,312.1 1363.76,307.1 1353.76,302.1 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1497.85,325.1 1536.67,325.1 1536.67,330.3 1571.02,330.3 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1563.26,335.3 1573.26,330.3 1563.26,325.3 "/>
+  </g>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 913,326.5 A 16.0125,16.0125 0 1 0 912,357.5"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 910.998,360.942 A 23.5727,23.5727 0 0 0 909,407.5"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 912.498,408.742 A 16.0125,16.0125 0 1 0 911.498,439.742"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 1044,361.542 A 16.0125,16.0125 0 1 0 1043,392.542"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 1044.5,311.342 A 25.8504,25.8504 0 0 0 1040,361.5"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 720,555.5 A 16.4123,16.4123 0 1 0 687.998,554.142"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 634.498,596.942 A 16.0125,16.0125 0 1 0 633.498,627.942"/>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="910,440.5 910,567.5 721,567.5 721,559.972 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="726,567.736 721,557.736 716,567.736 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="687.788,552.902 633,552.902 633,592.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="628,584.264 633,594.264 638,584.264 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="634.288,627.702 634.288,801.1 600.722,801.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="608.486,796.1 598.486,801.1 608.486,806.1 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="484.475,410.7 484.475,440.6 484.025,440.6 484.025,466.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="479.025,458.264 484.025,468.264 489.025,458.264 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="474.251" y="430.6">[mRNA + GC]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="484.025,522.5 484.025,579.4 485.225,579.4 485.225,631.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="480.225,624.064 485.225,634.064 490.225,624.064 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="474.625" y="569.4">[mRNA + GC + IRES + fold]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="485.225,688.3 485.225,727.7 486.375,727.7 486.375,762.628 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="481.375,754.864 486.375,764.864 491.375,754.864 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="475.801" y="717.7">[mRNA + AICs + GC + IRES + fold + uORFs]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1514.81" y="188.3" width="241.35" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="1514.81" y="188.3" width="241.35" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1635.49" y="210.2">
+      <tspan x="1635.49" y="210.2">Save search protocols to database</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1442.6,215.7 1478.71,215.7 1478.71,206.3 1510.34,206.3 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1502.58,211.3 1512.58,206.3 1502.58,201.3 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1635.49,224.3 1635.49,269.296 1591.5,269.296 1591.5,309.82 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1586.5,302.056 1591.5,312.056 1596.5,302.056 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="643.314" y="456.5" width="121.4" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="643.314" y="456.5" width="121.4" height="68" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="704.014" y="478.4">
+      <tspan x="704.014" y="478.4">Map new AICs</tspan>
+      <tspan x="704.014" y="494.4">&amp; compare with</tspan>
+      <tspan x="704.014" y="510.4">test data</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1079.31,275.5 1079.31,311.5 1046.79,311.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1054.55,306.5 1044.55,311.5 1054.55,316.5 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1042.31,393.5 1042.31,425 704.014,425 704.014,452.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="699.014,444.264 704.014,454.264 709.014,444.264 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="702.95,396.9 702.95,426.7 704.014,426.7 704.014,452.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="699.014,444.264 704.014,454.264 709.014,444.264 "/>
+  </g>
+  <rect style="fill: #ff8500" x="652.314" y="588.3" width="165" height="8"/>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="704.014,524.5 704.014,577.5 734.814,577.5 734.814,591.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="729.814,584.064 734.814,594.064 739.814,584.064 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="828.814" y="657.3" width="235.3" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="828.814" y="657.3" width="235.3" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="946.464" y="679.2">
+      <tspan x="946.464" y="679.2">Compare sequences with protein </tspan>
+      <tspan x="946.464" y="695.2">targeting sequence database</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="672.938,596.3 672.938,616.5 485.224,616.5 485.224,631.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="480.224,624.064 485.224,634.064 490.224,624.064 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="569.082" y="606.5">[mRNA + AICs]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="734.814,596.3 734.814,617.5 721.224,617.5 721.224,652.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="716.224,644.264 721.224,654.264 726.224,644.264 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="718.02" y="607.5">[mRNA + AICs]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="796.688,596.3 796.688,616.5 946.464,616.5 946.464,652.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="941.464,645.064 946.464,655.064 951.464,645.064 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="861.576" y="606.5">[mRNA + AICs]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="956.314,583.5 1093.21,583.5 1105.21,595.5 1105.21,617.5 956.314,617.5 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="956.314,583.5 1093.21,583.5 1105.21,595.5 1105.21,617.5 956.314,617.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #ff8500" points="1093.21,583.5 1093.21,595.5 1105.21,595.5 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="963.314" y="608.4">
+      <tspan x="963.314" y="608.4">E.g. FastaBuilder</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="650.314" y="766.5" width="147.1" height="84" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="650.314" y="766.5" width="147.1" height="84" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="723.864" y="788.4">
+      <tspan x="723.864" y="788.4">Detect and identify </tspan>
+      <tspan x="723.864" y="804.4">in annotation</tspan>
+      <tspan x="723.864" y="820.4">the likelihood of </tspan>
+      <tspan x="723.864" y="836.4">'leaky scanning'</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="721.225,708.5 721.225,737.5 723.864,737.5 723.864,762.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="718.864,754.264 723.864,764.264 728.864,754.264 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="712.545" y="727.5">[mRNA + Kozak + AICs]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="818.314" y="775.5" width="253.2" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="818.314" y="775.5" width="253.2" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="944.914" y="797.4">
+      <tspan x="944.914" y="797.4">Identify protein targeting sequences</tspan>
+      <tspan x="944.914" y="813.4">in mRNA annotation</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="946.464,709.3 946.464,742.4 944.914,742.4 944.914,771.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="939.914,763.264 944.914,773.264 949.914,763.264 "/>
+  </g>
+  <rect style="fill: #ff8500" x="484.314" y="896.5" width="464" height="8"/>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="486.375,835.1 486.375,867.75 484.038,867.75 484.038,895.928 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="479.038,888.164 484.038,898.164 489.038,888.164 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="944.914,827.5 944.914,864 944.314,864 944.314,896.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="939.314,888.264 944.314,898.264 949.314,888.264 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="723.864,850.5 723.864,876.5 724.314,876.5 724.314,898.028 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719.314,890.264 724.314,900.264 729.314,890.264 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="169.5" y="939.3" width="189.85" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="169.5" y="939.3" width="189.85" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="264.425" y="961.2">
+      <tspan x="264.425" y="961.2">Protein reverse translation</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="262.675,225.5 262.675,582.4 264.425,582.4 264.425,934.828 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="259.425,927.064 264.425,937.064 269.425,927.064 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="253.551" y="572.4">[Amino Acid Sequence]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="617" y="1001.55" width="211.7" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="617" y="1001.55" width="211.7" height="68" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="722.85" y="1023.45">
+      <tspan x="722.85" y="1023.45">Send a Search for most likely </tspan>
+      <tspan x="722.85" y="1039.45">codons in that cell type under</tspan>
+      <tspan x="722.85" y="1055.45">those conditions</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="725,896.546 725,937.346 722.85,937.346 722.85,997.074 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="717.85,989.31 722.85,999.31 727.85,989.31 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="684" y="1130.55" width="80" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="684" y="1130.55" width="80" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="724" y="1152.45">
+      <tspan x="724" y="1152.45">Search</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="722.85,1069.55 722.85,1108.15 724,1108.15 724,1126.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719,1118.31 724,1128.31 729,1118.31 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="264.424,975.3 264.424,1148.55 679.528,1148.55 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="671.764,1153.55 681.764,1148.55 671.764,1143.55 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="464.212" y="1138.55">[               raw mRNA (CDS)]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="69.675,169.5 69.675,1166.55 679.528,1166.55 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="671.764,1171.55 681.764,1166.55 671.764,1161.55 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="366.838" y="1156.55">[raw mRNA (AICs)                                                                                        ]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="617" y="1226.55" width="213.75" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="617" y="1226.55" width="213.75" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="723.875" y="1248.45">
+      <tspan x="723.875" y="1248.45">List available search protocols</tspan>
+      <tspan x="723.875" y="1264.45">with available databases</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="724,1166.55 724,1202.55 723.874,1202.55 723.874,1222.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="718.874,1214.31 723.874,1224.31 728.874,1214.31 "/>
+  </g>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 431.772,1131.43 A 25.8516,25.8516 0 0 0 427.274,1181.59"/>
+  <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" d="M 220.272,1374.23 A 25.8516,25.8516 0 0 0 215.774,1424.39"/>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="428,1131.55 428,911.546 338,911.546 338,801.1 372.028,801.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="364.264,806.1 374.264,801.1 364.264,796.1 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="373" y="901.546">[Ribosomal subunit sequences]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="723.874,1278.55 723.874,1314.15 723,1314.15 723,1375.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="718,1367.31 723,1377.31 728,1367.31 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="713.438" y="1304.15">[Is/are the required database(s) available for this search?]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="220,1373.55 220,1292.79 445,1292.79 445,1182.35 430.946,1182.35 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="438.71,1177.35 428.71,1182.35 438.71,1187.35 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="322.5" y="1282.79">[Ribosomal subunit sequences]</text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="703,1399.55 723,1379.55 743,1399.55 723,1419.55 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="703,1399.55 723,1379.55 743,1399.55 723,1419.55 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="284.914,1399.76 304.914,1379.76 324.914,1399.76 304.914,1419.76 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="284.914,1399.76 304.914,1379.76 324.914,1399.76 304.914,1419.76 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="703,1399.55 513.957,1399.55 513.957,1399.76 329.386,1399.76 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="337.15,1394.76 327.15,1399.76 337.15,1404.76 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="503.957" y="1389.65">[No - Is this a search process which can be skipped?]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="35" y="1311.55" width="141.85" height="180" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="35" y="1311.55" width="141.85" height="180" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="105.925" y="1333.45">
+      <tspan x="105.925" y="1333.45">Display error and </tspan>
+      <tspan x="105.925" y="1349.45">recommend </tspan>
+      <tspan x="105.925" y="1365.45">contacting the </tspan>
+      <tspan x="105.925" y="1381.45">database owners</tspan>
+      <tspan x="105.925" y="1397.45">or sysadmins,</tspan>
+      <tspan x="105.925" y="1413.45">or the construction</tspan>
+      <tspan x="105.925" y="1429.45">of new modules</tspan>
+      <tspan x="105.925" y="1445.45">and databases to</tspan>
+      <tspan x="105.925" y="1461.45">handle the missing</tspan>
+      <tspan x="105.925" y="1477.45">data.</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="284.914,1399.76 230.882,1399.76 230.882,1401.55 181.322,1401.55 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="189.086,1396.55 179.086,1401.55 189.086,1406.55 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="220.882" y="1390.65">[No]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="105.925,1491.55 105.925,1525.35 106,1525.35 106,1564.63 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="101,1556.86 106,1566.86 111,1556.86 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="304.914,1419.76 304.914,1455.15 306.076,1455.15 306.076,1510.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="301.076,1502.31 306.076,1512.31 311.076,1502.31 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="295.494" y="1445.15">[Yes]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="1514.55" width="132.15" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="240" y="1514.55" width="132.15" height="68" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="306.075" y="1536.45">
+      <tspan x="306.075" y="1536.45">Skip this search -</tspan>
+      <tspan x="306.075" y="1552.45">A null data return</tspan>
+      <tspan x="306.075" y="1568.45">&amp; error</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="628" y="1512.55" width="193.1" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="628" y="1512.55" width="193.1" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="724.55" y="1534.45">
+      <tspan x="724.55" y="1534.45">Select databases to search</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="723,1419.55 723,1466.05 724.55,1466.05 724.55,1508.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719.55,1500.31 724.55,1510.31 729.55,1500.31 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="713.774" y="1456.05">[Yes]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="254" y="1734.55" width="102.25" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="254" y="1734.55" width="102.25" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="305.125" y="1756.45">
+      <tspan x="305.125" y="1756.45">Display error</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="306.076,1582.55 306.076,1617.35 305.124,1617.35 305.124,1730.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="300.124,1722.31 305.124,1732.31 310.124,1722.31 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="644" y="1599.55" width="160.3" height="68" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="644" y="1599.55" width="160.3" height="68" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="724.15" y="1621.45">
+      <tspan x="724.15" y="1621.45">Load search protocols</tspan>
+      <tspan x="724.15" y="1637.45">and send database</tspan>
+      <tspan x="724.15" y="1653.45">search requests</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="724.55,1548.55 724.55,1583.35 724.15,1583.35 724.15,1595.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719.15,1587.31 724.15,1597.31 729.15,1587.31 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="724.15,1667.55 724.15,1703.15 724.938,1703.15 724.938,1722.67 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719.938,1714.91 724.938,1724.91 729.938,1714.91 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="646" y="1725.55" width="153.05" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="646" y="1725.55" width="153.05" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="722.525" y="1747.45">
+      <tspan x="722.525" y="1747.45">Receive requested &amp;</tspan>
+      <tspan x="722.525" y="1763.45">available data</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="356.25,1752.55 356.25,1752.55 646,1752.55 646,1756.02 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="641,1743.78 646,1753.78 651,1743.78 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1133.15" y="1733.55" width="189.25" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="1133.15" y="1733.55" width="189.25" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1227.78" y="1755.45">
+      <tspan x="1227.78" y="1755.45">Receive full length mRNAs</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="799.05,1751.55 799.05,1753.55 1133.15,1753.55 1133.15,1756.02 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1128.15,1743.78 1133.15,1753.78 1138.15,1743.78 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="956.1" y="1743.55">[&gt;=1 full length mRNA found]</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="1227.78,1733.55 1227.78,378.9 754.872,378.9 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="762.636,373.9 752.636,378.9 762.636,383.9 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="629" y="1864.55" width="193.1" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="629" y="1864.55" width="193.1" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="725.55" y="1886.45">
+      <tspan x="725.55" y="1886.45">Receive most likely codons</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="722.524,1777.55 722.524,1812.55 725.55,1812.55 725.55,1860.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="720.55,1852.31 725.55,1862.31 730.55,1852.31 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="725.55,1900.55 725.55,1936.35 723.376,1936.35 723.376,1945.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="718.376,1937.31 723.376,1947.31 728.376,1937.31 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="636" y="1949.55" width="174.75" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="636" y="1949.55" width="174.75" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="723.375" y="1971.45">
+      <tspan x="723.375" y="1971.45">Match all annotation to</tspan>
+      <tspan x="723.375" y="1987.45">full mRNA data in FASTA</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="723.376,2001.54 723.376,2036.14 723.624,2036.14 723.624,2081.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="718.624,2073.3 723.624,2083.3 728.624,2073.3 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="713.5" y="2026.14">[Fully annotated mRNA]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="626" y="2085.54" width="195.25" height="52" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="626" y="2085.54" width="195.25" height="52" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="723.625" y="2107.44">
+      <tspan x="723.625" y="2107.44">mRNA translation based on</tspan>
+      <tspan x="723.625" y="2123.44">all annotated variations</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="723.624,2137.54 723.624,2171.94 724.326,2171.94 724.326,2213.07 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719.326,2205.3 724.326,2215.3 729.326,2205.3 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="634" y="2217.54" width="180.65" height="36" rx="20" ry="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" x="634" y="2217.54" width="180.65" height="36" rx="20" ry="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="724.325" y="2239.44">
+      <tspan x="724.325" y="2239.44">Output Protein Sequence</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="626,2111.54 211,2111.54 211,1426.02 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="216,1433.78 211,1423.78 206,1433.78 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="724.326,2253.54 724.326,2287.74 724.5,2287.74 724.5,2298.82 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ff8500" points="719.5,2291.06 724.5,2301.06 729.5,2291.06 "/>
+  </g>
+</svg>
