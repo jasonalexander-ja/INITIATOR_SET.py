@@ -2,7 +2,7 @@ INITIATOR SET is a module of The GUESS intended to allow the calculation of the
 probabilities of Alternative Initiation Codons affecting the translation of mRNA
 strands of nucleotides (A, G, C, U (RNA has U instead of the T seen in DNA. 
 Artificial nucleotides may also be simulated here)) into proteins, and thus 
-provide ata for other modules handling protein folding and pathways. It is also 
+provide data for other modules handling protein folding and pathways. It is also 
 intended for the origins of particular proteins to be possible to deduce in 
 terms of mRNA sequences via calculating the AICs that would be present and thus 
 the likelihood of mutations affecting particular proteins, and which genes need 
