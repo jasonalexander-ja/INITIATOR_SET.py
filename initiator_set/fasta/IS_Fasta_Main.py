@@ -19,7 +19,9 @@ from tkinter.filedialog import askopenfilename # Asks user to select a .fa FASTA
 Tk().withdraw()                                #
 
 with open(askopenfilename(),'r') as FastaFile: # Opens the selected .fa file via its PATH
-    Sequences = IS_Fasta_Sequence.FASTA_Raw_Seq(FastaFile.readlines()) # Creates a list of custom FASTA_Raw_Seq objects, each of which contains a single sequence from the FASTA file
-                                                                       # and its associated metadata as seperate properties, Seq and Meta respectively
-print(Sequences.Meta) # Print statements to let me check if the code is working correctly
-print(Sequences.Seq)  #
+    Sequences = IS_Fasta_Sequence.Sequence_Read(FastaFile.readlines()) # Creates a list of custom FASTA_Seq objects, each of which contains a single sequence from the FASTA file
+                                                                       # and its associated metadata as seperate properties, Seq and Meta respectively, as well as Code, a string
+                                                                       # indicating the type of sequence encoded (DNA, mRNA, Protein, or Indeterminable)
+
+for a in range(0,len(Sequences)):
+    print(Sequences[a].Code,Sequences[a].Seq,Sequences[a].Meta)
