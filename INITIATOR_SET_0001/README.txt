@@ -1,1 +1,0 @@
-To use: run IS_Main.py, and when prompted select sample.fa (or another .fa FASTA file for testing)
