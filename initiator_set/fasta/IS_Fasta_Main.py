@@ -24,6 +24,30 @@ with open(askopenfilename(),'r') as FastaFile: # Opens the selected .fa file via
                                                                        # indicating the type of sequence encoded (DNA, mRNA, Protein, or Indeterminable)
 
 for a in range(0,len(Sequences)):
-    print(Sequences[a].Sequence + '\n',
-    Sequences[a].Meta + '\n',
+    print(Sequences[a].Meta + '\n',
+    Sequences[a].Seq + '\n',
     Sequences[a].CodeType + '\n')
+
+W = IS_Fasta_Sequence.Sequence_Translate(Sequences[0],1,'Protein')
+
+print(W.Meta + '\n',
+      W.Seq + '\n',
+      W.CodeType + '\n')
+
+X = IS_Fasta_Sequence.Sequence_Translate(Sequences[1],1,'Protein')
+
+print(X.Meta + '\n',
+      X.Seq + '\n',
+      X.CodeType + '\n')
+
+Y = IS_Fasta_Sequence.Sequence_Translate(Sequences[2],1,'Protein')
+
+print(Y.Meta + '\n',
+      Y.Seq + '\n',
+      Y.CodeType + '\n')
+
+Z = IS_Fasta_Sequence.Sequence_Translate(Sequences[3],1,'Protein')
+
+print(Y.Meta + '\n',
+      Y.Seq + '\n',
+      Y.CodeType + '\n')
