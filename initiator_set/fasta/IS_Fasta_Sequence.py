@@ -138,7 +138,3 @@ def Sequence_Translate(Sequence,FrameNo,DesiredType):
        Sequence.Meta += ' ERROR'
             
     return Sequence
-<<<<<<< HEAD
-#
-=======
->>>>>>> e59d8e2a09a0425f9f0348e29065a88751b580f8

@@ -48,13 +48,7 @@ print(Y.Meta + '\n',
 
 Z = IS_Fasta_Sequence.Sequence_Translate(Sequences[3],1,'Protein')
 
-<<<<<<< HEAD
 print(Z.Meta + '\n',
       Z.Seq + '\n',
       Z.CodeType + '\n')
-#
-=======
-print(Y.Meta + '\n',
-      Y.Seq + '\n',
-      Y.CodeType + '\n')
->>>>>>> e59d8e2a09a0425f9f0348e29065a88751b580f8
+
