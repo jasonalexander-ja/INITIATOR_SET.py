@@ -51,3 +51,4 @@ Z = IS_Fasta_Sequence.Sequence_Translate(Sequences[3],1,'Protein')
 print(Z.Meta + '\n',
       Z.Seq + '\n',
       Z.CodeType + '\n')
+#
