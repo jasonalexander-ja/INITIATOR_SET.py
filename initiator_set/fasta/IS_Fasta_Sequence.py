@@ -83,7 +83,7 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
     if Sequence.CodeType == 'mRNA': # mRNA to Protein conversion
         PeptideString = ''
         M_is_Start = True # Prevents Methionines after the START and before a STOP being tagged as extraneous STARTs
-
+        Check_for_Stop = False # Prevents extraneous STOP characters from being added, as they are only for readability and not an actual Amino Acid
         for b in range(FrameNo,len(Sequence.Seq)-2,3):
             Codon = Sequence.Seq[b] + Sequence.Seq[b+1] + Sequence.Seq[b+2] # Stores each codon conforming to the selected reading frame into a temporary variable
             
@@ -111,6 +111,7 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
                 if M_is_Start == True:
                     AminoAcid = '[M'
                     M_is_Start = False
+                    Check_for_Stop = True
                 else:
                     AminoAcid = 'M'
             elif Codon in ['AAU','AAC']:
@@ -132,8 +133,12 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
             elif Codon in ['UAU','UAC']:
                 AminoAcid = 'Y'
             elif Codon in ['UAA','UAG','UGA']:
-                AminoAcid = ']'
-                M_is_Start = True
+                if Check_for_Stop == True:
+                    AminoAcid = ']'
+                    M_is_Start = True
+                    Check_for_Stop = False
+                else:
+                    AminoAcid = ''
             else:
                 AminoAcid = '?'
             PeptideString += AminoAcid
