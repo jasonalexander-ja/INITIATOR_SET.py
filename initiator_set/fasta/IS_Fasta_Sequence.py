@@ -82,9 +82,11 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
             
     if Sequence.CodeType == 'mRNA': # mRNA to Protein conversion
         PeptideString = ''
+        M_is_Start = True # Prevents Methionines after the START and before a STOP being tagged as extraneous STARTs
+
         for b in range(FrameNo,len(Sequence.Seq)-2,3):
             Codon = Sequence.Seq[b] + Sequence.Seq[b+1] + Sequence.Seq[b+2] # Stores each codon conforming to the selected reading frame into a temporary variable
-
+            
             if Codon in ['GCU','GCC','GCA','GCG']: # Massive if-elif statement to convert each mRNA codon into an Amino Acid. Due to my use of [ and ] to denote Start and Stop codons, the sequence is no longer FASTA-standard past this point.
                 AminoAcid = 'A'
             elif Codon in ['UGU','UGC']:
@@ -106,7 +108,11 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
             elif Codon in ['UUA','UUG','CUU','CUC','CUA','CUG']:
                 AminoAcid = 'L'
             elif Codon in ['AUA','AUG']:
-                AminoAcid = '[M'
+                if M_is_Start == True:
+                    AminoAcid = '[M'
+                    M_is_Start = False
+                else:
+                    AminoAcid = 'M'
             elif Codon in ['AAU','AAC']:
                 AminoAcid = 'N'
             elif Codon in ['CCU','CCC','CCA','CCG']:
@@ -127,6 +133,7 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
                 AminoAcid = 'Y'
             elif Codon in ['UAA','UAG','UGA']:
                 AminoAcid = ']'
+                M_is_Start = True
             else:
                 AminoAcid = '?'
             PeptideString += AminoAcid
