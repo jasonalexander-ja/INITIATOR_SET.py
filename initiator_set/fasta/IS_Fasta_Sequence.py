@@ -8,11 +8,11 @@
 # Contributor e-mails: N/A
 #
 # Creation Date:  10 Jul 2018
-# Latest Version: 14 Jul 2018
+# Latest Version: 29 Jul 2018
 #
 # Usage Instructions: N/A - User does not interface with this file
-
-
+#
+# Information: The classes/functions in this file are designed for reading and basic analysis of the sequences within FASTA-format files
 
 class FASTA_Seq():
     # Has three properties:
@@ -27,12 +27,16 @@ class FASTA_Seq():
 
 
 def Sequence_Read(FastaLines):
+    # This function is for the intitial reading of a FASTA file, and storage of the data within in custom FASTA_Seq objects
+    # Input args:
+    #   FastaLines - A line-by-line list created from a FASTA file by readlines()
+    # Output: Sequences, a list of FASTA_Seq objects
     Sequences = [FASTA_Seq('','','') for a in range(len(FastaLines))]
     CodeNo = 0
     for a in range(0,len(FastaLines)):
         if '>' in FastaLines[a]: # Uses the starter character of a FASTA metadata line, >, to differentiate metadata from sequence lines
             CodeNo += 1
-            Sequences[CodeNo].Meta += FastaLines[a].replace('\n', '').replace('\r', '')
+            Sequences[CodeNo].Meta += FastaLines[a][1:].replace('\n', '').replace('\r', '')
         else:
             Sequences[CodeNo].Seq += FastaLines[a].replace('\n', '').replace('\r', '') # Cuts empty spaces and line delimiter characters from the string line, then adds the line to the latest entry in the appropriate list
             
@@ -40,7 +44,7 @@ def Sequence_Read(FastaLines):
                 Sequences[CodeNo].CodeType = 'DNA'
             elif any(i in Sequences[CodeNo].Seq for i in ['U']):
                 Sequences[CodeNo].CodeType = 'mRNA'
-            elif any(i in Sequences[CodeNo].Seq for i in ['E','F','I','L','P','Q']):
+            elif any(i in Sequences[CodeNo].Seq for i in ['E','F','I','L','P','Q']): # Determines sequence type based on the presence of letters unique to either the Nucleotide or Protein FASTA format alphabets, with U as an identifier for mRNA
                 Sequences[CodeNo].CodeType = 'Protein'
             else:
                 Sequences[CodeNo].CodeType = 'Indeterminable'
@@ -48,93 +52,93 @@ def Sequence_Read(FastaLines):
 
 
 
-def Sequence_Translate(Sequence,FrameNo,DesiredType):
-    FrameNo = FrameNo % 3
-    NucleoSequence = ['']*len(Sequence.Seq)
-        
-    for a in range(0,len(Sequence.Seq)):
-        NucleoSequence[a] = Sequence.Seq[a]
+def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
+    # This function takes an individual FASTA_Seq object, and translates from DNA -> mRNA -> Protein
+    # Input args:
+    #   Sequence - A single FASTA_Seq object
+    #   FrameNo - (Optional, defaults to 0) - Codon reading frame number. Can be any integer, but will be converted to 0, 1, or 2 by absolute value and modulo, 0 meaning reading frame starts from the first "letter" in a nucleotide sequence, followed by the second with 1, and the third with 2
+    #   DesiredType - (Optional, defaults to 'Protein') - A string indicating the desired FASTA_Seq.CodeType for the sequence to be converted to over the course of this function. See Sequence_Read above for the 4 valid inputs. Invalid inputs or a DesiredType that is in the incorrect order (Inputting "DNA" when the sequence is already of type "Protein", for example), will cause the function to not return anything, thus the resulting error will call attention to the mistake.
+    # Output: Sequence - The changed FASTA_Seq object
+
+    FrameNo = abs(FrameNo % 3)
             
-    if Sequence.CodeType == 'DNA':
+    if Sequence.CodeType == 'DNA': # DNA to mRNA conversion
         SequenceString = ''
-        for b in range(0,len(NucleoSequence)):
-            if NucleoSequence[b] == 'A':
-                NucleoSequence[b] = 'U'
-            elif NucleoSequence[b] == 'C':
-                NucleoSequence[b] = 'G'
-            elif NucleoSequence[b] == 'G':
-                NucleoSequence[b] = 'C'
-            elif NucleoSequence[b] == 'T':
-                NucleoSequence[b] = 'A'
-            SequenceString += NucleoSequence[b]
+        for b in range(0,len(Sequence.Seq)):
+            if Sequence.Seq[b] == 'A':
+                Nucleotide = 'U'
+            elif Sequence.Seq[b] == 'C':
+                Nucleotide = 'G'
+            elif Sequence.Seq[b] == 'G':
+                Nucleotide = 'C'
+            elif Sequence.Seq[b] == 'T':
+                Nucleotide = 'A'
+            SequenceString += Nucleotide
         Sequence.Seq = SequenceString
         Sequence.CodeType = 'mRNA'
+
         if DesiredType == 'mRNA':
             return Sequence
             
-    if Sequence.CodeType == 'mRNA':
-        CodonString = ''
-        CodonSequence = ['']*(len(NucleoSequence)//3)
-        SequenceString = ''
-        c = 0
-        for b in range(FrameNo,len(NucleoSequence)-2,3):
-            CodonSequence[c] = NucleoSequence[b] + NucleoSequence[b+1] + NucleoSequence[b+2]
-            if CodonSequence[c] in ['GCU','GCC','GCA','GCG']:
-                CodonSequence[c] = 'A'
-            elif CodonSequence[c] in ['UGU','UGC']:
-                CodonSequence[c] = 'C'
-            elif CodonSequence[c] in ['GAU','GAC']:
-                CodonSequence[c] = 'D'
-            elif CodonSequence[c] in ['GAA','GAG']:
-                CodonSequence[c] = 'E'
-            elif CodonSequence[c] in ['UUU','UUC']:
-                CodonSequence[c] = 'F'
-            elif CodonSequence[c] in ['GGU','GCC','GCA','GCG']:
-                CodonSequence[c] = 'G'
-            elif CodonSequence[c] in ['CAU','CAC']:
-                CodonSequence[c] = 'H'
-            elif CodonSequence[c] in ['AUU','AUC']:
-                CodonSequence[c] = 'I'
-            elif CodonSequence[c] in ['AAA','AAG']:
-                CodonSequence[c] = 'K'
-            elif CodonSequence[c] in ['UUA','UUG','CUU','CUC','CUA','CUG']:
-                CodonSequence[c] = 'L'
-            elif CodonSequence[c] in ['AUA','AUG']:
-                CodonSequence[c] = '[M'
-            elif CodonSequence[c] in ['AAU','AAC']:
-                CodonSequence[c] = 'N'
-            elif CodonSequence[c] in ['CCU','CCC','CCA','CCG']:
-                CodonSequence[c] = 'P'
-            elif CodonSequence[c] in ['CAA','CAG']:
-                CodonSequence[c] = 'Q'
-            elif CodonSequence[c] in ['CGU','CGC','CGA','CGG','AGA','AGG']:
-                CodonSequence[c] = 'R'
-            elif CodonSequence[c] in ['UCU','UCC','UCA','UCG','AGU','AGC']:
-                CodonSequence[c] = 'S'
-            elif CodonSequence[c] in ['ACU','ACC','ACA','ACG']:
-                CodonSequence[c] = 'T'
-            elif CodonSequence[c] in ['GUU','GUC','GUA','GUG']:
-                CodonSequence[c] = 'V'
-            elif CodonSequence[c] == 'UGG':
-                CodonSequence[c] = 'W'
-            elif CodonSequence[c] in ['UAU','UAC']:
-                CodonSequence[c] = 'Y'
-            elif CodonSequence[c] in ['UAA','UAG','UGA']:
-                CodonSequence[c] = ']'
+    if Sequence.CodeType == 'mRNA': # mRNA to Protein conversion
+        PeptideString = ''
+        for b in range(FrameNo,len(Sequence.Seq)-2,3):
+            Codon = Sequence.Seq[b] + Sequence.Seq[b+1] + Sequence.Seq[b+2] # Stores each codon conforming to the selected reading frame into a temporary variable
+
+            if Codon in ['GCU','GCC','GCA','GCG']: # Massive if-elif statement to convert each mRNA codon into an Amino Acid. Due to my use of [ and ] to denote Start and Stop codons, the sequence is no longer FASTA-standard past this point.
+                AminoAcid = 'A'
+            elif Codon in ['UGU','UGC']:
+                AminoAcid = 'C'
+            elif Codon in ['GAU','GAC']:
+                AminoAcid = 'D'
+            elif Codon in ['GAA','GAG']:
+                AminoAcid = 'E'
+            elif Codon in ['UUU','UUC']:
+                AminoAcid = 'F'
+            elif Codon in ['GGU','GCC','GCA','GCG']:
+                AminoAcid = 'G'
+            elif Codon in ['CAU','CAC']:
+                AminoAcid = 'H'
+            elif Codon in ['AUU','AUC']:
+                AminoAcid = 'I'
+            elif Codon in ['AAA','AAG']:
+                AminoAcid = 'K'
+            elif Codon in ['UUA','UUG','CUU','CUC','CUA','CUG']:
+                AminoAcid = 'L'
+            elif Codon in ['AUA','AUG']:
+                AminoAcid = '[M'
+            elif Codon in ['AAU','AAC']:
+                AminoAcid = 'N'
+            elif Codon in ['CCU','CCC','CCA','CCG']:
+                AminoAcid = 'P'
+            elif Codon in ['CAA','CAG']:
+                AminoAcid = 'Q'
+            elif Codon in ['CGU','CGC','CGA','CGG','AGA','AGG']:
+                AminoAcid = 'R'
+            elif Codon in ['UCU','UCC','UCA','UCG','AGU','AGC']:
+                AminoAcid = 'S'
+            elif Codon in ['ACU','ACC','ACA','ACG']:
+                AminoAcid = 'T'
+            elif Codon in ['GUU','GUC','GUA','GUG']:
+                AminoAcid = 'V'
+            elif Codon in ['UGG']:
+                AminoAcid = 'W'
+            elif Codon in ['UAU','UAC']:
+                AminoAcid = 'Y'
+            elif Codon in ['UAA','UAG','UGA']:
+                AminoAcid = ']'
             else:
-                CodonSequence[c] = '?'
-            CodonString += CodonSequence[c]
-            c += 1
-        Sequence.Seq = CodonString
+                AminoAcid = '?'
+            PeptideString += AminoAcid
+        Sequence.Seq = PeptideString
         Sequence.CodeType = 'Protein'
-        
-    if DesiredType == 'Protein':
-        return Sequence
+
+        if DesiredType == 'Protein':
+            return Sequence
            
-    if Sequence.CodeType == 'Protein':
+    if Sequence.CodeType == 'Protein': # Protein to ??? conversion, at this point in development there is no further conversion
         pass
         
-    if Sequence.CodeType == 'Indeterminable':
-       Sequence.Meta += ' ERROR'
-            
-    return Sequence
+    if Sequence.CodeType == 'Indeterminable': # Error message if Sequence_Read was unable to determine if the original sequence was a Nucleotide or Protein sequence, will only happen in very rare/improbable cases
+       Sequence.Meta += ' ERROR, cannot translate sequence of indeterminable type' # This should be an actual error message when I learn how to do that
+    
