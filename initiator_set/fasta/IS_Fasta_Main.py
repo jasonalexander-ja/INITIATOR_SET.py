@@ -8,15 +8,19 @@
 # Contributor e-mails: N/A
 #
 # Creation Date:  10 Jul 2018
-# Latest Version: 14 Jul 2018
+# Latest Version: 31 Jul 2018
 #
 # Usage Instructions: When prompted, open a .fa FASTA file. This file will ???
 
 import IS_Fasta_Sequence # Custom module for working with FASTA files
 
+
+
 from tkinter import Tk                         #
 from tkinter.filedialog import askopenfilename # Asks user to select a .fa FASTA file
 Tk().withdraw()                                #
+
+
 
 with open(askopenfilename(),'r') as FastaFile: # Opens the selected .fa file via its PATH
     Sequences = IS_Fasta_Sequence.Sequence_Read(FastaFile.readlines()) # Creates a list of custom FASTA_Seq objects, each of which contains a single sequence from the FASTA file
@@ -51,4 +55,3 @@ Z = IS_Fasta_Sequence.Sequence_Translate(Sequences[3],1,'Protein')
 print(Z.Meta + '\n',
       Z.Seq + '\n',
       Z.CodeType + '\n')
-

@@ -8,11 +8,13 @@
 # Contributor e-mails: N/A
 #
 # Creation Date:  10 Jul 2018
-# Latest Version: 29 Jul 2018
+# Latest Version: 31 Jul 2018
 #
 # Usage Instructions: N/A - User does not interface with this file
 #
 # Information: The classes/functions in this file are designed for reading and basic analysis of the sequences within FASTA-format files
+
+from tkinter import messagebox
 
 class FASTA_Seq():
     # Has three properties:
@@ -152,5 +154,5 @@ def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
         pass
         
     if Sequence.CodeType == 'Indeterminable': # Error message if Sequence_Read was unable to determine if the original sequence was a Nucleotide or Protein sequence, will only happen in very rare/improbable cases
-       Sequence.Meta += ' ERROR, cannot translate sequence of indeterminable type' # This should be an actual error message when I learn how to do that
+        messagebox.showerror('Sequence Translation Error','Cannot translate sequence of indeterminable type')
     
