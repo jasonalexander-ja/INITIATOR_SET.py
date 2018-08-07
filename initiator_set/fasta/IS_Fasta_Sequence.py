@@ -54,7 +54,7 @@ def Sequence_Read(FastaLines):
 
 
 
-def Sequence_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
+def Sequence_Forward_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
     # This function takes an individual FASTA_Seq object, and translates from DNA -> mRNA -> Protein
     # Input args:
     #   Sequence - A single FASTA_Seq object
