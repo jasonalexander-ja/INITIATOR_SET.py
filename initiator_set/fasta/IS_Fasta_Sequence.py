@@ -99,7 +99,7 @@ def Sequence_Forward_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
                 AminoAcid = 'E'
             elif Codon in ['UUU','UUC']:
                 AminoAcid = 'F'
-            elif Codon in ['GGU','GCC','GCA','GCG']:
+            elif Codon in ['GGU','GGC','GGA','GGG']:
                 AminoAcid = 'G'
             elif Codon in ['CAU','CAC']:
                 AminoAcid = 'H'

@@ -32,25 +32,25 @@ for a in range(0,len(Sequences)):
     Sequences[a].Seq + '\n',
     Sequences[a].CodeType + '\n')
 
-W = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[0],1,'Protein')
+W = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[0],0,'Protein')
 
 print(W.Meta + '\n',
       W.Seq + '\n',
       W.CodeType + '\n')
 
-X = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[1],1,'Protein')
+X = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[1],0,'Protein')
 
 print(X.Meta + '\n',
       X.Seq + '\n',
       X.CodeType + '\n')
 
-Y = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[2],1,'Protein')
+Y = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[2],0,'Protein')
 
 print(Y.Meta + '\n',
       Y.Seq + '\n',
       Y.CodeType + '\n')
 
-Z = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[3],1,'Protein')
+Z = IS_Fasta_Sequence.Sequence_Forward_Translate(Sequences[3],0,'Protein')
 
 print(Z.Meta + '\n',
       Z.Seq + '\n',
