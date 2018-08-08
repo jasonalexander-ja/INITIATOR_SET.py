@@ -8,7 +8,7 @@
 # Contributor e-mails: N/A
 #
 # Creation Date:  10 Jul 2018
-# Latest Version: 31 Jul 2018
+# Latest Version:  7 Aug 2018
 #
 # Usage Instructions: When prompted, open a .fa FASTA file. This file will ???
 
