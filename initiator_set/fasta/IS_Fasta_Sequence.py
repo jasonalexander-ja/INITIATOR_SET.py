@@ -89,52 +89,52 @@ def Sequence_Forward_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
         for b in range(FrameNo,len(Sequence.Seq)-2,3):
             Codon = Sequence.Seq[b] + Sequence.Seq[b+1] + Sequence.Seq[b+2] # Stores each codon conforming to the selected reading frame into a temporary variable
             
-            if Codon in ['GCU','GCC','GCA','GCG']: # Massive if-elif statement to convert each mRNA codon into an Amino Acid. Due to my use of [ and ] to denote Start and Stop codons, the sequence is no longer FASTA-standard past this point.
+            if Codon in ['CGA','CGG','CGU','CGC']: # Massive if-elif statement to convert each mRNA codon into an Amino Acid. Due to my use of [ and ] to denote Start and Stop codons, the sequence is no longer FASTA-standard past this point.
                 AminoAcid = 'A'
-            elif Codon in ['UGU','UGC']:
+            elif Codon in ['ACA','ACG']:
                 AminoAcid = 'C'
-            elif Codon in ['GAU','GAC']:
+            elif Codon in ['CUA','CUG']:
                 AminoAcid = 'D'
-            elif Codon in ['GAA','GAG']:
+            elif Codon in ['CUU','CUC']:
                 AminoAcid = 'E'
-            elif Codon in ['UUU','UUC']:
-                AminoAcid = 'F'
-            elif Codon in ['GGU','GGC','GGA','GGG']:
-                AminoAcid = 'G'
-            elif Codon in ['CAU','CAC']:
-                AminoAcid = 'H'
-            elif Codon in ['AUU','AUC']:
-                AminoAcid = 'I'
             elif Codon in ['AAA','AAG']:
+                AminoAcid = 'F'
+            elif Codon in ['CCA','CCG','CCU','CCC']:
+                AminoAcid = 'G'
+            elif Codon in ['GUA','GUG']:
+                AminoAcid = 'H'
+            elif Codon in ['UAA','UAG']:
+                AminoAcid = 'I'
+            elif Codon in ['UUU','UUC']:
                 AminoAcid = 'K'
-            elif Codon in ['UUA','UUG','CUU','CUC','CUA','CUG']:
+            elif Codon in ['AAU','AAC','GAA','GAG','GAU','GAC']:
                 AminoAcid = 'L'
-            elif Codon in ['AUA','AUG']:
+            elif Codon in ['UAU','UAC']:
                 if M_is_Start == True:
                     AminoAcid = '[M'
                     M_is_Start = False
                     Check_for_Stop = True
                 else:
                     AminoAcid = 'M'
-            elif Codon in ['AAU','AAC']:
+            elif Codon in ['UUA','UUG']:
                 AminoAcid = 'N'
-            elif Codon in ['CCU','CCC','CCA','CCG']:
+            elif Codon in ['GGA','GGG','GGU','GGC']:
                 AminoAcid = 'P'
-            elif Codon in ['CAA','CAG']:
+            elif Codon in ['GUU','GUC']:
                 AminoAcid = 'Q'
-            elif Codon in ['CGU','CGC','CGA','CGG','AGA','AGG']:
+            elif Codon in ['GCA','GCG','GCU','GCC','UCU','UCC']:
                 AminoAcid = 'R'
-            elif Codon in ['UCU','UCC','UCA','UCG','AGU','AGC']:
+            elif Codon in ['AGA','AGG','AGU','AGC','UCA','UCG']:
                 AminoAcid = 'S'
-            elif Codon in ['ACU','ACC','ACA','ACG']:
+            elif Codon in ['UGA','UGG','UGU','UGC']:
                 AminoAcid = 'T'
-            elif Codon in ['GUU','GUC','GUA','GUG']:
+            elif Codon in ['CAA','CAG','CAU','CAC']:
                 AminoAcid = 'V'
-            elif Codon in ['UGG']:
+            elif Codon in ['ACC']:
                 AminoAcid = 'W'
-            elif Codon in ['UAU','UAC']:
+            elif Codon in ['AUA','AUG']:
                 AminoAcid = 'Y'
-            elif Codon in ['UAA','UAG','UGA']:
+            elif Codon in ['AUU','AUC','ACU']:
                 if Check_for_Stop == True:
                     AminoAcid = ']'
                     M_is_Start = True
