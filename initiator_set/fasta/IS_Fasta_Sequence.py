@@ -57,11 +57,15 @@ def Sequence_Read(FastaLines):
 def Sequence_Forward_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
     # This function takes an individual FASTA_Seq object, and translates from DNA -> mRNA -> Protein
     # Input args:
-    #   Sequence - A single FASTA_Seq object
-    #   FrameNo - (Optional, defaults to 0) - Codon reading frame number. Can be any integer, but will be converted to 0, 1, or 2 by absolute value and modulo, 0 meaning reading frame starts from the first "letter" in a nucleotide sequence, followed by the second with 1, and the third with 2
-    #   DesiredType - (Optional, defaults to 'Protein') - A string indicating the desired FASTA_Seq.CodeType for the sequence to be converted to over the course of this function. See Sequence_Read above for the 4 valid inputs. Invalid inputs or a DesiredType that is in the incorrect order (Inputting "DNA" when the sequence is already of type "Protein", for example), will cause the function to not return anything, thus the resulting error will call attention to the mistake.
+    #    Sequence - A single FASTA_Seq object
+    #    FrameNo - (Optional, defaults to 0) - Codon reading frame number. Can be any integer, but will be converted to 0, 1, or 2 by absolute value and modulo,
+    #    0 meaning reading frame starts from the first "letter" in a nucleotide sequence, followed by the second with 1, and the third with 2
+    #
+    #    DesiredType - (Optional, defaults to 'Protein') - A string indicating the desired FASTA_Seq.CodeType for the sequence to be converted to over the course of this function.
+    #    See Sequence_Read above for the 4 valid inputs. Invalid inputs or a DesiredType that is in the incorrect order (Inputting "DNA" when the sequence is already of type "Protein",
+    #    for example), will cause the function to not return anything, thus the resulting error will call attention to the mistake.
     # Output: Sequence - The changed FASTA_Seq object
-
+    
     FrameNo = abs(FrameNo % 3)
             
     if Sequence.CodeType == 'DNA': # DNA to mRNA conversion
@@ -78,7 +82,7 @@ def Sequence_Forward_Translate(Sequence,FrameNo=0,DesiredType='Protein'):
             SequenceString += Nucleotide
         Sequence.Seq = SequenceString
         Sequence.CodeType = 'mRNA'
-
+        
         if DesiredType == 'mRNA':
             return Sequence
             
