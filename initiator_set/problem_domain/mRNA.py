@@ -24,13 +24,16 @@ class mRNA :
 		
 	
 
-class Iterable(codonString) :
+class Iterable(mRNA) :
 
 	def __init__(self, parent:mRNA, start:int, stop:int):
 
 		self.parent:mRNA = parent
-		self.loc:int = start
-		self.stop:int = stop
+		self.loc:int = start - 3
+		if stop <= start or stop > len(parent.code):
+			self.stop = len(parent.code)
+		else:
+			self.stop:int = stop
 
 
 	def __iter__(self):
@@ -38,9 +41,9 @@ class Iterable(codonString) :
 
 
 	def next(self):
-		if self.loc >= stop:
+		self.loc += 3
+		if self.loc >= self.stop:
 			raise StopIteration
 		
-		value = parent.code[self.loc:(self.loc + 2)]
-		self.loc += 3
+		value = self.parent.code[self.loc:(self.loc + 3)]
 		return value
