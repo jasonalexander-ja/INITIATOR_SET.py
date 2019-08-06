@@ -10,43 +10,22 @@ from problem_domain.mRNA import *
 from struct import *
 
 
-
-def indexBase(base:str) -> int:
-	if   base[0] == 'A':
-		return 0       	
-	elif base[0] == 'U' or base[0] == 'T':
-		return 1
-	elif base[0] == 'G':
-		return 2
-	elif base[0] == 'C':
-		return 3
-
-
-
-def baseIndex(index:int) -> str:
-	if   index == 0:
-		return 'A'
-	elif index == 1:
-		return 'U'
-	elif index == 2:
-		return 'G'
-	elif index == 3:
-		return 'C'
+bases = ['A', 'U', 'G', 'C'];
 
 
 
 def codonIndex(index:int) -> str:
-	result = baseIndex(int(index/16))
-	result += baseIndex(int((index/4))%4)
-	result += baseIndex(index%4)
+	result = bases[int(index/16)]
+	result += bases[int((index/4))%4]
+	result += bases[index%4]
 	return result
 
 
 
 def indexCodon(codon:str) -> int:
-	result = indexBase(codon[0]) * 16
-	result += indexBase(codon[1]) * 4
-	result += indexBase(codon[2])
+	result = bases.index(codon[0]) * 16
+	result += bases.index(codon[1]) * 4
+	result += bases.index(codon[2])
 		
 	return result
 
