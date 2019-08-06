@@ -1,16 +1,46 @@
 # mRNA.py
 #
-# Representation of mRNA strand with a slew of metadata
-#
-# Authored by: 
-# Coauthored by: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
+# A representation of mRNA strand with a slew of metadata and utils for working
+# with it
+# 
+# Authored by: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
+
+
+
+bases = ['A', 'U', 'G', 'C'];
+
+
+
+def codonIndex(index:int) -> str:
+	result = bases[int(index/16)]
+	result += bases[int((index/4))%4]
+	result += bases[index%4]
+	return result
+
+
+
+def indexCodon(codon:str) -> int:
+	result = bases.index(codon[0]) * 16
+	result += bases.index(codon[1]) * 4
+	result += bases.index(codon[2])
+		
+	return result
+
+
+
+def indexRNA(code:str) -> list:
+	result = []
+	for i in range(len(code-2)):
+		result.append(indexCodon(code[i:i+3])
+	return result
+
 
 
 class mRNA :
 	
 	def __init__(self,cd:str,og:str,pal:int):
 		
-		self.code: str = cd
+		self.code:list[int] = indexRNA(cd)
 		self.originGene:str = og
 		self.polyALength:int = pal
 		
@@ -27,7 +57,14 @@ class mRNA :
 		self.adjustedWeights:list[float] = []
 		self.processedBy:list[str] = []
 		
-	
+	def __string__(self) -> str:
+		result = ''
+		for i in range (0, len(self.code), 3):
+			result = result + codonIndex(self.code[i])
+		
+		i = len(self.code) % 3
+		result = result[:-i] + codonIndex(self.code[-1])
+		return result
 
 class Iterable(mRNA) :
 

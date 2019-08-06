@@ -8,6 +8,7 @@
 import sys
 import argparse
 from struct import *
+from util.mRNA import *
 try:
 	m_file = open('codonWeights.dat','r+b')
 except OSError as e:
@@ -15,7 +16,6 @@ except OSError as e:
 		+ "Constructing new file...", file=sys.stderr)
 	m_file = open('codonWeights.dat','x+b')
 	m_file.write(bytearray(pack('<' + 'd'*64, *([0.0]*64))))
-from mapAIC import *
 
 
 parser = argparse.ArgumentParser(description="A helper utility for populating "
