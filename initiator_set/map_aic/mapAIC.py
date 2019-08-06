@@ -11,17 +11,19 @@ from struct import *
 
 
 
+try:
+	m_weights = open("codonWeights.dat", "rb") 
+except OSError as e:
+	print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
+		, file=sys.stderr)
+	raise
+
+
+
 def mapAICs(rna:mRNA) -> mRNA:
-	try:
-		m_weights = open("codonWeights.dat", "rb") 
-	except OSError as e:
-		print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
-			, file=sys.stderr)
-		raise
 	
-	for i in range(0, len(rna.code) - 2):
-		index = indexCodon(rna.code[i:i+3])
-		m_weights.seek(index * 8)
+	for i in rna.code:
+		m_weights.seek(i * 8)
 		rna.baseWeights.append(unpack('<d', m_weights.read(8)))
 
-	return mRNA
+	return rna
