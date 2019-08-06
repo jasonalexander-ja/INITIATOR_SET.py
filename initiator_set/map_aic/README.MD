@@ -3,7 +3,9 @@
 # Module for mapping an arbitrary piece of mRNA to a predetermined list of
 # weights. Also contains utilities for editing said predetermined list.
 # 
-# Author email: foul-fortune-feline@pm.me
+# Author: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
+
+
 
 **Contents:**
 	-*mapAIC.py*           Main end user program

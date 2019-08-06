@@ -2,7 +2,7 @@
 #
 # Utility for editing the codonWeights.dat file
 #
-# Author Email: foul-fortune-feline@pm.me
+# Author: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
 
 
 import sys

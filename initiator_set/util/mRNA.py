@@ -1,4 +1,9 @@
-
+# mRNA.py
+#
+# Representation of mRNA strand with a slew of metadata
+#
+# Authored by: 
+# Coauthored by: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
 
 
 class mRNA :

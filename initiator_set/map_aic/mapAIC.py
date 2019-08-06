@@ -2,11 +2,11 @@
 # 
 # Reads weights from a file, maps them to codons in arbitrary strings of mRNA
 #
-# Author email: foul-fortune-feline@pm.me
+# Author: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
 
 import sys
 sys.path.append('../')
-from problem_domain.mRNA import *
+from util.mRNA import *
 from struct import *
 
 
