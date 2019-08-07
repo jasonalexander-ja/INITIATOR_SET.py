@@ -38,9 +38,10 @@ def indexRNA(code:str) -> list:
 
 class mRNA :
 	
-	def __init__(self,cd:str,og:str,pal:int):
+	
+	def __init__(self, cd:list[int], og:str, pal:int):
 		
-		self.code:list[int] = indexRNA(cd)
+		self.code:list[int] = cd
 		self.originGene:str = og
 		self.polyALength:int = pal
 		
@@ -56,7 +57,14 @@ class mRNA :
 		
 		self.adjustedWeights:list[float] = []
 		self.processedBy:list[str] = []
-		
+	
+	
+	
+	def __init__(self, cd:str, og:str, pal:int):
+		self.__init__(indexRNA(cd), og, pal)
+	
+	
+	
 	def __string__(self) -> str:
 		result = ''
 		for i in range (0, len(self.code), 3):
