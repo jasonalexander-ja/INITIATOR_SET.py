@@ -11,7 +11,7 @@ bases = ['A', 'U', 'G', 'C'];
 
 
 
-def codonIndex(index:int) -> str:
+def deindexCodon(index:int) -> str:
 	result = bases[int(index/16)]
 	result += bases[int((index/4))%4]
 	result += bases[index%4]
@@ -19,7 +19,7 @@ def codonIndex(index:int) -> str:
 
 
 
-def rnaIndex(code:list) -> str:
+def deindexRNA(code:list) -> str:
 	result = ''
 	for i in range (0, len(code), 3):
 		result = result + codonIndex(code[i])

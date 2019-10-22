@@ -6,7 +6,7 @@
 
 
 
-from mRNA import *
+import mRNA
 
 
 metadataTypes:list = ['originMRNA', 'locFlags']
@@ -58,7 +58,7 @@ class AminoAcidChain:
 
 	@classmethod
 	def fromMRNA(cls, seq):
-		if isinstance(seq, mRNA):
+		if isinstance(seq, mRNA.mRNA):
 			seq = seq.code
 		if isinstance(seq, str):
 			seq = indexRNA(seq)
