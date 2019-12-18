@@ -49,28 +49,19 @@ def indexRNA(code:str) -> list:
 class mRNA:
 
 
-	def __init__(self, cd, og:str, pal:int):
+	def __init__(self, cd):
 		if isinstance(cd, str):
 			cd = indexRNA(cd)
 		if not isinstance(cd, list):
 			raise TypeError("'cd' must be of type 'str' or 'list'")
 
 		self.code:list = cd
-		self.originGene:str = og
-		self.polyALength:int = pal
 
-		self.baseWeights:list[float] = []
-		self.kozakStrengths:list[float] = []
-		self.leakyScanStrengths:list[float] = []
+		self.baseWeights:list = []
 
-		self.localisationSequences:list[tuple] = []
-		self.hairpins:list[tuple] = []
-		self.IREs:list[tuple] = []
-		self.uORFs:list[tuple] = []
+		self.modifiers:list = []
 
-
-		self.adjustedWeights:list[float] = []
-		self.processedBy:list[str] = []
+		self.adjustedWeights:list = []
 
 
 

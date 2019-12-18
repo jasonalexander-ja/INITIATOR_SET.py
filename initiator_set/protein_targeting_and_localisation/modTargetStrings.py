@@ -16,39 +16,35 @@ filename = os.path.abspath(mypath + 'locStrings.dat')
 
 
 try:
-	m_file = open(filename,'+b')
+	m_file = open(filename,'+')
 except OSError as e:
 	print("\"" + filename + "\" not found!\n"
 		+ "Constructing new file...", file=sys.stderr)
-	m_file = open(filename,'wb')
+	m_file = open(filename,'w')
 	newfile = 1
 
 
 parser = argparse.ArgumentParser(description="A helper utility for populating "
-    + "the \"" + filename + "\" file"
-    , epilog="File Formatting Example:\n\nAUG 1000\nCUG 140\nAUC 15.3" #TODO
-    , formatter_class=argparse.RawDescriptionHelpFormatter)
+  + "the \"" + filename + "\" file", fromfile_prefix_chars='@'
+  , formatter_class=argparse.RawDescriptionHelpFormatter)
 
-parser.add_argument('infile', nargs='*', type=argparse.FileType('r') #TODO
-	, help="Read strings stored in a file and update \"" + filename + "\" with "
-	+ "the new data. Leave empty to print out currently stored data")
+parser.add_argument('sequence', nargs='*', help="Add \"sequence\" to the datafile"
+  , dest='toadd')
 
+parser.add_argument('-r', '--remove', action='append', help="Instead of adding"
+	+ ", remove from the datafile", dest='toremove')
+
+parser.add_argument('-p', '--print-args', dest="print", action='store_true')
 
 args = parser.parse_args()
 
 
+filedata = m_file.readlines()
+for seq in toadd:
+	tmp = indexAminoChain(seq)
+  
 
-if args.infile == []:
-	if newfile:
-		sys.exit()
-	while m_file.readable():
-		print(deindexAminoChain(*unpack('<c', m_file.read(8))) + '\n')
+
+if args.print:
+	m_file.read()
 	sys.exit()
-
-
-m_file.seek(0, SEEK_END)
-for n_file in args.infile:
-	while n_file.readable():
-		seq = indexAminoChain(n_file.readline())
-		for i in seq:
-			m_file.write(bytearray(pack('<c', i)))

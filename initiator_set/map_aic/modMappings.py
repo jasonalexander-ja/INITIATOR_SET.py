@@ -14,20 +14,23 @@ filename = mypath + '/codonWeights.dat'
 
 
 try:
-	m_file = open(filename,'r+b')
+	m_file = open(filename,'+b') # update binary file
 except OSError as e:
 	print("\"" + filename + "\" not found!\n"
 		+ "Constructing new file...", file=sys.stderr)
-	m_file = open(filename,'x+b')
-	# Pack 64 doubles, all set to 0.0, into a bytearray and write to the file
-	m_file.write(bytearray(pack('<' + 'd'*64, *([0.0]*64))))
+	m_file = open(filename,'x+b') # create and update bytecode file
+	# Pack 64 little endian floats, all set to 0.0, into a bytearray and
+	# write to the file
+	m_file.write(bytearray(pack('<' + 'f'*64, *([0.0]*64))))
 	sys.exit()
 
 
 parser = argparse.ArgumentParser(description="A helper utility for populating "
     + "the \"" + filename + "\" file"
-    , epilog="File Formatting Example:\n\nAUG 1000\nCUG 140\nAUC 15.3"
-    , formatter_class=argparse.RawDescriptionHelpFormatter)
+    , epilog="For an example of the file format, run the program without any "
+		+ "arguments (line order can be arbitrary, no upper or lower limit on "
+		+ "file size). New entries or later entries in the file override older ones"
+		, formatter_class=argparse.RawDescriptionHelpFormatter)
 
 parser.add_argument('infile', nargs='*', type=argparse.FileType('r')
 	, help="Read weights stored in a file and update \""+ filename + "\" with "
@@ -37,10 +40,10 @@ parser.add_argument('infile', nargs='*', type=argparse.FileType('r')
 args = parser.parse_args()
 
 
-
+# If empty, print the current weights in the same format they are input
 if args.infile == []:
 	for i in range(64):
-		print(mRNA.deindexCodon(i) + " ", *unpack('<d', m_file.read(8)))
+		print(mRNA.deindexCodon(i) + " ", *unpack('<f', m_file.read(8)))
 	sys.exit()
 
 
@@ -50,5 +53,7 @@ for n_file in args.infile:
 		codon = n_file.read(4)
 		if codon == None or codon == "":
 			break
-		m_file.seek(mRNA.indexCodon(codon) * 8)
-		m_file.write(bytearray(pack('<d', float(n_file.readline()))))
+		# Index RNA and use this value to find desired entry in datafile
+		m_file.seek(mRNA.indexCodon(codon) * 4)
+		# Pack weight into a little-endian float and write
+		m_file.write(bytearray(pack('<f', float(n_file.readline()))))
