@@ -1,7 +1,7 @@
 # protein_targeting_and_localization
 # 
 # Module for finding protein localization/targeting strings in strings of Amino Acids
-# !!PRE-PRE-ALPHA!! Lots of TODO. Currently untested 
+# !!PRE-PRE-ALPHA!! Lots of #TODO. Currently untested
 #
 # Author: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
 
