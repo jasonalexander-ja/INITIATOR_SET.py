@@ -39,9 +39,35 @@ def addresses(scores,threshold):
             points.append(i)
     return points
 
+#gets the highest concentration
+def highpoint(scores):
+    point = 0
+    score_to_beat = 0
+    for i in range(len(scores)):
+        if scores[i] >= score_to_beat:
+            point = i
+            score_to_beat = scores[i]
+    return point
+
+#translates from letters to numbers
+def translate(rnaString):
+    new_list = []
+    for i in range(len(rnaString)):
+        if rnaString[i] == "A": #A->0
+            new_list.append(0)
+        if rnaString[i] == "U": #U->1
+            new_list.append(1)
+        if rnaString[i] == "C": #C->2
+            new_list.append(2)
+        if rnaString[i] == "G": #G->3
+            new_list.append(3)
+    return new_list
+        
+
 
 #main function
-mrna = [] #temporary
+mrna_raw = "AUGUUCCAACUUCCUGUCAACAAUCUUGGCAGUUUAAGAAAAGCCCGGAAAAC" #shortened so that github won't have a stroke
+mrna = translate(mrna_raw)
 score_threshold = 0 #temporary
 gCount = countG(mrna)
 cCount = countC(mrna)
@@ -52,3 +78,6 @@ for i in range(len(mrna)):
     cscores.append(cscore(mrna,i))
 highest_g = addresses(gscores,score_threshold)
 highest_c = addresses(cscores,score_threshold)
+highpoint_c = highpoint(cscores)
+highpoint_g = highpoint(gscores)
+#add print statements here if you want
