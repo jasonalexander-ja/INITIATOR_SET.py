@@ -57,11 +57,12 @@ class mRNA:
 
 		self.code:list = cd
 
+		# DEPRECATED! USE METADATA DICT INSTEAD!!!!!
 		self.baseWeights:list = []
-
-		self.modifiers:list = []
-
 		self.adjustedWeights:list = []
+		# ^^^^^^^^^^^^ DEPRECATED ^^^^^^^^^^^^^^^^^^
+
+		self.metadata:dictionary = {}
 
 
 
