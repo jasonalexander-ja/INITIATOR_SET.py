@@ -1,13 +1,17 @@
+#imports
+from util import mRNA
+
+
 #counts Gs and Cs in sequence
-def countG(mrna):
-    return mrna.count(3)
 def countC(mrna):
+    return mrna.count(3)
+def countG(mrna):
     return mrna.count(2)
 
 #returns if a specific index is a G or C
-def isg(ind):
-    return ind == 3
 def isc(ind):
+    return ind == 3
+def isg(ind):
     return ind == 2
 
 #something for score calculation
@@ -30,6 +34,18 @@ def cscore(mrna,index):
         if i-index != 0:
             cscore += magiccalculator(abs(i-index),isc(mrna[i]))
     return cscore
+
+def full_gscore(mrna):
+    gscores = []
+    for i in range(len(mrna)):
+        gscores.append(gscore(mrna,i))
+    return gscores
+
+def full_cscore(mrna):
+    cscores = []
+    for i in range(len(mrna)):
+        cscores.append(cscore(mrna,i))
+    return cscores
 
 #gets the points at which the concentrations are above a specific threshold
 def addresses(scores,threshold):
@@ -57,27 +73,15 @@ def translate(rnaString):
             new_list.append(0)
         if rnaString[i] == "U": #U->1
             new_list.append(1)
-        if rnaString[i] == "C": #C->2
+        if rnaString[i] == "G": #G->2
             new_list.append(2)
-        if rnaString[i] == "G": #G->3
+        if rnaString[i] == "C": #C->3
             new_list.append(3)
     return new_list
-        
 
+#gets all the things
+def getData(rna):
+    rna.metadata["g_concentrations"] = full_gscore(rna)
+    rna.metadata["c_concentrations"] = full_cscore(rna)
+    
 
-#main function
-mrna_raw = "AUGUUCCAACUUCCUGUCAACAAUCUUGGCAGUUUAAGAAAAGCCCGGAAAAC" #shortened so that github won't have a stroke
-mrna = translate(mrna_raw)
-score_threshold = 0 #temporary
-gCount = countG(mrna)
-cCount = countC(mrna)
-gscores = []
-cscores = []
-for i in range(len(mrna)):
-    gscores.append(gscore(mrna,i))
-    cscores.append(cscore(mrna,i))
-highest_g = addresses(gscores,score_threshold)
-highest_c = addresses(cscores,score_threshold)
-highpoint_c = highpoint(cscores)
-highpoint_g = highpoint(gscores)
-#add print statements here if you want
