@@ -67,7 +67,7 @@ class mRNA:
 
 
 	def __str__(self) -> str:
-		return rnaIndex(self.code)
+		return rnaIndex(self.code) + "\n\n" + self.metadata
 
 class Iterable(mRNA) :
 

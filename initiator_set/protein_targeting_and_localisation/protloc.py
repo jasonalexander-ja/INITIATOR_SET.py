@@ -9,13 +9,13 @@ import os
 from __init__ import *
 from util.AminoChain import *
 from struct import *
-filename = os.path.abspath(mypath + 'locStrings.dat')
+filename = os.path.abspath(mypath + 'locStrings.txt')
 
 
 try:
-	m_locstrings = open(filename, 'rb')
+	m_locstrings = open(filename, 'r')
 except OSError as e:
-	print("[!!FATAL!!] Error opening \"locStrings.dat\"\n", file=sys.stderr)
+	print("[!!FATAL!!] Error opening \"" + filename + "\"\n", file=sys.stderr)
 	raise
 
 
