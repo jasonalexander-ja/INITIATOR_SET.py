@@ -8,6 +8,6 @@
 
 
 **Contents:**
-	-*mRNA.py*					Utils for dealing with strands of mRNA
-	-*AminoChain.py*		Utils for dealing with chains of Amino Acids
-	-*misc-util.py*			What it says on the tin.
+  -*mRNA.py*					Utils for dealing with strands of mRNA
+  -*AminoChain.py*		Utils for dealing with chains of Amino Acids
+  -*misc-util.py*			What it says on the tin.

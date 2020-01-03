@@ -13,20 +13,20 @@ from struct import *
 
 
 try:
-	m_weights = open(mypath + "/codonWeights.dat", "rb") # rb = read bytecode
+  m_weights = open(mypath + "/codonWeights.dat", "rb") # rb = read bytecode
 except OSError as e:
-	print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
-		, file=sys.stderr)
-	raise
+  print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
+    , file=sys.stderr)
+  raise
 
 
 
 def mapAICs(rna:mRNA.mRNA) -> mRNA.mRNA:
-	rna.metadata["baseWeights"] = {}
+  rna.metadata["baseWeights"] = {}
 
-	for i in rna.code:
-		# Go to the desired entry in datafile
-		m_weights.seek(i * 4)
-		rna.metadata["baseWeights"].append(unpack('<f', m_weights.read(8))[0])
+  for i in rna.code:
+    # Go to the desired entry in datafile
+    m_weights.seek(i * 4)
+    rna.metadata["baseWeights"].append(unpack('<f', m_weights.read(8))[0])
 
-	return rna
+  return rna

@@ -8,6 +8,6 @@
 
 
 **Contents:**
-	-*protloc.py*						Main end user program
-  -*locStrings.txt*				Alphabetized list of known localization strings
+  -*protloc.py*           Main end user program
+  -*locStrings.txt*       Alphabetized list of known localization strings
 
