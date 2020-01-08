@@ -15,6 +15,7 @@ class KzNucleotide:
 
     verify: bool = False
     def valid(self) -> bool:
+        # TODO not valid in all cases. if say u g c are a third each, it is impossible to get 1 out of this
         return self.a + self.u + self.g + self.c == 1
     def tuples(self) -> List[Tuple[str, float]]:
         return [('a', self.a),('u', self.u),('g', self.g),('c', self.c)]
@@ -39,7 +40,7 @@ class KzNucleotide:
         return result
 
     # Returns the nucleotides with distributions above dominant level
-    def dominants(self, majority_min = MAJORITY_MIN) -> List[Tuple[str, float]]:
+    def dominants(self, majority_min : float = MAJORITY_MIN) -> List[Tuple[str, float]]:
         tmp: List[Tuple[str, float]] = self.sorted()
         largest: Tuple[str, float] = tmp[0]
         result: List[Tuple[str, float]] = [] # index at 0 will be largest
@@ -50,6 +51,11 @@ class KzNucleotide:
             else: break
         return result
 
+    # nucleotide_char is one of 'a', 'u', 'g', or 'c'
+    def weight_of(self, nucleotide_char : str) -> float:
+        return self.dict().get(nucleotide_char, 0)
+
+    # I do not think this function is right
     def is_conserved(self):
         return self.dominants()[0][1] > 0.25
 
@@ -79,6 +85,18 @@ def repr_sequence(nucleotides : List[KzNucleotide]) -> str:
         result += str(i)
     return result
 
+# Convenience builder for KzConsensus constructor using simplified parameters
+def new_KzConsensus(*anynomous_weights_objects : List[object]):
+    o = anynomous_weights_objects
+    sq : List[KzNucleotide] = []
+    if o is Dict:
+        for i in o:
+            sq.append(KzNucleotide(i.a, i.u, i.g, i.c))
+    if type(o) in [list,tuple]:
+        for i in o:
+            sq.append(KzNucleotide(i[0], i[1], i[2], i[3]))
+    else: raise ValueError
+    return KzConsensus(sequence=sq, codonStart=0, strength=1)
 
 @dataclass
 class KzConsensus:
@@ -104,6 +122,26 @@ class KzConsensus:
     def trailing(self):
         return self.sequence[self.codonStart + self.codonLength: len(self.sequence)]
 
+    # Given a comparison sequence, calculates the distribution of confidence
+    # returned values are a list of floats, indexed to comparison_sequence, corresponding to
+    # the confidence of alignment to self.sequence, as a value between 0 and 1
+    def confidence_distribution(self, comparison_sequence : str, comparison_start : int = 0) -> List[float]:
+        result: List[float] = [0.0] * len(comparison_sequence)
+        for i in range(comparison_start, min(len(comparison_sequence), len(self.sequence))):
+            a_kzNucleotide = self.sequence[i]
+            b_str = comparison_sequence[i]
+
+            result[i] = a_kzNucleotide.weight_of(b_str)
+        return result
+
+    # Given a comparison sequence, calculates the confidence,
+    # or how 'strong' the comparison sequence aligns with this consensus
+    # returned value is between 0 and 1
+    def confidence(self, comparison_sequence : str, comparison_start : int = 0) -> float:
+        c_dist : List[float] = self.confidence_distribution(comparison_sequence, comparison_start)
+        c_sum : float = sum(c_dist)
+        return c_sum / len(c_dist)
+
     # The structure of the representation of the consensus is as follows:
     # () = part of sequence that has no siginificant impact on the consensus
     # (i.e: just padding)
@@ -123,39 +161,3 @@ class KzConsensus:
     # This probably only matters for representing bases that vary a lot in the sequence, as I don't really know at what point
     # bases are truncated off the representation, or if it's just an arbitrary point
 
-# arguments are like A, U, G, C
-# print(KzNucleotide(.5,.5,0,0).__str__())
-# print(KzNucleotide(1,0,0,0).__str__())
-# print(KzNucleotide(1,0,0,0).__str__())
-# print(KzNucleotide(1,0,0,0).__str__())
-# print(KzNucleotide(0,0,1,1).__str__())
-# print(KzNucleotide(.5,0,0.5,0).__str__())
-# print(KzNucleotide(.25,.25,.25,.25).__str__())
-# print(KzNucleotide(.25,.25,.25,.25).__str__())
-# print(KzNucleotide(.33,.25,.25,.18).__str__())
-# print(KzNucleotide(.18,.25,.25,.33).__str__())
-# print(KzNucleotide(.25,.251,.25,.249).__str__())
-# print(KzNucleotide(.25,.251,.25,.249).dominants())
-# print(KzNucleotide(.5,0,0.5,0).__str__())
-
-# nt1 = KzNucleotide(.25,.251,.25,.249)
-# nt2 = KzNucleotide(.5,.5,0,0)
-# nt3 = KzNucleotide(.25,.25,.25,.25)
-# nt4 = KzNucleotide(1,0,0,0)
-#
-# I'm not sure how to include factors
-# but basically they represent bits in a sequence logo diagram, where bits of great value are conserved
-# i still don't understand how to read these diagrams though so for now I just have my own arbitrary conservation judgement process based off distribution
-# c1 = KzConsensus(strength=1, codonStart=3, sequence=[nt1, nt2, nt3, nt4,nt1, nt2, nt3, nt4,nt1, nt2, nt3, nt4,nt1, nt2, nt3, nt4]) #, factors=[0.1, 0.3, 0.5, 0.7]
-# print(str(c1))
-
-# nt11 = KzNucleotide(1,0,0,0)
-# nt21 = KzNucleotide(0,1,0,0)
-# nt31 = KzNucleotide(0,0,1,0)
-# nt41 = KzNucleotide(0,0,0,1)
-# nt51 = KzNucleotide(0,0.5,0,0.5)
-# c11 = KzConsensus(strength=1, codonStart=3, sequence=[nt11, nt21, nt31, nt41,nt51, nt11, nt21, nt31, nt41,nt51, nt11]) #, factors=[0.1, 0.3, 0.5, 0.7]
-# print("Seq:"+repr_sequence(c11.sequence))
-# print("Led:"+repr_sequence(c11.leading()))
-# print("Cod:"+repr_sequence(c11.codon()))
-# print("TRL:"+repr_sequence(c11.trailing()))
