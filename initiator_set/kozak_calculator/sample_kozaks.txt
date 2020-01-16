@@ -1,0 +1,37 @@
+#: codon label
+AUG: # the Mammalian AUG Kozak (approximate distributions)
+# = comment
+# $ = weight between 0 and 1.
+# ^ Can support more than 2 decimal places, but will be used as a double
+# con = conservation rating of this position
+# - = initiator codon
+# a$   u$   g$   c$ con
+0.24 0.24 0.28 0.24 1 # G
+0.24 0.24 0.24 0.28 1 # C
+0.24 0.24 0.24 0.28 1 # C
+0.24 0.24 0.28 0.24 1 # G
+0.24 0.24 0.24 0.28 1 # C
+0.24 0.24 0.24 0.28 3 # C
+0.60 0.05 0.25 0.05 9 # A
+0.25 0.20 0.25 0.30 3 # C
+0.08 0.07 0.30 0.55 4 # C
+- # AUG codon
+0.17 0.17 0.55 0.11 7 # G
+# newline separates different kozaks
+
+***: # Mammalian kozak for non-AUG initiation sites (approximate distributions)
+# * = match any nucleotide
+0.24 0.24 0.24 0.28 1 # C
+0.24 0.24 0.28 0.24 1 # G
+0.24 0.24 0.28 0.24 1 # G
+0.18 0.12 0.15 0.55 9 # C
+0.04 0.06 0.50 0.40 6 # G
+0.24 0.28 0.24 0.24 1 # U
+0.30 0.05 0.30 0.35 6 # C
+0.23 0.23 0.33 0.23 4 # G
+0.23 0.23 0.23 0.33 2 # C
+0.24 0.24 0.28 0.24 1 # G
+- # *** codon
+0.25 0.10 0.55 0.10 7 # G
+0.28 0.24 0.24 0.24 3 # A
+0.17 0.17 0.55 0.11 5 # G
