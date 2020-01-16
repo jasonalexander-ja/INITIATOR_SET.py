@@ -1,5 +1,4 @@
-import kozak_calculator
-from kozak_calculator import *
+from initiator_set.kozak_calculator.kozak_calculator import *
 
 # import unittest
 #

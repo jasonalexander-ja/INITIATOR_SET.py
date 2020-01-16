@@ -90,8 +90,3 @@ def interpret_kozak_weights(line: str) -> KzNucleotide:
 
 def remove_comments(line: str):
     return line.split("#")[0]
-
-
-with open("sample_kozaks.txt") as inf:
-    a = interpret_kozak_file(inf)
-    print(a.__repr__())
