@@ -1,5 +1,6 @@
 from dataclasses import *
 from typing import *
+from initiator_set.kozak_calculator import *
 
 MAJORITY_MIN = 0.4 # Any KzNucleotide with a weight above this value will be part of the representation of the sequence
 
@@ -7,11 +8,14 @@ MAJORITY_MIN = 0.4 # Any KzNucleotide with a weight above this value will be par
 @dataclass(frozen = True)
 class KzNucleotide:
     # All floats between 0 and 1 (inclusive, inclusive), representing distribution
-    # They must all add up to 1 as they basically represent percentages
+    # They should add up as close to 1 as possible as they represent percentages
     a: float
     u: float
     g: float
     c: float
+
+    # Positions of high importance are conserved
+    importance: int
 
     verify: bool = False
     def valid(self) -> bool:
@@ -57,7 +61,8 @@ class KzNucleotide:
 
     # I do not think this function is right
     def is_conserved(self):
-        return self.dominants()[0][1] > 0.25
+        # return self.dominants()[0][1] > 0.25
+        return self.importance > 6
 
     def __post_init__(self):
         if not self.verify: pass
@@ -100,7 +105,6 @@ def new_KzConsensus(*anynomous_weights_objects : List[object]):
 
 @dataclass
 class KzConsensus:
-    strength: float
     codonStart: int
     sequence : List[KzNucleotide]
 
@@ -122,16 +126,19 @@ class KzConsensus:
     def trailing(self):
         return self.sequence[self.codonStart + self.codonLength: len(self.sequence)]
 
+    def total_weight(self):
+        return sum(i.importance for i in self.sequence)
+
     # Given a comparison sequence, calculates the distribution of confidence
     # returned values are a list of floats, indexed to comparison_sequence, corresponding to
-    # the confidence of alignment to self.sequence, as a value between 0 and 1
+    # the confidence of alignment to self.sequence
     def confidence_distribution(self, comparison_sequence : str, comparison_start : int = 0) -> List[float]:
         result: List[float] = [0.0] * len(comparison_sequence)
         for i in range(comparison_start, min(len(comparison_sequence), len(self.sequence))):
             a_kzNucleotide = self.sequence[i]
             b_str = comparison_sequence[i]
 
-            result[i] = a_kzNucleotide.weight_of(b_str)
+            result[i] = a_kzNucleotide.weight_of(b_str) * a_kzNucleotide.importance
         return result
 
     # Given a comparison sequence, calculates the confidence,
@@ -139,8 +146,11 @@ class KzConsensus:
     # returned value is between 0 and 1
     def confidence(self, comparison_sequence : str, comparison_start : int = 0) -> float:
         c_dist : List[float] = self.confidence_distribution(comparison_sequence, comparison_start)
-        c_sum : float = sum(c_dist)
-        return c_sum / len(c_dist)
+        return sum(c_dist) / self.total_weight()
+        #c_sum : float = sum(c_dist)
+        #return c_sum / len(c_dist)
+
+    def __repr__(self): return self.__str__()
 
     # The structure of the representation of the consensus is as follows:
     # () = part of sequence that has no siginificant impact on the consensus
