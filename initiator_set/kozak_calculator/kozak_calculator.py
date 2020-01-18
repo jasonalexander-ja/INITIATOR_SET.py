@@ -18,7 +18,7 @@
 # Each Kozak Consensus Sequence can have any initiator codon, not just AUG/Methionine.
 # Due to the difficulty of instantiating KzConsensus instances, and because
 # there are entirely different Kozak Consensus Sequences and weights for different species, most still unstudied,
-# it is recommended to store them in files and construct them using methods in the kozak_calculator.py file
+# it is recommended to store them in files and construct them using methods in the kozak_loader.py file
 #
 ########################################################################################################################
 
