@@ -48,6 +48,7 @@ from initiator_set.kozak_calculator.kozak_calculator import *
 # print("Cod:"+repr_sequence(c11.codon()))
 # print("TRL:"+repr_sequence(c11.trailing()))
 
+# This is why you want to use kozak_loader.py instead of directly instantiating KzConsensus instances...
 c21 = new_KzConsensus((1,0,0,0),(1,0,0,0),(0,1,0,0),(0,0,1,0),(0,1,0,0),(0,0,0,1),(0,0,0.5,0.5))
 print(str(c21))
 print(c21.confidence_distribution("aaugucg"))

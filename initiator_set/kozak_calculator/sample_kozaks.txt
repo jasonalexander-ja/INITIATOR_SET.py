@@ -1,11 +1,11 @@
-#: codon label
+# = comment, which everything to the right is ignored by kozak_loader
+# : goes after codon label
+# * = match any nucleotide
 AUG: # the Mammalian AUG Kozak (approximate distributions)
-# = comment
-# $ = weight between 0 and 1.
-# ^ Can support more than 2 decimal places, but will be used as a double
-# con = conservation rating of this position
-# - = initiator codon
-# a$   u$   g$   c$ con
+# $ = weight between 0 and 1 (can support more than 2 decimal places, max places is whatever python decides though)
+# imp = importance rating of this position
+# - = position of the initiator codon within the kozak context
+# a$   u$   g$   c$ imp
 0.24 0.24 0.28 0.24 1 # G
 0.24 0.24 0.24 0.28 1 # C
 0.24 0.24 0.24 0.28 1 # C
@@ -17,10 +17,9 @@ AUG: # the Mammalian AUG Kozak (approximate distributions)
 0.08 0.07 0.30 0.55 4 # C
 - # AUG codon
 0.17 0.17 0.55 0.11 7 # G
-# newline separates different kozaks
+# a newline separates different kozak entries for a single file ( vvv )
 
-***: # Mammalian kozak for non-AUG initiation sites (approximate distributions)
-# * = match any nucleotide
+***: # Mammalian kozak for non-AUG initiation sites (combined approximate distributions)
 0.24 0.24 0.24 0.28 1 # C
 0.24 0.24 0.28 0.24 1 # G
 0.24 0.24 0.28 0.24 1 # G

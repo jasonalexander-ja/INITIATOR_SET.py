@@ -1,10 +1,23 @@
+########################################################################################################################
+#
+# This file supports interpreting Kozak Consensus Sequences from file and constructing them into KzConsensus instances
+# It is recommended to use these methods to construct KzConsensus instances due to the difficulty of
+# describing the analogue nature of Kozak Consensus Sequences.
+#
+# See sample_kozaks.txt for the syntax structure of a kozak file
+#
+########################################################################################################################
+
 from typing import *
 from io import StringIO
 from initiator_set.kozak_calculator.kozak_calculator import *
 
-__lineno = 0
+# one global variable that I did not want to pass around between a million functions
+__lineno = 0  # do not touch
 
 
+# Given an input file or something, construct whatever is in it into a
+# collection of KzConsensus instances
 def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
     result: List[KzConsensus] = []
     last_line_was_terminated = False
@@ -29,21 +42,25 @@ def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
     return result
 
 
+# Simply translates an initiator codon string (e.g "AUG")
+# into a list of KzNucleotide instances representing the codon
 def codon_of(initiator_codon: str) -> List[KzNucleotide]:
     result: List[KzNucleotide] = []
-    for c in initiator_codon.upper():
-        a1 = 1 if c == 'A' else 0
-        u1 = 1 if c == 'U' else 0
-        g1 = 1 if c == 'G' else 0
-        c1 = 1 if c == 'C' else 0
+    for c in initiator_codon.lower():
+        a1 = 1 if c == 'a' else 0
+        u1 = 1 if c == 'u' else 0
+        g1 = 1 if c == 'g' else 0
+        c1 = 1 if c == 'c' else 0
 
-        # Initiator codon gets an importance value of -1
+        # Initiator codon KzNucleotide instances get an importance value of -1
         kzn = KzNucleotide(a=a1, u=u1, g=g1, c=c1, importance=-1)
         result.append(kzn)
 
     return result
 
 
+# Given an input file or something, construct a KzConsensus instance out of the file
+# in retrospect to the file syntax as described in sample_kozaks.txt
 def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzConsensus:
     result = KzConsensus(sequence=[], codonStart=0)
     global __lineno
@@ -74,11 +91,14 @@ def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzCon
             pass
 
             __lineno = __lineno + 1
-        pass
+
+        return result
     except:
         raise ValueError("Cannot parse data as kozak consensus")
 
 
+# Construct, from a weights entry from a string, a KzNucleotide object with its data
+# e.g "0.24 0.24 0.28 0.24 1"
 def interpret_kozak_weights(line: str) -> KzNucleotide:
     values: List[str] = line.split(" ")
     if len(values) != 5:
@@ -91,5 +111,6 @@ def interpret_kozak_weights(line: str) -> KzNucleotide:
         raise ValueError("Malformed weight value")
 
 
+# Ignore any comments with the parser
 def remove_comments(line: str):
     return line.split("#")[0]
