@@ -1,12 +1,11 @@
 from dataclasses import *
 from typing import *
-from initiator_set.kozak_calculator import *
 
 MAJORITY_MIN = 0.4  # Any KzNucleotide with a weight above this value will be part of the representation of the sequence
 
 
 # Represents an mRNA nucleotide, as part of a kozak consensus distribution.
-@dataclass(frozen=True)
+@dataclass
 class KzNucleotide:
     # All floats between 0 and 1 (inclusive, inclusive), representing distribution
     # They should add up as close to 1 as possible as they represent percentages
@@ -15,10 +14,8 @@ class KzNucleotide:
     g: float
     c: float
 
-    # Positions of high importance are conserved
+    # Positions of high importance are conserved. Either positive, or -1 if part of initiation codon
     importance: int
-
-    verify: bool = False
 
     def valid(self) -> bool:
         # TODO not valid in all cases. if say u g c are a third each, it is impossible to get 1 out of this
@@ -63,16 +60,12 @@ class KzNucleotide:
 
     # nucleotide_char is one of 'a', 'u', 'g', or 'c'
     def weight_of(self, nucleotide_char: str) -> float:
-        return self.dict().get(nucleotide_char, 0)
+        return self.dict().get(nucleotide_char.lower(), 0)
 
     # I do not think this function is right
     def is_conserved(self):
         # return self.dominants()[0][1] > 0.25
         return self.importance > 6
-
-    def __post_init__(self):
-        if not self.verify: pass
-        # TODO verify data here, if needed
 
     # Returns:
     # If single dominant, returns the nucleotide by itself
@@ -118,15 +111,7 @@ class KzConsensus:
     codonStart: int
     sequence: List[KzNucleotide]
 
-    codonLength: int = 3
-    verify: bool = False
-
-    def __post_init__(self):
-        if not self.verify: pass
-        # if len(self.factors) == 0:
-        #     setattr(self, 'factors', [CONSERVED_LIMIT] * len(self.sequence))
-        # TODO verify data here, if needed
-        # if len(sequence) != len(factors) raise ValueError()
+    codonLength: int = 3 # this should always be 3 anyway
 
     def leading(self):
         return self.sequence[0: self.codonStart]
@@ -138,28 +123,45 @@ class KzConsensus:
         return self.sequence[self.codonStart + self.codonLength: len(self.sequence)]
 
     def total_weight(self):
-        return sum(i.importance for i in self.sequence)
+        return sum(i.maximums()[0][1] * i.importance for i in self.sequence) + self.codonLength * 2
+        # * 2 because special weight of -1
 
     # Given a comparison sequence, calculates the distribution of confidence
     # returned values are a list of floats, indexed to comparison_sequence, corresponding to
-    # the confidence of alignment to self.sequence
+    # the confidence of alignment to self.sequence.
+    # Comparison_sequence must contain initiation codon.
+    # If it is missing, there will be negative 1s in the distribution
     def confidence_distribution(self, comparison_sequence: str, comparison_start: int = 0) -> List[float]:
-        result: List[float] = [0.0] * len(comparison_sequence)
-        for i in range(comparison_start, min(len(comparison_sequence), len(self.sequence))):
-            a_kzNucleotide = self.sequence[i]
-            b_str = comparison_sequence[i]
+        comparison_length = (len(comparison_sequence) - comparison_start)
+        result: List[float] = [0.0] * comparison_length
 
-            result[i] = a_kzNucleotide.weight_of(b_str) * a_kzNucleotide.importance
+        for i in range(0, min(comparison_length, len(self.sequence))):
+            a_kz_nucleotide = self.sequence[i]
+            b_str = comparison_sequence[i + comparison_start]
+
+            weight = a_kz_nucleotide.weight_of(b_str)
+            importance = a_kz_nucleotide.importance
+
+            confidence = weight * importance if (importance >= 0) else 1
+
+            # Malformed input check
+            if importance < 0 and b_str not in str(a_kz_nucleotide):
+                confidence = -1
+
+            result[i] = confidence
         return result
 
     # Given a comparison sequence, calculates the confidence,
-    # or how 'strong' the comparison sequence aligns with this consensus
-    # returned value is between 0 and 1
-    def confidence(self, comparison_sequence: str, comparison_start: int = 0) -> float:
+    # or how 'strong' the comparison sequence aligns with this consensus.
+    # Returned value is between 0 and 1.
+    # Will return 0 in the case where the initiator codon is not present.
+    # You should prevent this from happening if possible as it should be given
+    # (according to the problem statement I was given)
+    def confidence(self, comparison_sequence: str, comparison_start: int = 0, codon_length: int = 3) -> float:
         c_dist: List[float] = self.confidence_distribution(comparison_sequence, comparison_start)
-        return sum(c_dist) / self.total_weight()
-        # c_sum : float = sum(c_dist)
-        # return c_sum / len(c_dist)
+        if -1 in c_dist:
+            return 0
+        return (sum(c_dist) - codon_length) / self.total_weight()
 
     def __repr__(self):
         return self.__str__()
@@ -177,8 +179,3 @@ class KzConsensus:
         for nucleotide, kz_nucleotide in zip(representeds, self.sequence):
             result += nucleotide.upper() if kz_nucleotide.is_conserved() else nucleotide
         return result
-    # TODO I am not sure what counts as a 'dominant' gene in gene expression
-    # e.g whether a gene that has 0.1% more distribution than others should count as part of the expression
-    # right now I have it set up so that it simplifies the expression when ^ is so
-    # This probably only matters for representing bases that vary a lot in the sequence, as I don't really know at what point
-    # bases are truncated off the representation, or if it's just an arbitrary point

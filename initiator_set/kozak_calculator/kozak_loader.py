@@ -4,6 +4,7 @@ from initiator_set.kozak_calculator.kozak_calculator import *
 
 __lineno = 0
 
+
 def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
     result: List[KzConsensus] = []
     last_line_was_terminated = False
@@ -11,7 +12,7 @@ def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
     __lineno = 0
     try:
         while True:
-            line=datafile.readline()
+            line = datafile.readline()
             if line is None or line == "":
                 if last_line_was_terminated:
                     break
@@ -36,19 +37,20 @@ def codon_of(initiator_codon: str) -> List[KzNucleotide]:
         g1 = 1 if c == 'G' else 0
         c1 = 1 if c == 'C' else 0
 
-        kzn = KzNucleotide(a=a1,u=u1,g=g1,c=c1,importance=0)
+        # Initiator codon gets an importance value of -1
+        kzn = KzNucleotide(a=a1, u=u1, g=g1, c=c1, importance=-1)
         result.append(kzn)
 
     return result
 
 
 def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzConsensus:
-    result = KzConsensus(sequence=[], codonStart = 0)
+    result = KzConsensus(sequence=[], codonStart=0)
     global __lineno
     try:
         i = 0
         while True:
-            line=datafile.readline()
+            line = datafile.readline()
 
             # End consensus with new line
             if line is None or line.isspace() or line == "":
@@ -82,7 +84,8 @@ def interpret_kozak_weights(line: str) -> KzNucleotide:
     if len(values) != 5:
         raise ValueError("Malformed weight line")
     try:
-        result = KzNucleotide(a=float(values[0]),u=float(values[1]),g=float(values[2]),c=float(values[3]),importance=int(values[4]))
+        result = KzNucleotide(a=float(values[0]), u=float(values[1]), g=float(values[2]), c=float(values[3]),
+                              importance=int(values[4]))
         return result
     except ValueError as e:
         raise ValueError("Malformed weight value")
