@@ -27,6 +27,6 @@ def mapAICs(rna:mRNA.mRNA) -> mRNA.mRNA:
 	for i in rna.code:
 		# Go to the desired entry in datafile
 		m_weights.seek(i * 4)
-		rna.metadata["baseWeights"].append(unpack('<f', m_weights.read(8))[0])
+		rna.metadata["baseWeights"] = unpack('<f', m_weights.read(4))[0]
 
 	return rna
