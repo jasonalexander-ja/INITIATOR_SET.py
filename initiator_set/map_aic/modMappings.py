@@ -14,7 +14,7 @@ filename = mypath + '/codonWeights.dat'
 
 
 try:
-	m_file = open(filename,'+b') # update binary file
+	m_file = open(filename,'+wb') # update binary file
 except OSError as e:
 	print("\"" + filename + "\" not found!\n"
 		+ "Constructing new file...", file=sys.stderr)
@@ -43,7 +43,7 @@ args = parser.parse_args()
 # If empty, print the current weights in the same format they are input
 if args.infile == []:
 	for i in range(64):
-		print(mRNA.deindexCodon(i) + " ", *unpack('<f', m_file.read(8)))
+		print(mRNA.deindexCodon(i) + " ", *unpack('<f', m_file.read(4)))
 	sys.exit()
 
 
