@@ -121,13 +121,18 @@ class KzConsensus:
 
     codonLength: int = 3  # this should always be 3 anyway...
 
-    def leading(self):
+    def leading(self) -> List[KzNucleotide]:
         return self.sequence[0: self.codonStart]
 
-    def codon(self):
-        return self.sequence[self.codonStart: self.codonStart + self.codonLength]
+    # Because the codon of a Kozak is certain, this just returns a string
+    def codon(self) -> str:
+        result = ""
+        codon = self.sequence[self.codonStart: self.codonStart + self.codonLength]
+        for e in codon:
+            result += e.dominants()[0][0]
+        return result
 
-    def trailing(self):
+    def trailing(self) -> List[KzNucleotide]:
         return self.sequence[self.codonStart + self.codonLength: len(self.sequence)]
 
     def total_weight(self):
