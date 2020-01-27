@@ -20,13 +20,14 @@ def deindexCodon(index:int) -> str:
 
 
 def deindexRNA(code:list) -> str:
-	result = ''
-	for i in range (0, len(code), 3):
-		result = result + codonIndex(code[i])
+  result = ''
+  for i in range (0, len(code), 3):
+    result = result + deindexCodon(code[i])
 
-	i = len(code) % 3
-	result = result[:-i] + codonIndex(code[-1])
-	return result
+  i = (len(code) - 1) % 3
+  if i != 0:
+    result = result + deindexCodon(code[-1])[-i:]
+  return result
 
 
 
@@ -57,17 +58,10 @@ class mRNA:
 
 		self.code:list = cd
 
-		# DEPRECATED! USE METADATA DICT INSTEAD!!!!!
-		self.baseWeights:list = []
-		self.adjustedWeights:list = []
-		# ^^^^^^^^^^^^ DEPRECATED ^^^^^^^^^^^^^^^^^^
-
 		self.metadata:dictionary = {}
 
-
-
 	def __str__(self) -> str:
-		return rnaIndex(self.code) + "\n\n" + self.metadata
+		return deindexRNA(self.code) + "\n\n" + self.metadata
 
 class Iterable(mRNA) :
 
