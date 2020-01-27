@@ -35,7 +35,9 @@ def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
             spl = line.split(":")
             if line.count(":") == 1 and len(spl) > 1:
                 result.append(interpret_kozak_consensus(datafile, spl[0]))
-            __lineno = __lineno + 1
+                __lineno = 0
+            else:
+                __lineno = __lineno + 1
     except:
         raise ValueError("Cannot parse data as kozak consensus")
 
