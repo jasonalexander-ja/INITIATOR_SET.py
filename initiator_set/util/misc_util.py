@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 # Miscillaneous utility methods and classes for general use
 # Contributing authors: 
 #  -Lucianna Osucha (lucianna@vulpinedesings.com)
@@ -262,7 +260,6 @@ class RobustLinkedList:
         result += "   " + str(node) + "\n"
       node = node.next
     return result
->>>>>>> Stashed changes
 
 
 
