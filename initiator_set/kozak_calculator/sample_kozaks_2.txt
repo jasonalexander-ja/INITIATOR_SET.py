@@ -1,14 +1,25 @@
 AUC: # Matches only CCCAUCCCC
+conserved >= 0
 # a$   u$   g$   c$ imp
 0.00 0.00 0.00 1.00 1
 0.00 0.00 0.00 1.00 1
 0.00 0.00 0.00 1.00 1
-- # AUG codon
+- # AUC codon
 0.00 0.00 0.00 1.00 1
 0.00 0.00 0.00 1.00 1
 0.00 0.00 0.00 1.00 1
 
+GGG: # Matches only GGGCC[c|g]
+conserved >= 0
+# a$   u$   g$   c$ imp
+- # GGG codon
+0.00 0.00 0.00 1.00 1
+0.00 0.00 0.00 1.00 1
+0.00 0.00 0.50 0.50 1
+
 CUG: # Matches only CCCCUGCCC
+conserved >= 0
+homologous >= 1
 # a$   u$   g$   c$ imp
 0.00 0.00 0.00 1.00 1
 0.00 0.00 0.00 1.00 1
@@ -19,6 +30,8 @@ CUG: # Matches only CCCCUGCCC
 0.00 0.00 0.00 1.00 1
 
 GGG: # Matches only GGGCCC
+conserved >= 0
+homologous >= 0.9
 # a$   u$   g$   c$ imp
 - # GGG codon
 0.00 0.00 0.00 1.00 1

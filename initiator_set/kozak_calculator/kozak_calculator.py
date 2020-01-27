@@ -9,12 +9,10 @@
 # The other bits do not matter as much but do help.
 # (see wikipedia and vulpine designs wiki for more information)
 #
-# This is an analogue calculator, the output is not true or false but in signals.
-# You can define a threshold mechanism of your choice to determine what counts as 'aligns to kozak'
-# e.g with sample_kozaks.txt you could simply define 0.5 as a strong-align minimum and that allows the...
-# example above to pass with second G and last G matched, even with every other context bit mismatched.
+# This is mostly an analogue calculator. An entry 'homologous >= #' in a kozak file can be used to define a
+# minimum threshold.
 #
-# Different Kozak Consensus Sequences can be represented as different KzConsensus instances.
+# Different Kozak Consensus Sequences should be represented as different KzConsensus instances.
 # Each Kozak Consensus Sequence can have any initiator codon, not just AUG/Methionine.
 # Due to the difficulty of instantiating KzConsensus instances, and because
 # there are entirely different Kozak Consensus Sequences and weights for different species, most still unstudied,
@@ -88,9 +86,9 @@ class KzNucleotide:
         return self.dict().get(nucleotide_char.lower(), 0)
 
     # I do not think this function is right
-    def is_conserved(self):
+    def is_conserved(self, conserved_threshold):
         # return self.dominants()[0][1] > 0.25
-        return self.importance > 6
+        return self.importance >= conserved_threshold
 
     # Returns:
     # If single dominant, returns the nucleotide by itself
@@ -118,6 +116,8 @@ class KzNucleotide:
 class KzConsensus:
     codonStart: int
     sequence: List[KzNucleotide]
+    similarity_threshold: int = -1
+    conserved_threshold: int = -1
 
     codonLength: int = 3  # this should always be 3 anyway...
 
@@ -178,7 +178,10 @@ class KzConsensus:
         c_dist: List[float] = self.similarity_distribution(comparison_sequence, comparison_start)
         if -1 in c_dist:
             return 0
-        return (sum(c_dist) - codon_length) / self.total_weight()
+        return (sum(c_dist)) / self.total_weight()
+
+    def homologous(self, comparison_sequence: str, comparison_start: int = 0, codon_length: int = 3):
+        return self.similarity(comparison_sequence, comparison_start, codon_length) >= self.similarity_threshold
 
     def __repr__(self):
         return self.__str__()
@@ -194,7 +197,7 @@ class KzConsensus:
         for i in self.sequence:
             representeds.append(str(i))
         for nucleotide, kz_nucleotide in zip(representeds, self.sequence):
-            result += nucleotide.upper() if kz_nucleotide.is_conserved() else nucleotide
+            result += nucleotide.upper() if kz_nucleotide.is_conserved(self.conserved_threshold) else nucleotide
         return result
 
 

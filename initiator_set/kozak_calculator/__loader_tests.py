@@ -5,7 +5,7 @@ from initiator_set.kozak_calculator.kozak_calculator import *
 from initiator_set.kozak_calculator.kozak_loader import interpret_kozak_file
 
 with open("sample_kozaks.txt") as inf:
-    a: List[KzConsensus] = interpret_kozak_file(inf)
+    a: List[KzConsensus] = interpret_kozak_file(inf, "sample_kozaks.txt")
     print(a.__repr__())
     print()
     print("gccgccaccaugg")
@@ -35,3 +35,15 @@ with open("sample_kozaks.txt") as inf:
     print("uuuuuuuuuucuu")
     print(a[0].similarity_distribution("uuuuuuuuuucuu", 0))
     print(a[0].similarity("uuuuuuuuuucuu", 0))
+
+with open("sample_kozaks_2.txt") as inf:
+    a: List[KzConsensus] = interpret_kozak_file(inf, "sample_kozaks_2.txt")
+    print(a.__repr__())
+    print()
+    print("cccaucccc -> cccaucccc")
+    print(a[0].similarity_distribution("cccaucccc", 0))
+    print(a[0].similarity("cccaucccc", 0))
+    print()
+    print("gggccc -> gggcc[c|g]")
+    print(a[1].similarity_distribution("gggccc", 0))
+    print(a[1].similarity("gggcca", 0))

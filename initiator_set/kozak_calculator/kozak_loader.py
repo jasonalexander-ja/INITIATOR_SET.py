@@ -18,7 +18,7 @@ __lineno = 0  # do not touch
 
 # Given an input file or something, construct whatever is in it into a
 # collection of KzConsensus instances
-def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
+def interpret_kozak_file(datafile: StringIO, filename="") -> List[KzConsensus]:
     result: List[KzConsensus] = []
     last_line_was_terminated = False
     global __lineno
@@ -38,8 +38,11 @@ def interpret_kozak_file(datafile: StringIO) -> List[KzConsensus]:
                 __lineno = 0
             else:
                 __lineno = __lineno + 1
-    except:
-        raise ValueError("Cannot parse data as kozak consensus")
+    except ValueError:
+        errormsg = "Cannot parse data."
+        if filename != "":
+            errormsg += " Misunderstood file " + filename
+        raise ValueError(errormsg)
 
     return result
 
@@ -66,37 +69,43 @@ def codon_of(initiator_codon: str) -> List[KzNucleotide]:
 def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzConsensus:
     result = KzConsensus(sequence=[], codonStart=0)
     global __lineno
-    try:
-        i = 0
-        while True:
-            line = datafile.readline()
+    # try:
+    i = 0
+    while True:
+        line = datafile.readline()
 
-            # End consensus with new line
-            if line is None or line.isspace() or line == "":
-                return result
+        # End consensus with new line
+        if line is None or line.isspace() or line == "":
+            return result
 
-            # Comments with #
-            line = remove_comments(line).strip()
-            if line.isspace() or line == "":
-                continue  # Ignore lines that were comments
+        # Comments with #
+        line = remove_comments(line).strip()
+        if line.isspace() or line == "":
+            continue  # Ignore lines that were comments
 
-            # Specify initiator codon with -
-            if line.find('-') > -1:
-                result.codonStart = __lineno
-                result.sequence.extend(codon_of(initiator_codon))
-            else:
-                # Build KzNucleotide with (f f f f i)
-                kzn: KzNucleotide = interpret_kozak_weights(line)
-                result.sequence.append(kzn)
+        # Specify initiator codon with -
+        if line.find('-') > -1:
+            result.codonStart = __lineno
+            result.sequence.extend(codon_of(initiator_codon))
+        elif line.find('conserved >= ') > -1:
+            result.conserved_threshold = float(line.split('conserved >=')[1])
+        elif line.find('homologous >= ') > -1:
+            result.conserved = float(line.split('homologous >=')[1])
+        else:
+            # Build KzNucleotide with (f f f f i)
+            kzn: KzNucleotide = interpret_kozak_weights(line)
+            result.sequence.append(kzn)
 
-            i = i + 1
-            pass
+        i = i + 1
+        pass
 
-            __lineno = __lineno + 1
+        __lineno = __lineno + 1
 
-        return result
-    except:
-        raise ValueError("Cannot parse data as kozak consensus")
+    if result.conserved_threshold < 0 or result.similarity_threshold:
+        raise ValueError("Missing threshold values ([] >= #)")
+    return result
+    # except:
+    #     raise ValueError("Cannot parse data as kozak consensus")
 
 
 # Construct, from a weights entry from a string, a KzNucleotide object with its data

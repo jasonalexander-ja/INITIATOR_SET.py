@@ -5,6 +5,9 @@ AUG: # the Mammalian AUG Kozak (approximate distributions)
 # $ = weight between 0 and 1 (can support more than 2 decimal places, max places is whatever python decides though)
 # imp = importance rating of this position
 # - = position of the initiator codon within the kozak context
+conserved >= 7 # required. Nucleotides with a weight above this value are considered conserved
+homologous >= 0.85
+# ^ any sequence with a cumulative weight above this value will count as being homologous with this kozak consensus
 # a$   u$   g$   c$ imp
 0.24 0.24 0.28 0.24 1 # G
 0.24 0.24 0.24 0.28 1 # C
@@ -20,6 +23,8 @@ AUG: # the Mammalian AUG Kozak (approximate distributions)
 # a newline separates different kozak entries for a single file ( vvv )
 
 ***: # Mammalian kozak for non-AUG initiation sites (combined approximate distributions)
+conserved >= 5
+homologous >= 0.78
 0.24 0.24 0.24 0.28 1 # C
 0.24 0.24 0.28 0.24 1 # G
 0.24 0.24 0.28 0.24 1 # G
