@@ -36,10 +36,6 @@ def rankWeight(list_, weight, index):
 	i.append((index, weight))
 
 
-
-def insert
-
-
 def mapAICs(rna:mRNA.mRNA) -> mRNA.mRNA:
 	rna.metadata["baseWeights"] = []
 	rna.metadata["baseWeightsOrdered"] = []
