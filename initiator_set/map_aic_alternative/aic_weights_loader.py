@@ -1,14 +1,10 @@
 from typing import *
 from io import StringIO
-from dataclasses import *
-from initiator_set.map_aic_alternative.map_aic import *
 
 
-# Interprets an [input file or something] of AIC weights into a collection of AICWeights instances
-def interpret_aic_weights(datafile: StringIO, filename: str = "") -> AICDictionary:
-    aic_weights: List[AICWeights] = []
+def interpret_aic_weights(datafile: StringIO, filename: str = "") -> Dict[str, float]:
+    aic_weights: Dict[str, float] = {}
     last_line_was_terminated = False
-# try:
     while True:
         # I don't claim to know how to read python files
         line = datafile.readline()
@@ -22,21 +18,16 @@ def interpret_aic_weights(datafile: StringIO, filename: str = "") -> AICDictiona
         if line == "":
             continue
 
-        aic_weights.append(interpret_aic_weight(line))
-    # except ValueError:
-    #     errormsg = "Cannot parse data."
-    #     if filename != "":
-    #         errormsg += " Misunderstood file " + filename
-    #     raise ValueError(errormsg)
+        entry = interpret_aic_weight(line)
+        aic_weights[entry[0]] = entry[1]
 
-    return AICDictionary(aic_weights)
+    return aic_weights
 
 
-# Interprets a string like "AAA 1" into codon and weight
-def interpret_aic_weight(weights: str) -> AICWeights:
+def interpret_aic_weight(weights: str) -> Tuple[str, float]:
     s: List[str] = weights.split()
     if len(s) == 2 and s[0].isalpha():
-        return AICWeights(codon=s[0], weight=float(s[1]))
+        return s[0], float(s[1])
     else:
         raise ValueError("Malformed AIC weights")
 
