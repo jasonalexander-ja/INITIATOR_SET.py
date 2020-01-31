@@ -53,20 +53,29 @@ class AICMap:
             ex = self.aics.get(e)
             if ex is None:
                 self.aics[e] = []
-            result.extend(self.aics.get(e))
+            result.append(self.aics.get(e))
         return result
 
     # collapses the dictionary into a sorted list, where elements closer to 0 are closer to 5' of mRNA strand
     def collapse_by_position(self) -> List:
         result = []
         for elem in sorted(self.aics.items(), key=lambda x: x[1]):
-            result.extend((elem[0], elem[1]))
+            result.append((elem[0], elem[1]))
         return result
 
 
-def map_aic(aic_dictionary: AICDictionary, sequence: str) -> AICMap:
-    # aic_weights = aic_dictionary.sorted_by_weights()
+def map_aic(aic_dictionary: AICDictionary, sequence_mrna_or_str) -> Optional[AICMap]:
     aics: Dict[str, List[int]] = {}
+
+    sequence = None
+    if type(sequence_mrna_or_str) is str:
+        sequence = sequence_mrna_or_str
+    elif type(sequence_mrna_or_str) is list:
+        sequence = deindexRNA(sequence_mrna_or_str)
+    elif type(sequence_mrna_or_str) is mRNA:
+        sequence = deindexRNA(sequence_mrna_or_str.code)
+    else:
+        return None
 
     # Search every trio of nucleotides as the start of codon transcription is not established
     for i in range(0, len(sequence)-2, 1):  # it's 1 not 3
@@ -77,4 +86,10 @@ def map_aic(aic_dictionary: AICDictionary, sequence: str) -> AICMap:
                 aics[trio] = []
             aics[trio].append(i)
 
-    return AICMap(aics)
+    result = AICMap(aics)
+    if type(sequence_mrna_or_str) is mRNA:
+        mrna: mRNA = sequence_mrna_or_str
+        baseWeights = [o for o in result.collapse_by_position()]
+        mrna.metadata['baseWeights'] = baseWeights
+    return result
+
