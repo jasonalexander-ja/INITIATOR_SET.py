@@ -7,7 +7,8 @@ with open("example_input.txt") as inf:
     b = mRNA("AUGGUGCUCCUGAUG")
     map_aic(b, a)
 
-    print()
+    print(b.metadata)
+
 
 
 
