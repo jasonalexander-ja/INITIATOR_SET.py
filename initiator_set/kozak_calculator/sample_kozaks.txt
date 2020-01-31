@@ -22,20 +22,21 @@ homologous >= 0.85
 0.17 0.17 0.55 0.11 7 # G
 # a newline separates different kozak entries for a single file ( vvv )
 
-***: # Mammalian kozak for non-AUG initiation sites (combined approximate distributions)
-conserved >= 5
-homologous >= 0.78
-0.24 0.24 0.24 0.28 1 # C
-0.24 0.24 0.28 0.24 1 # G
-0.24 0.24 0.28 0.24 1 # G
-0.18 0.12 0.15 0.55 9 # C
-0.04 0.06 0.50 0.40 9 # G
-0.24 0.28 0.24 0.24 1 # U
-0.30 0.05 0.30 0.35 6 # C
-0.23 0.23 0.33 0.23 4 # G
-0.23 0.23 0.23 0.33 2 # C
-0.24 0.24 0.28 0.24 1 # G
-- # *** codon
-0.25 0.10 0.55 0.10 7 # G
-0.28 0.24 0.24 0.24 3 # A
-0.17 0.17 0.55 0.11 5 # G
+# ***: # Mammalian kozak for non-AUG initiation sites (combined approximate distributions)
+# # This is not a valid entry, * can mean anything
+# conserved >= 5
+# homologous >= 0.78
+# 0.24 0.24 0.24 0.28 1 # C
+# 0.24 0.24 0.28 0.24 1 # G
+# 0.24 0.24 0.28 0.24 1 # G
+# 0.18 0.12 0.15 0.55 9 # C
+# 0.04 0.06 0.50 0.40 9 # G
+# 0.24 0.28 0.24 0.24 1 # U
+# 0.30 0.05 0.30 0.35 6 # C
+# 0.23 0.23 0.33 0.23 4 # G
+# 0.23 0.23 0.23 0.33 2 # C
+# 0.24 0.24 0.28 0.24 1 # G
+# - # *** codon
+# 0.25 0.10 0.55 0.10 7 # G
+# 0.28 0.24 0.24 0.24 3 # A
+# 0.17 0.17 0.55 0.11 5 # G

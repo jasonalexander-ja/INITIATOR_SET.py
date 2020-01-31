@@ -12,17 +12,13 @@ from typing import *
 from io import StringIO
 from initiator_set.kozak_calculator.kozak_calculator import *
 
-# one global variable that I did not want to pass around between a million functions
-__lineno = 0  # do not touch
-
 
 # Given an input file or something, construct whatever is in it into a
 # collection of KzConsensus instances
 def interpret_kozak_file(datafile: StringIO, filename="") -> List[KzConsensus]:
     result: List[KzConsensus] = []
     last_line_was_terminated = False
-    global __lineno
-    __lineno = 0
+
     try:
         while True:
             line = datafile.readline()
@@ -32,12 +28,11 @@ def interpret_kozak_file(datafile: StringIO, filename="") -> List[KzConsensus]:
                 else:
                     last_line_was_terminated = True
             line = remove_comments(line)
+            if line is None or line == "":
+                continue
             spl = line.split(":")
             if line.count(":") == 1 and len(spl) > 1:
                 result.append(interpret_kozak_consensus(datafile, spl[0]))
-                __lineno = 0
-            else:
-                __lineno = __lineno + 1
     except ValueError:
         errormsg = "Cannot parse data."
         if filename != "":
@@ -68,8 +63,7 @@ def codon_of(initiator_codon: str) -> List[KzNucleotide]:
 # in retrospect to the file syntax as described in sample_kozaks.txt
 def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzConsensus:
     result = KzConsensus(sequence=[], codonStart=0)
-    global __lineno
-    # try:
+
     i = 0
     while True:
         line = datafile.readline()
@@ -85,7 +79,7 @@ def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzCon
 
         # Specify initiator codon with -
         if line.find('-') > -1:
-            result.codonStart = __lineno
+            result.codonStart = i
             result.sequence.extend(codon_of(initiator_codon))
         elif line.find('conserved >= ') > -1:
             result.conserved_threshold = float(line.split('conserved >=')[1])
@@ -94,18 +88,14 @@ def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzCon
         else:
             # Build KzNucleotide with (f f f f i)
             kzn: KzNucleotide = interpret_kozak_weights(line)
+            i = i + 1
             result.sequence.append(kzn)
 
-        i = i + 1
         pass
-
-        __lineno = __lineno + 1
 
     if result.conserved_threshold < 0 or result.similarity_threshold:
         raise ValueError("Missing threshold values ([] >= #)")
     return result
-    # except:
-    #     raise ValueError("Cannot parse data as kozak consensus")
 
 
 # Construct, from a weights entry from a string, a KzNucleotide object with its data

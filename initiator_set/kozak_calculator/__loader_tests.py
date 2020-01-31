@@ -6,6 +6,8 @@ from initiator_set.kozak_calculator.kozak_loader import interpret_kozak_file
 
 with open("sample_kozaks.txt") as inf:
     a: List[KzConsensus] = interpret_kozak_file(inf, "sample_kozaks.txt")
+    for x in a:
+        print("Start codon of "+x.__repr__()+": "+x.codon())
     print(a.__repr__())
     print()
     print("gccgccaccaugg")

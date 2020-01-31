@@ -1,4 +1,6 @@
 # map_aic_alternative
+
+> ! This submodule is cannon fodder while original Map AIC is being fixed !
  
  Module for mapping an arbitrary piece of mRNA to a predetermined list of
  weights, stored in a textual format.
