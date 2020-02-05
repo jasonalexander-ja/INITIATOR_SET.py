@@ -7,8 +7,7 @@ with open("example_input.txt") as inf:
     b = mRNA("AUGGUGCUCCUGAUG")
     map_aic(b, a)
 
-    print(b.metadata)
-
-
+    print("AUGGUGCUCCUGAUG")
+    print(b.metadata.__str__().replace('}, \'', '}, \n\''))
 
 

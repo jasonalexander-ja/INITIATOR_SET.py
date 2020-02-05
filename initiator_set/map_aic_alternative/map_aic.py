@@ -62,4 +62,24 @@ def map_aic(mrna: mRNA, weights: Dict[str, float]):
 
     mrna.metadata["weights_dict"] = weights
 
+    # Calculate adjusted weights
+    # I saw this entry was lying around in the original map AIC but not calculated
+    # I'm taking it as normalising the weights so that all values are between 0 and 1
+    # Where 1.0 was whatever the maximum weighted entry previously was
+    # Probably not even needed
+
+    # Find max weight
+    w_max = 0
+    for i in weights.values():
+        if i > w_max:
+            w_max = i
+
+    # Convert it to a tuple
+    adjusted_weights = {}
+    for i in weights.items():
+        adjusted_weights[i[0]] = i[1] / w_max
+    mrna.metadata['adjusted_weights'] = adjusted_weights
+
+
+
 
