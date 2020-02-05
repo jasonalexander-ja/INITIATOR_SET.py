@@ -14,8 +14,11 @@ def map_aic(mrna: mRNA, weights: Dict[str, float]):
         value = 0.0 if weight_entry is None else weight_entry
         mrna.metadata["baseWeights"].append(value)
 
-    # Attach the locations for each AIC
-    mrna.metadata["locations_aic"] = {}
+    # Attach the locations for each AIC in different views
+
+    # Dictionary of initiator codons by locations in the mrna, indexed like so:
+    # key = codon, val = List of locations of codon in mrna
+    mrna.metadata["locations_aic"]: Dict[str, List[int]] = {}
     for codon in weights.keys():
         mrna.metadata["locations_aic"][codon] = []
     for i in range(0, len(mrna.code)):
@@ -26,8 +29,28 @@ def map_aic(mrna: mRNA, weights: Dict[str, float]):
             continue
         mrna.metadata["locations_aic"][codon].append(i)
 
-    sorted_aics: List[Tuple[str, float]] = list(sorted(weights.items(), key=lambda x: x[1], reverse=True))
+    # Dictionary of index positions of where starting initiator codons are located,
+    # indexed like so:
+    # key = location in codon, value = codon
+
+    # This is basically a dupe of locations_aic in memory but is useful to decrease computational load
+    # Because inevitably some dependent module is going to need both:
+    # - the locations of all of specific initiator codons
+    # - flat list of all locations of potential initiator codons
+    # So we may as well calculate it now while we are here
+    mrna.metadata["indices_aic"]: Dict[int, str] = {}
+    for i in range(0, len(mrna.code)):
+        indexed_codon = mrna.code[i]
+        codon = deindexCodon(indexed_codon)
+        weight_entry = weights.get(codon)
+        if weight_entry is None:
+            continue
+        mrna.metadata["indices_aic"][i] = codon
+
+
     # Rank the AIC locations by AIC weight
+
+    sorted_aics: List = list(sorted(weights.items(), key=lambda x: x[1], reverse=True))  # [Tuple[str, float]]
     mrna.metadata["ranked_weights"]: List[int] = []
     for i in range(0, len(sorted_aics)):
         aic = sorted_aics[i]
@@ -36,5 +59,7 @@ def map_aic(mrna: mRNA, weights: Dict[str, float]):
             continue
         for loc in locations:
             mrna.metadata["ranked_weights"].append(loc)
+
+    mrna.metadata["weights_dict"] = weights
 
 

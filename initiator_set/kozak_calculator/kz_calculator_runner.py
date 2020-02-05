@@ -33,11 +33,11 @@ def calculate_kozaks(mrna: mRNA, kozaks: List[KzConsensus]):
             if context_start < 0:
                 continue
                 # context_area = ("z" * abs(context_start)) + context_area
-            if context_end > len(mrna.code):
+            if context_end > len(code):
                 continue
                 # context_area = context_area + ("z" * (context_end-len(mrna.code)))
 
             context_area = code[context_start:context_end].lower()
             similarity = kz.similarity(context_area)
             mrna.metadata["kozaks_of_ranked_weights"].append(similarity)
-
+    pass
