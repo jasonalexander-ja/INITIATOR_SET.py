@@ -1,11 +1,20 @@
+########################################################################################################################
+#
+# Methods to deal with tieing this submodule into Initiator Set.
+# Works in conjunction with Map AIC to determine kozaks of all initiator codons determined by Map AIC.
+#
+########################################################################################################################
 from initiator_set.util.mRNA import *
 from initiator_set.kozak_calculator.kozak_loader import *
 from initiator_set.map_aic_alternative.map_aic import *
 
-
-# End user program
-
-# Calculate
+# Given an mrna strand, calculate all the kozaks.
+# Result is stored in mrna's metadata dictionary as
+# kozaks_of_ranked_weights
+# This is the kozak strength ratio of all initiator codon positions indexed by their corresponding elements
+# in ranked_weights
+#
+# Map AIC needs to be initialised before this method is called
 # kozaks_or_kozak_file can be either result of a call to kozak_loader.interpret_kozak_file(), or
 def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], str]):
 

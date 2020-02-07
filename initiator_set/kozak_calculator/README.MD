@@ -11,9 +11,17 @@ Outputs:
 - Analogue similarity ratio to an mrna sequence
 - Digital true or false value backed by a single minimum threshold value (self defined)
 
-kz_calculator_runner.py is an end user program for INITIATOR SET, 
-for now it just attaches similarity ratio to any initiator codon defined by Map AIC
+Features:
+- Start codon agnostic (not specific to AUG)
+- Textual parser to make it easier to deal with lots of different kozak consensus sequences
+- Each position in a KzConsensus definition has weight that affects how much signals are modified
+- Analogue outputs make it easier to define thresholding mechanics
 
-> As of # ccff10d, this is currently a feature-complete island, waiting for bugs to be fixed on other submodules.
+Description of files:
+- kozak_consensus.py - stores important classes and model code for kozak calculation
+- kozak_loader.py - loads kozak consensus sequence definitions from file
+- kozak_calculator.py - calculates the kozaks of all initiator codons in an mrna where Map AIC was initialised
+
+> As of # ccff10d, this is currently a 'feature-complete island', waiting for bugs to be fixed on the original map_aic.
 
 ### Author: Akasha Peppermint (tehrandommagik@gmail.com)
