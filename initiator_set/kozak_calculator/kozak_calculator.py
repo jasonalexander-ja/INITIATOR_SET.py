@@ -8,6 +8,7 @@ from initiator_set.util.mRNA import *
 from initiator_set.kozak_calculator.kozak_loader import *
 from initiator_set.map_aic_alternative.map_aic import *
 
+
 # Given an mrna strand, calculate all the kozaks.
 # Result is stored in mrna's metadata dictionary as
 # kozaks_of_ranked_weights
@@ -17,7 +18,6 @@ from initiator_set.map_aic_alternative.map_aic import *
 # Map AIC needs to be initialised before this method is called
 # kozaks_or_kozak_file can be either result of a call to kozak_loader.interpret_kozak_file(), or
 def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], str]):
-
     if type(kozaks_or_kozak_file) is list:
         kozaks = kozaks_or_kozak_file
     elif type(kozaks_or_kozak_file) is str:
@@ -68,7 +68,8 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
 
     mrna.metadata["kozaks_of_ranked_weights"] = kozaks_of_ranked_weights
 
-    ## TODO duplicated code
+    # TODO duplicated code below for the chronological AIC locations.
+    #  might not need ^ if ranked_weights is really not that useful
 
     kozaks_of_chronological_weights: List[float] = []
 
