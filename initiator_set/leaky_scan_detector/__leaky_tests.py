@@ -3,8 +3,8 @@ from initiator_set.map_aic_alternative.map_aic import map_aic
 from initiator_set.leaky_scan_detector.leaky_scan_simple import *
 from initiator_set.util.mRNA import mRNA
 from initiator_set.kozak_calculator import kozak_loader
+from initiator_set.kozak_calculator import kozak_consensus
 from initiator_set.kozak_calculator import kozak_calculator
-from initiator_set.kozak_calculator import kz_calculator_runner
 
 
 # Test for weak initiator AUC followed by stronger initiator GUC
@@ -17,7 +17,7 @@ with open("../map_aic/example_input_3.txt") as inf:
 
         c = kozak_loader.interpret_kozak_file(ate)
 
-        kozak_runner = kz_calculator_runner.calculate_kozaks(b, c)
+        kozak_runner = kozak_calculator.calculate_kozaks(b, c)
 
 
         print(b.code)
@@ -36,7 +36,7 @@ with open("../map_aic/example_input_3.txt") as inf:
 
         c = kozak_loader.interpret_kozak_file(ate)
 
-        kozak_runner = kz_calculator_runner.calculate_kozaks(b, c)
+        kozak_runner = kozak_calculator.calculate_kozaks(b, c)
 
 
         print(b.code)

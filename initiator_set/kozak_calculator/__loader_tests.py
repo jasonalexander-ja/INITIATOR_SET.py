@@ -1,6 +1,6 @@
 from typing import *
 
-from initiator_set.kozak_calculator.kozak_calculator import *
+from initiator_set.kozak_calculator.kozak_consensus import *
 
 from initiator_set.kozak_calculator.kozak_loader import interpret_kozak_file
 

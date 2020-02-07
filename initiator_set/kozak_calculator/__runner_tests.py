@@ -1,6 +1,8 @@
-from initiator_set.kozak_calculator.kz_calculator_runner import *
+from initiator_set.kozak_calculator.kozak_calculator import *
 from initiator_set.map_aic_alternative.aic_weights_loader import *
 from initiator_set.kozak_calculator.kozak_loader import *
+
+# Tests for working in conjunction with Map AIC
 
 mrna = mRNA("GCCGCCACCAUGGGCCGCCACCAUGGGCCGCCACCAUGCGCCGCCACGAUGGCUGAAA")
 

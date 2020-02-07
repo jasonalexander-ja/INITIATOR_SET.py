@@ -10,7 +10,7 @@
 
 from typing import *
 from io import StringIO
-from initiator_set.kozak_calculator.kozak_calculator import *
+from initiator_set.kozak_calculator.kozak_consensus import *
 
 
 # Given an input file or something, construct whatever is in it into a
