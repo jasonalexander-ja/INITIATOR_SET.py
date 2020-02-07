@@ -27,16 +27,19 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
     ranked_weights = mrna.metadata["ranked_weights"]
     if ranked_weights is None:
         raise ValueError("Map AIC not initialised")
-    mrna.metadata["kozaks_of_ranked_weights"]: List[int] = []
+    kozaks_of_ranked_weights: List[float] = []
+
+    kozak_start_codons = []
+    for i in kozaks:
+        kozak_start_codons.append(i.codon())
 
     # Attach kozak strength to each ranked weight
     for start_index in ranked_weights:
         start_codon = deindexCodon(mrna.code[start_index])
 
-        # Find Kozaks that surround the start_codon
-        for kz in kozaks:
-            if kz.codon().upper() != start_codon:
-                continue
+        try:
+            kz_i = kozak_start_codons.index(start_codon.lower())
+            kz = kozaks[kz_i]
 
             leading_length = kz.codonStart
             context_start = start_index - leading_length
@@ -57,5 +60,8 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
 
             context_area = code[context_start:context_end].lower()
             similarity = kz.similarity(context_area)
-            mrna.metadata["kozaks_of_ranked_weights"].append(similarity)
-    pass
+            kozaks_of_ranked_weights.append(similarity)
+        except ValueError:
+            kozaks_of_ranked_weights.append(0)
+
+    mrna.metadata["kozaks_of_ranked_weights"] = kozaks_of_ranked_weights
