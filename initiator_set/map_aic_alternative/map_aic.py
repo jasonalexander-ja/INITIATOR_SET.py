@@ -18,7 +18,9 @@ def map_aic(mrna: mRNA, weights: Dict[str, float]):
 
     # Dictionary of initiator codons by locations in the mrna, indexed like so:
     # key = codon, val = List of locations of codon in mrna
+    # as well as just a flat list of initiators in chronological order
     mrna.metadata["locations_aic"]: Dict[str, List[int]] = {}
+    mrna.metadata["locations_aic_chronological"] = []
     for codon in weights.keys():
         mrna.metadata["locations_aic"][codon] = []
     for i in range(0, len(mrna.code)):
@@ -28,6 +30,8 @@ def map_aic(mrna: mRNA, weights: Dict[str, float]):
         if weight_entry is None:
             continue
         mrna.metadata["locations_aic"][codon].append(i)
+        mrna.metadata["locations_aic_chronological"].append(i)
+    mrna.metadata["locations_aic_chronological"] = sorted(mrna.metadata["locations_aic_chronological"])
 
     # Dictionary of index positions of where starting initiator codons are located,
     # indexed like so:
