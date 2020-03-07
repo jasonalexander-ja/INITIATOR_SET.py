@@ -6,7 +6,6 @@
 ########################################################################################################################
 from initiator_set.util.mRNA import *
 from initiator_set.kozak_calculator.kozak_loader import *
-from initiator_set.map_aic_alternative.map_aic import *
 
 
 # Given an mrna strand, calculate all the kozaks.
@@ -24,57 +23,18 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
         with open(kozaks_or_kozak_file) as kz_raw:
             kozaks = interpret_kozak_file(kz_raw, kozaks_or_kozak_file)
 
-    ranked_weights = mrna.metadata["ranked_weights"]
-    locations_aic_chronological = mrna.metadata["locations_aic_chronological"]
-    if ranked_weights is None:
-        raise ValueError("Map AIC not initialised")
-
-    kozaks_of_ranked_weights: List[float] = []
+    # ranked_weights = mrna.metadata["baseWeights"]
+    # if ranked_weights is None:
+    #     raise ValueError("Map AIC not initialised")
 
     kozak_start_codons = []
     for i in kozaks:
         kozak_start_codons.append(i.codon())
 
-    # Attach kozak strength to each ranked weight
-    for start_index in ranked_weights:
-        start_codon = deindexCodon(mrna.code[start_index])
-
-        try:
-            kz_i = kozak_start_codons.index(start_codon.lower())
-            kz = kozaks[kz_i]
-
-            leading_length = kz.codonStart
-            context_start = start_index - leading_length
-            context_end = context_start + len(kz.sequence)
-            code = deindexRNA(mrna.code)
-
-            # For now, skip kozaks that are too large to fix in mrna
-            # This might be undesirable, but probably irrelevant considering:
-            # 1. hard to read start codons too close to 5'
-            # 2. start codons near 3' are probably useless as they have no information
-            # to make it work though you would just have to pad z's around the context area
-            if context_start < 0:
-                continue
-                # context_area = ("z" * abs(context_start)) + context_area
-            if context_end > len(code):
-                continue
-                # context_area = context_area + ("z" * (context_end-len(mrna.code)))
-
-            context_area = code[context_start:context_end].lower()
-            similarity = kz.similarity(context_area)
-            kozaks_of_ranked_weights.append(similarity)
-        except ValueError:
-            kozaks_of_ranked_weights.append(0)
-
-    mrna.metadata["kozaks_of_ranked_weights"] = kozaks_of_ranked_weights
-
-    # TODO duplicated code below for the chronological AIC locations.
-    #  might not need ^ if ranked_weights is really not that useful
-
     kozaks_of_chronological_weights: List[float] = []
 
-    # Attach kozak strength to each ranked weight
-    for start_index in locations_aic_chronological:
+    # Attach kozak strength to each codon in mrna.code
+    for start_index in range(len(mrna.code)-2):
         start_codon = deindexCodon(mrna.code[start_index])
 
         try:
@@ -104,4 +64,4 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
         except ValueError:
             kozaks_of_chronological_weights.append(0)
 
-    mrna.metadata["kozaks_of_aic_chronological"] = kozaks_of_chronological_weights
+    mrna.metadata["kozaks"] = kozaks_of_chronological_weights
