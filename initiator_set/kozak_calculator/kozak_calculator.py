@@ -8,6 +8,18 @@ from initiator_set.util.mRNA import *
 from initiator_set.kozak_calculator.kozak_loader import *
 
 
+@dataclass
+class KzContext:
+    context_start: int
+    context_end: int
+    initiator_start: int
+    strength: float
+    consensus: KzConsensus
+
+    def __repr__(self):
+        return "{}..{}={} ({})".format(str(self.context_start), str(self.context_end), str(self.strength), str(self.consensus))
+
+
 # Given an mrna strand, calculate all the kozaks.
 # Result is stored in mrna's metadata dictionary as
 # kozaks_of_ranked_weights
@@ -23,15 +35,12 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
         with open(kozaks_or_kozak_file) as kz_raw:
             kozaks = interpret_kozak_file(kz_raw, kozaks_or_kozak_file)
 
-    # ranked_weights = mrna.metadata["baseWeights"]
-    # if ranked_weights is None:
-    #     raise ValueError("Map AIC not initialised")
-
     kozak_start_codons = []
     for i in kozaks:
         kozak_start_codons.append(i.codon())
 
     kozaks_of_chronological_weights: List[float] = []
+    kozak_contexts: List[KzContext] = []
 
     # Attach kozak strength to each codon in mrna.code
     for start_index in range(len(mrna.code)-2):
@@ -61,7 +70,13 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
             context_area = code[context_start:context_end].lower()
             similarity = kz.similarity(context_area)
             kozaks_of_chronological_weights.append(similarity)
+
+            kozak_context = KzContext(context_start=context_start, context_end=context_end, initiator_start=start_index,
+                                      strength=similarity, consensus=kz)
+            kozak_contexts.append(kozak_context)
+
         except ValueError:
             kozaks_of_chronological_weights.append(0)
 
-    mrna.metadata["kozaks"] = kozaks_of_chronological_weights
+    mrna.metadata["kozak_contexts"] = kozak_contexts
+    mrna.metadata["kozaks_of_starts"] = kozaks_of_chronological_weights

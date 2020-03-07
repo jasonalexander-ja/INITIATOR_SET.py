@@ -10,23 +10,40 @@ import sys
 from util import mRNA
 from struct import *
 
-
-
 try:
-	m_weights = open(mypath + "/codonWeights.dat", "rb") # rb = read bytecode
+    m_weights = open(mypath + "/codonWeights.dat", "rb")  # rb = read bytecode
 except OSError as e:
-	print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
-		, file=sys.stderr)
-	raise
+    print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
+          , file=sys.stderr)
+    raise
 
 
-def mapAICs(rna:mRNA.mRNA) -> mRNA.mRNA:
-	rna.metadata["baseWeights"] = []
+def mapAICs(rna: mRNA.mRNA) -> mRNA.mRNA:
+    rna.metadata["baseWeights"] = []
+    for i in rna.code:
+        # Go to the desired entry in datafile
+        m_weights.seek(i * 4)
+        weight = unpack('<f', m_weights.read(4))[0]
+        rna.metadata["baseWeights"].append(weight)
 
-	for i in rna.code:
-		# Go to the desired entry in datafile
-		m_weights.seek(i * 4)
-		weight = unpack('<f', m_weights.read(4))[0]
-		rna.metadata["baseWeights"].append(weight)
+    # Calculate adjusted weights
+    # I saw this entry was lying around in the original map AIC but not calculated
+    # I'm taking it as normalising the weights so that all values are between 0 and 1
+    # Where 1.0 was whatever the maximum weighted entry previously was
+    # Probably not even needed
 
-	return rna
+    # Find max weight
+    w_max = 0
+    for i in rna.metadata["baseWeights"]:
+        if i > w_max:
+            w_max = i
+
+    adjusted_weights = []
+    for i in rna.metadata["baseWeights"]:
+        try:
+            adjusted_weights.append(i / w_max)
+        except ZeroDivisionError:
+            adjusted_weights.append(0)
+    rna.metadata['adjusted_weights'] = adjusted_weights
+
+    return rna
