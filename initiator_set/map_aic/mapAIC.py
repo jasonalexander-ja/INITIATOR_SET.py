@@ -7,11 +7,12 @@
 
 from __init__ import *
 import sys
+import os
 from util import mRNA
 from struct import *
 
 try:
-    m_weights = open(mypath + "/codonWeights.dat", "rb")  # rb = read bytecode
+    m_weights = open(mypath + os.sep + "codonWeights.dat", "rb")  # rb = read bytecode
 except OSError as e:
     print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
           , file=sys.stderr)
