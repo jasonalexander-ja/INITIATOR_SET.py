@@ -1,11 +1,11 @@
-
 from initiator_set.kozak_calculator.kozak_calculator import *
 from initiator_set.kozak_calculator.kozak_loader import *
+from initiator_set.util.mRNA import *
 
 
 def calculate_leaky(mrna: mRNA, *penalties: Callable[[int], float]):
     calculate_leaky_chronological(mrna, *penalties)
-    # calculate_overlap(mrna)
+    calculate_overlap(mrna)
 
 
 # Given an mRNA, calculate the leakiness based off the strength of the kozaks and the weight of the start codons.
@@ -45,68 +45,45 @@ def calculate_leaky_chronological(mrna: mRNA, *penalties: Callable[[int], float]
 
     print()
 
+
 # Calculate the sequences that overlap due to selection of start codon
 def calculate_overlap(mrna: mRNA):
-    # calculate_lengths(mrna)
+    calculate_lengths(mrna)
     mrna.metadata['overlap_sequences'] = detect_overlap(mrna)
 
 
-# # Calculate lengths of sequences in mrna
-# # Result is in sequence_lengths_chronological
-# # Is this the job for some other submodule?? put it here anyways
-# def calculate_lengths(mrna: mRNA):
-#     indices_aic: Dict[int, str] = mrna.metadata['indices_aic']
-#     lengths: List[int] = []
-#     for pos in indices_aic.items():
-#         length = sequence_length(mrna, pos[0])
-#         lengths.append(length)
-#     mrna.metadata['sequence_lengths_chronological'] = indices_aic
+# Calculate lengths of sequences in mrna
+# Result is in sequence_lengths
+# Is this the job for some other submodule?? put it here anyways i need it
+def calculate_lengths(mrna: mRNA):
+    lengths: List[int] = []
+    for x in range(0, len(mrna.code)):
+        lengths.append(sequence_length(mrna, x))
+    mrna.metadata['sequence_lengths'] = lengths
 
 
 # Scans an mrna for a stop codon, given the location of a start codon
 def sequence_length(mrna: mRNA, start: int, stop_codons: tuple = ('UAG', 'UUA', 'UGA')) -> int:
-    pos = 0
-    for codon in Iterable(mrna, start, len(mrna.code)):
-        pos = pos + 1
+    le = 0
+    for i in range(start, len(mrna.code), 3):
+        codon = deindexCodon(mrna.code[i])
+        le += 1
         if codon in stop_codons:
-            return pos
-    return -1
+            break
+    return le
 
 
 # Find missed stop codons from using other start codons
-def detect_overlap(mrna: mRNA) -> List[Tuple[int, int]]:
-
+def detect_overlap(mrna: mRNA) -> List[int]:
     # Calculate ending positions
-    result: List[Tuple[int, int]] = []
-    ending_pos = []
-    indices_aic: List[int] = mrna.metadata["locations_aic_chronological"]
+    result: List[int] = []
     sequence_lengths: List[int] = mrna.metadata['sequence_lengths']
-    for i in range(0, len(sequence_lengths)):
-        start = indices_aic[i]
-        length = sequence_lengths[i]
-        ending_pos.append(start + length)
-        pass
 
-    # Calculate range overlaps
-    for i in range(0, len(sequence_lengths)):
-        for j in range(0, len(sequence_lengths)):
-            if i != j:
-                # i overlaps with j
-                i_range = range(indices_aic[i], ending_pos[i])
-                j_range = range(indices_aic[j], ending_pos[j])
-                i_set = set(i_range)
-                overlap = i_set.intersection(j_range)
-
-                if len(overlap) > 0:
-                    # rearrange such that first < second for consistency
-                    first = indices_aic[i]
-                    second = indices_aic[j]
-                    if first >= second:
-                        t = second
-                        second = first
-                        first = t
-                    if (first, second) not in result:
-                        result.append((first, second))
+    # # At this point we have sequence lengths and stuff
+    # # calculate sequence length overlaps
+    #
+    # for i in range(0, len(mrna.code)):
+    #     print(mrna.code[i])
 
     return result
 
