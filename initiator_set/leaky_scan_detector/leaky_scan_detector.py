@@ -73,20 +73,11 @@ def sequence_length(mrna: mRNA, start: int, stop_codons: tuple = ('UAG', 'UUA', 
     return le
 
 
-# Find missed stop codons from using other start codons
-def detect_overlap(mrna: mRNA) -> List[int]:
-    # Calculate ending positions
-    result: List[int] = []
-    sequence_lengths: List[int] = mrna.metadata['sequence_lengths']
-
-    # # At this point we have sequence lengths and stuff
-    # # calculate sequence length overlaps
-    #
-    # for i in range(0, len(mrna.code)):
-    #     print(mrna.code[i])
-
-    return result
-
+# Determines whether sequences overlap, starting at position (as first character of starting codon)
+def is_overlap(mrna: mRNA, one: int, two: int) -> bool:
+    x = one if (one < two) else two
+    y = two if (one < two) else one
+    return mrna.metadata['sequence_lengths'][x] + x > + y
 
 # Digital true/false value. Leaking occurs when the first start codon present is higher than a threshold value
 # (default is 0.0).
