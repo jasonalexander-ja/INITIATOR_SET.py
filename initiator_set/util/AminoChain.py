@@ -3,9 +3,9 @@
 # Utils for dealing with Amino Acid Chains along with a class to represent them
 #
 # Authored by: Lucianna Osucha (lucianna@vulpinedesigns.com)
+import string
 
-
-import mRNA
+import util.mRNA
 
 
 # What codon indexes from AAA-CCC will translate into
@@ -17,7 +17,7 @@ def convertRNA(seq:list, stcodon =0) -> list:
 	result:list = []
 	for i in range(0, len(seq), 3):
 		amino = aminoCodons[seq[i]]
-		if (amino == '*')
+		if amino == '*':
 			break
 		result.append(amino)
 	return result

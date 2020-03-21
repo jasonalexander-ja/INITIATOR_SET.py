@@ -4,8 +4,8 @@
 # Works in conjunction with Map AIC to determine kozaks of all initiator codons determined by Map AIC.
 #
 ########################################################################################################################
-from initiator_set.util.mRNA import *
-from initiator_set.kozak_calculator.kozak_loader import *
+from util.mRNA import *
+from kozak_calculator.kozak_loader import *
 
 
 @dataclass

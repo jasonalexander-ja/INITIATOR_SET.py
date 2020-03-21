@@ -1,6 +1,6 @@
-from initiator_set.kozak_calculator.kozak_calculator import *
-from initiator_set.kozak_calculator.kozak_loader import *
-from initiator_set.util.mRNA import *
+from kozak_calculator.kozak_calculator import *
+from kozak_calculator.kozak_loader import *
+from util.mRNA import *
 
 
 def calculate_leaky(mrna: mRNA, *penalties: Callable[[int], float]):
