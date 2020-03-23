@@ -5,7 +5,7 @@ from util.mRNA import *
 
 def calculate_leaky(mrna: mRNA, *penalties: Callable[[int], float]):
     calculate_leaky_chronological(mrna, *penalties)
-    calculate_overlap(mrna)
+    calculate_lengths(mrna)
 
 
 # Given an mRNA, calculate the leakiness based off the strength of the kozaks and the weight of the start codons.
@@ -46,12 +46,6 @@ def calculate_leaky_chronological(mrna: mRNA, *penalties: Callable[[int], float]
     print()
 
 
-# Calculate the sequences that overlap due to selection of start codon
-def calculate_overlap(mrna: mRNA):
-    calculate_lengths(mrna)
-    mrna.metadata['overlap_sequences'] = detect_overlap(mrna)
-
-
 # Calculate lengths of sequences in mrna
 # Result is in sequence_lengths
 # Is this the job for some other submodule?? put it here anyways i need it
@@ -75,6 +69,8 @@ def sequence_length(mrna: mRNA, start: int, stop_codons: tuple = ('UAG', 'UUA', 
 
 # Determines whether sequences overlap, starting at position (as first character of starting codon)
 def is_overlap(mrna: mRNA, one: int, two: int) -> bool:
+    if mrna.metadata['sequence_lengths'] is None:
+        calculate_lengths(mrna)
     x = one if (one < two) else two
     y = two if (one < two) else one
     return mrna.metadata['sequence_lengths'][x] + x > + y
