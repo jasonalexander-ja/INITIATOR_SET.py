@@ -1,5 +1,8 @@
-from initiator_set.util import mRNA
-from initiator_set.leaky_scan_detector.leaky_scan_detector import *
+from repackage import up
+up() # required to make python start searching modules from the parent directory
+from util.mRNA import mRNA
+from leaky_scan_detector.leaky_scan_detector import calculate_lengths
+from leaky_scan_detector.leaky_scan_detector import is_overlap
 
 # Tests STOP detection and lengths of sequence starting from any codon
 mrna: mRNA = mRNA("AAAUUA")

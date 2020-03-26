@@ -3,23 +3,22 @@
 # Reads weights from a file, maps them to codons in arbitrary strings of mRNA
 #
 # Author: Lucianna Osucha (lucianna@vulpinedesigns.com)
-
-
-from __init__ import *
+from io import FileIO
 import sys
 import os
 from util import mRNA
-from struct import *
+from struct import unpack
 
-try:
-    m_weights = open(mypath + os.sep + "codonWeights.dat", "rb")  # rb = read bytecode
-except OSError as e:
-    print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
-          , file=sys.stderr)
-    raise
+# try:
+#     m_weights = open(mypath + os.sep + "codonWeights.dat", "rb")  # rb = read bytecode
+# except OSError as e:
+#     print("[!!FATAL!!] Error opening \"codonWeights.dat\"\n"
+#           , file=sys.stderr)
+#     raise
 
 
-def mapAICs(rna: mRNA.mRNA) -> mRNA.mRNA:
+def mapAICs(rna: mRNA.mRNA, filepath: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "codonWeights.dat")) -> mRNA.mRNA:
+    m_weights = open(filepath, "rb")
     rna.metadata["baseWeights"] = []
     for i in rna.code:
         # Go to the desired entry in datafile

@@ -21,3 +21,13 @@ The GUESS in such a way as will work standalone as well as connected to other
 modules.
 
 - Danfox Davies
+
+
+How to run:
+1. Install pipenv
+2. Open terminal at this location
+3. pipenv install - installs some required packages automatically
+4. pipenv shell - goes into a virtual python environment where the installed packages are available
+5. python [runnable script]
+
+

@@ -1,4 +1,6 @@
-from initiator_set.kozak_calculator.kozak_consensus import *
+from repackage import up
+up()
+from kozak_calculator.kozak_consensus import KzConsensus, new_KzConsensus
 
 # Various tests on KzConsensus
 

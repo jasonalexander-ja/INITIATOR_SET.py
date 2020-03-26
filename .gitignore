@@ -3,3 +3,4 @@
 **/__pycache__
 *.pyc
 /initiator_set/map_aic/codonWeights.dat
+Initiator_Set.egg-info

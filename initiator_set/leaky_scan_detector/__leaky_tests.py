@@ -1,12 +1,16 @@
-from initiator_set.kozak_calculator.kozak_calculator import *
-from initiator_set.map_aic import *
-from initiator_set.map_aic.mapAIC import *
-from initiator_set.kozak_calculator.kozak_loader import *
-from initiator_set.leaky_scan_detector.leaky_scan_detector import *
+import os
+
+from repackage import up
+up() # required to make python start searching modules from the parent directory
+from kozak_calculator.kozak_calculator import calculate_kozaks
+from kozak_calculator.kozak_loader import interpret_kozak_file
+from leaky_scan_detector.leaky_scan_detector import calculate_leaky, is_leaky
+from map_aic.mapAIC import mapAICs
+from util.mRNA import mRNA
 
 mrna = mRNA("GCCGCCACCCUGGGCCGCCACCAUGGGCCGCCACCAUGCGCCGCCACGAUGGCUGAAA")
 
-with open("../kozak_calculator/sample_kozaks.txt") as inz:
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, "kozak_calculator", "sample_kozaks.txt")) as inz:
     kozaks = interpret_kozak_file(inz)
     mapAICs(mrna)
     calculate_kozaks(mrna, kozaks)
