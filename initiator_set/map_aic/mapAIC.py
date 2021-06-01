@@ -9,6 +9,7 @@ import os
 from util import mRNA
 from struct import unpack
 
+
 # try:
 #     m_weights = open(mypath + os.sep + "codonWeights.dat", "rb")  # rb = read bytecode
 # except OSError as e:
@@ -16,8 +17,11 @@ from struct import unpack
 #           , file=sys.stderr)
 #     raise
 
-
-def mapAICs(rna: mRNA.mRNA, filepath: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "codonWeights.dat")) -> mRNA.mRNA:
+# Maps Initiation Codon probability over an mRNA instance.
+# Usage example:
+# print(mapAICs(mRNA.mRNA("AUGGGGCUG")))
+def mapAICs(rna: mRNA.mRNA,
+            filepath: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "codonWeights.dat")) -> mRNA.mRNA:
     m_weights = open(filepath, "rb")
     rna.metadata["baseWeights"] = []
     for i in rna.code:
@@ -47,3 +51,5 @@ def mapAICs(rna: mRNA.mRNA, filepath: str = os.path.join(os.path.dirname(os.path
     rna.metadata['adjusted_weights'] = adjusted_weights
 
     return rna
+
+

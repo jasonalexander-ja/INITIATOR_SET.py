@@ -11,7 +11,7 @@ import argparse
 from struct import *
 from util import mRNA
 
-filename = mypath + '/codonWeights.dat'
+filename = 'codonWeights.dat'
 
 # Open the file, if possible
 try:

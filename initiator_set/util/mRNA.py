@@ -61,7 +61,7 @@ class mRNA:
 		self.metadata:dictionary = {}
 
 	def __str__(self) -> str:
-		return deindexRNA(self.code) + "\n\n" + self.metadata
+		return deindexRNA(self.code) + "\n\n" + self.metadata.__str__()
 
 class Iterable(mRNA) :
 
