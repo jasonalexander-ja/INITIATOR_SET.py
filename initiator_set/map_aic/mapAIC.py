@@ -96,9 +96,9 @@ def outputAICsAsFastQ(rna: mRNA.mRNA,
 
 
 # print(chr(ord('A') + 1))
-mrt = mRNA.mRNA("AUGCGGGCCC")
-mrt.metadata = {}
-mapAICs(mrt)
+#mrt = mRNA.mRNA("AUGCGGGCCC")
+#mrt.metadata = {}
+#mapAICs(mrt)
 # print(fastQScoreAICs(mrt))
 # print(aicsToFastQ(mrt))
-outputAICsAsFastQ(mrt)
+#outputAICsAsFastQ(mrt)
