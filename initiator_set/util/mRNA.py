@@ -63,6 +63,9 @@ class mRNA:
 	def __str__(self) -> str:
 		return deindexRNA(self.code) + "\n\n" + self.metadata.__str__()
 
+	def deindexRNA(self):
+		return deindexRNA(self.code)
+
 class Iterable(mRNA) :
 
 	def __init__(self, parent:mRNA, start:int, stop:int):

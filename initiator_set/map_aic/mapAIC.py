@@ -6,6 +6,8 @@
 from io import FileIO
 import sys
 import os
+from typing import Callable
+
 from util import mRNA
 from struct import unpack
 
@@ -53,3 +55,50 @@ def mapAICs(rna: mRNA.mRNA,
     return rna
 
 
+# taken from https://www.arduino.cc/en/Reference/Map
+def rangeScale(x: float, in_min: float, in_max: float, out_min: float, out_max: float) -> float:
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#
+def floatToFastQScore(score: float, min: float = 0.0, max: float = 1.0) -> str:
+    """
+    :param min: minimum possible score value (default 1.0)
+    :param max: maximum possible score value (default 1.0)
+    :return: score translated into the numbering system (order lowest->highest):
+    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    """
+    return chr(int(rangeScale(score, 0.0, max, 33, 126)))
+
+
+# This can possibly be generalised in the mRNA.mRNA class if we standardise quality scores across projects
+# Some might not so we would want some way of telling which can be generalised or not.
+# It appears some other biology software uses nonlinear quality scores
+# https://en.wikipedia.org/wiki/FASTQ_format#Variations
+# so this method will externalise whatever scoring system.
+# By default though it's linear-rounding across the default FASTQ quality scoring alphabet.
+# note that any floats in the function below are 0.0 < x < 1.0
+def fastQScoreAICs(rna: mRNA.mRNA, qualityAdjustment: Callable[[float], str] = floatToFastQScore) -> str:
+    return "".join([qualityAdjustment(x) for x in rna.metadata["adjusted_weights"]])
+
+
+def aicsToFastQ(rna: mRNA.mRNA):
+    return(
+        "@Alternative Initiation Codon Possibilities for (sequence of length "+str(len(rna.code))+")\n" +
+        rna.deindexRNA() +
+        "\n+\n" +
+        fastQScoreAICs(rna))
+
+# test function
+def outputAICsAsFastQ(rna: mRNA.mRNA,
+                      output: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "test-aics-fastq.fq")):
+    with open(output, 'w') as file:
+        file.write(aicsToFastQ(rna))
+
+
+# print(chr(ord('A') + 1))
+mrt = mRNA.mRNA("AUGCGGGCCC")
+mrt.metadata = {}
+mapAICs(mrt)
+# print(fastQScoreAICs(mrt))
+# print(aicsToFastQ(mrt))
+outputAICsAsFastQ(mrt)
