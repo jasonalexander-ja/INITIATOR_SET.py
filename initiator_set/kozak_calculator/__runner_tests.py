@@ -12,6 +12,6 @@ with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "sample_koza
     calculate_kozaks(mrna, kozaks)
 
 
-print(mrna.metadata.__str__().replace(", '", "\n"))
+print(mrna.Metadata.__str__().replace(", '", "\n"))
 
 

@@ -187,7 +187,7 @@ class KzConsensus:
         return self.__str__()
 
     # The structure of the representation of the consensus is as follows:
-    # () = part of sequence that has no siginificant impact on the consensus
+    # () = part of sequence that has no significant impact on the consensus
     # (i.e: just padding)
     # [] = part of the sequence that has multiple majority candidates, split by |
     # (e.g: accAUGG and gccAUGG are both candidate sequences/subsequences)

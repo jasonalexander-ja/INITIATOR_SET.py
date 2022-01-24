@@ -9,25 +9,25 @@ mrna: mRNA = mRNA("AAAUUA")
 
 calculate_lengths(mrna)
 
-print(mrna.metadata)
+print(mrna.Metadata)
 
 mrna: mRNA = mRNA("UUAAAAGGGCCCUUA")
 
 calculate_lengths(mrna)
 
-print(mrna.metadata)
+print(mrna.Metadata)
 
 mrna: mRNA = mRNA("AAAAAUUAUUUAGGGGGG")
 
 calculate_lengths(mrna)
 
-print(mrna.metadata)
+print(mrna.Metadata)
 
 mrna: mRNA = mRNA("AAAAAUUAUUUAGGGGGGAAAAAUUAUUUAGGGGGG")
 
 calculate_lengths(mrna)
 
-print(mrna.metadata)
+print(mrna.Metadata)
 print(is_overlap(mrna, 8, 9))
 print(is_overlap(mrna, 1, 2))
 print(is_overlap(mrna, 1, 9))

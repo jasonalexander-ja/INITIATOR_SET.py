@@ -8,6 +8,8 @@
 #
 ########################################################################################################################
 
+# import sys
+# sys.path.append('E:\\Documents\\Volunteer\\VulpineDesign\\INITIATOR_SET-master\\initiator_set')
 from typing import *
 from io import StringIO
 from kozak_calculator.kozak_consensus import *
@@ -33,12 +35,14 @@ def interpret_kozak_file(datafile: StringIO, filename="") -> List[KzConsensus]:
             spl = line.split(":")
             if line.count(":") == 1 and len(spl) > 1:
                 result.append(interpret_kozak_consensus(datafile, spl[0]))
+                # print(spl)
     except ValueError:
         errormsg = "Cannot parse data."
         if filename != "":
             errormsg += " Misunderstood file " + filename
         raise ValueError(errormsg)
 
+    # print(result)
     return result
 
 
@@ -95,6 +99,8 @@ def interpret_kozak_consensus(datafile: StringIO, initiator_codon: str) -> KzCon
 
     if result.conserved_threshold < 0 or result.similarity_threshold:
         raise ValueError("Missing threshold values ([] >= #)")
+    if not result.conserved:
+        raise ValueError("No conserved threshold (could be treated as >0? just put it in though.)")
     return result
 
 
