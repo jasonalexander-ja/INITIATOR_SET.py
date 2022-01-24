@@ -6,10 +6,9 @@
 from io import FileIO
 import sys
 import os
-from typing import Callable
-
 from util import mRNA
-from struct import unpack
+from struct import unpack, pack
+from util.mRNA import indexCodon
 
 
 # try:
@@ -19,19 +18,28 @@ from struct import unpack
 #           , file=sys.stderr)
 #     raise
 
-# Maps Initiation Codon probability over an mRNA instance.
-# Usage example:
-# print(mapAICs(mRNA.mRNA("AUGGGGCUG")))
-def mapAICs(rna: mRNA.mRNA,
-            filepath: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "codonWeights.dat")) -> mRNA.mRNA:
-    m_weights = open(filepath, "rb")
-    rna.metadata["baseWeights"] = []
-    for i in rna.code:
-        # Go to the desired entry in datafile
-        m_weights.seek(i * 4)
-        weight = unpack('<f', m_weights.read(4))[0]
-        rna.metadata["baseWeights"].append(weight)
+def addCodonWeights(rna: mRNA.mRNA, codon, weights) -> mRNA.mRNA:
+    # rna.Metadata
+    # Find max weight
+    w_max = 0
+    for i in rna.Metadata["baseWeights"]:
+        if i > w_max:
+            w_max = i
 
+    adjusted_weights = []
+    for i in rna.Metadata["baseWeights"]:
+        try:
+            adjusted_weights.append(i / w_max)
+        except ZeroDivisionError:
+            adjusted_weights.append(0)
+    rna.Metadata['adjustedWeights'] = adjusted_weights
+
+    return rna
+
+def mapAICs(rna: mRNA.mRNA, weights) -> mRNA.mRNA:
+    rna.Metadata["baseWeights"] = []
+    for i in rna.Code:
+        rna.Metadata["baseWeights"].append(weights[i])
     # Calculate adjusted weights
     # I saw this entry was lying around in the original map AIC but not calculated
     # I'm taking it as normalising the weights so that all values are between 0 and 1
@@ -40,65 +48,92 @@ def mapAICs(rna: mRNA.mRNA,
 
     # Find max weight
     w_max = 0
-    for i in rna.metadata["baseWeights"]:
+    for i in rna.Metadata["baseWeights"]:
         if i > w_max:
             w_max = i
 
     adjusted_weights = []
-    for i in rna.metadata["baseWeights"]:
+    rna.Metadata['adjustedWeights'] = []
+    for i in rna.Metadata["baseWeights"]:
         try:
             adjusted_weights.append(i / w_max)
         except ZeroDivisionError:
             adjusted_weights.append(0)
-    rna.metadata['adjusted_weights'] = adjusted_weights
+    rna.Metadata['adjustedWeights'] = adjusted_weights
 
     return rna
-
-
-# taken from https://www.arduino.cc/en/Reference/Map
-def rangeScale(x: float, in_min: float, in_max: float, out_min: float, out_max: float) -> float:
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-
 #
-def floatToFastQScore(score: float, min: float = 0.0, max: float = 1.0) -> str:
-    """
-    :param min: minimum possible score value (default 1.0)
-    :param max: maximum possible score value (default 1.0)
-    :return: score translated into the numbering system (order lowest->highest):
-    !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-    """
-    return chr(int(rangeScale(score, 0.0, max, 33, 126)))
+# def mapAICs(rna: mRNA.mRNA,
+#             filepath: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "codonWeights.dat")) -> mRNA.mRNA:
+#     rna.Metadata["baseWeights"] = []
+#     try:
+#         with open(filepath, "rb") as m_weights:
+#             for i in rna.Code:
+#             # Go to the desired entry in datafile
+#                 m_weights.seek(i * 4)
+#                 weight = unpack('<f', m_weights.read(4))[0]
+#                 rna.Metadata["baseWeights"].append(weight)
+#     except OSError as e:
+#         print("Cannon open codonWeights.dat file, ", e)
+#     # Calculate adjusted weights
+#     # I saw this entry was lying around in the original map AIC but not calculated
+#     # I'm taking it as normalising the weights so that all values are between 0 and 1
+#     # Where 1.0 was whatever the maximum weighted entry previously was
+#     # Probably not even needed
+#     # Find max weight
+#     w_max = 0
+#     for i in rna.Metadata["baseWeights"]:
+#         if i > w_max:
+#             w_max = i
+#     adjusted_weights = []
+#     for i in rna.Metadata["baseWeights"]:
+#         try:
+#             adjusted_weights.append(i / w_max)
+#         except ZeroDivisionError:
+#             adjusted_weights.append(0)
+#     rna.Metadata['adjustedWeights'] = adjusted_weights
+#     return rna
 
 
-# This can possibly be generalised in the mRNA.mRNA class if we standardise quality scores across projects
-# Some might not so we would want some way of telling which can be generalised or not.
-# It appears some other biology software uses nonlinear quality scores
-# https://en.wikipedia.org/wiki/FASTQ_format#Variations
-# so this method will externalise whatever scoring system.
-# By default though it's linear-rounding across the default FASTQ quality scoring alphabet.
-# note that any floats in the function below are 0.0 < x < 1.0
-def fastQScoreAICs(rna: mRNA.mRNA, qualityAdjustment: Callable[[float], str] = floatToFastQScore) -> str:
-    return "".join([qualityAdjustment(x) for x in rna.metadata["adjusted_weights"]])
+def loadCodonWeightsFromInputFile(inputFile,
+                                  weightFileName: str = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                                                     "codonWeights.dat")) -> list:
+    try:
+        weights = [0.00] * 64
+        while True:
+            codon = inputFile.read(4)
+            if codon is None or codon == "":
+                break
+                # Comments with #
+            isCommentLine = codon.split("#")[0].strip()
+            if isCommentLine.isspace() or isCommentLine == "":
+                continue  # Ignore lines that were comments
 
+            weights[indexCodon(codon)] = float(inputFile.readline())
+    except ValueError as e:
+        raise e
 
-def aicsToFastQ(rna: mRNA.mRNA):
-    return(
-        "@Alternative Initiation Codon Possibilities for (sequence of length "+str(len(rna.code))+")\n" +
-        rna.deindexRNA() +
-        "\n+\n" +
-        fastQScoreAICs(rna))
+    # write the new weights (that are now in memory, overwrite the whole file)
+    try:
+        with open(weightFileName, '+wb') as weightFile:
+            for i in weights:
+                weightFile.write(bytearray(pack('<f', i)))
+    except OSError as e:
+        print("Cannot open codonWeights.dat file. " + e)
+    # Print out success message
+    # print("codonWeights.dat file updated. Run without arguments to verify changes")
 
-# test function
-def outputAICsAsFastQ(rna: mRNA.mRNA,
-                      output: str = os.path.join(os.path.dirname(os.path.realpath(__file__)), "test-aics-fastq.fq")):
-    with open(output, 'w') as file:
-        file.write(aicsToFastQ(rna))
+    # Find max weight
+    w_max = 0
+    for i in weights:
+        if i > w_max:
+            w_max = i
 
+    adjusted_weights = [0.00]*64
+    for i in range(0, len(weights)):
+        try:
+            adjusted_weights[i] = weights[i] / w_max
+        except ZeroDivisionError:
+            adjusted_weights[i] = 0.00
 
-# print(chr(ord('A') + 1))
-#mrt = mRNA.mRNA("AUGCGGGCCC")
-#mrt.metadata = {}
-#mapAICs(mrt)
-# print(fastQScoreAICs(mrt))
-# print(aicsToFastQ(mrt))
-#outputAICsAsFastQ(mrt)
+    return weights, adjusted_weights

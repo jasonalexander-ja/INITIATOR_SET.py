@@ -3,9 +3,7 @@
 #  -Lucianna Osucha (lucianna@vulpinedesings.com)
 
 import sys
-
-
-
+"""
 class RobustLinkedList:
   class ListNode:
     def __init__(self, data, n_next=None, n_prev=None):
@@ -44,7 +42,7 @@ class RobustLinkedList:
 
 
   def setData(self, data, force=False):
-    self.validate(force).data = 
+    self.validate(force).data = data
 
 
   def getData(self, force=False):
@@ -102,7 +100,7 @@ class RobustLinkedList:
 
   def insert(self, data, priorTo=False, ignoreType=False):
     if !ignoreType and isinstance(data, list):
-      data = from_list(data)
+      data = from_list(data)7
 
     if !ignoreType and isinstance(data, RobustLinkedList):
       if self.size == 0:
@@ -271,3 +269,4 @@ def stubbornBinSearch(list, object) -> int:
 	while (list[i] != object && i != j):
 		
   return ((i == j) * -1) * i;
+"""

@@ -3,15 +3,31 @@
 # Utility for editing the codonWeights.dat file
 #
 # Author: Lucianna Osucha (email:lucianna@vulpinedesigns.com)
+# To run:
+# select an input file, ex: another_input.txt
+# edit run configuration with parameter = E:/Documents/Volunteer/VulpineDesign/INITIATOR_SET-master/initiator_set/map_aic/another_input.txt
+# Shift + F10 to run
+# Why run terminal -> \INITIATOR_SET-master\initiator_set>python map_aic\modMappings.py map_aic\another_input.txt
+# but error: No module named "util"
 
 
 from __init__ import *
 import sys
+# indicates the parent directory of the current directory, which is the project directory of this project
+# sys.path.append("../")  # This way suitable for project path change, must run at project folder\module
+# sys.path.append('E:\\Documents\\Volunteer\\VulpineDesign\\INITIATOR_SET-master\\initiator_set')  # Can run any where
+from repackage import up
+up() # required to make python start searching modules from the parent directory
+import os
 import argparse
 from struct import *
-from util import mRNA
+from util.mRNA import indexCodon, deindexCodon
 
-filename = 'codonWeights.dat'
+mypath = os.path.dirname(os.path.abspath(__file__))  # This is Project Root
+
+filename = mypath + '\codonWeights.dat'
+
+# print(filename)
 
 # Open the file, if possible
 try:
@@ -31,12 +47,11 @@ except OSError as e:
     print("Cannot open codonWeights.dat file", file=sys.stderr)
     sys.exit()
 
-
 parser = argparse.ArgumentParser(description="A helper utility for populating "
                                              + "the \"" + filename + "\" file"
                                  , epilog="For an example of the file format, run the program without any "
                                           + "arguments (line order can be arbitrary, no upper or lower limit on "
-                                          + "file size). New entries or later entries in the file override older ones"
+                                       + "file size). New entries or later entries in the file override older ones"
                                  , formatter_class=argparse.RawDescriptionHelpFormatter)
 
 parser.add_argument('infile', nargs='*', type=argparse.FileType('r')
@@ -49,7 +64,7 @@ args = parser.parse_args()
 if not args.infile:
 
     for i in range(64):
-        print(mRNA.deindexCodon(i) + " ", *unpack('<f', m_file.read(4)))
+        print(deindexCodon(i) + " ", *unpack('<f', m_file.read(4)))
     m_file.close()
     sys.exit()
 
@@ -86,7 +101,7 @@ while True:
     codon = n_file.read(4)
     if codon is None or codon == "":
         break
-    weights[mRNA.indexCodon(codon)] = float(n_file.readline())
+    weights[indexCodon(codon)] = float(n_file.readline())
 
 # Close the file and reopen in binary write mode to
 # write the new weights (that are now in memory, overwrite the whole file)
