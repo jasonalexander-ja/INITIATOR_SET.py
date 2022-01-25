@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8cd09c8e65b4253025e3a43a31969d3297283920410297cf2d980bfc19b97068"
+            "sha256": "31477e05f4e50b070f42c34065e4fcb63339ca7e5d388a5064b4675904ef3574"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,10 +16,6 @@
         ]
     },
     "default": {
-        "e1839a8": {
-            "editable": true,
-            "path": "."
-        },
         "repackage": {
             "hashes": [
                 "sha256:350fdbb4a297866e9161e80757dd4582a336b0b7259e58926d96b0644c47d204"

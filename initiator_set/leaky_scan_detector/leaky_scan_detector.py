@@ -19,8 +19,10 @@ def calculate_leaky(mrna: mRNA, *penalties: Callable[[int], float]):
 #
 # This version of the function goes off of the ordering of the start codons as they appear naturally in mrna sequence
 def calculate_leaky_chronological(mrna: mRNA, *penalties: Callable[[int], float]):
-    kozaks_of_ranked_weights: List[KzContext] = mrna.metadata['kozak_contexts']
-    adjusted_weights: List[int] = mrna.metadata['adjusted_weights']
+    if not mrna.Metadata.get("kozakContexts"):
+        raise ValueError("Kozak Contexts have not been calculated yet")
+    kozaks_of_ranked_weights: List[KzContext] = mrna.Metadata.get("kozakContexts")
+    adjusted_weights: List[int] = mrna.Metadata.get('adjustedWeights')
 
     leaking_of_ranked_weights: List[float] = []
     for i in range(0, len(kozaks_of_ranked_weights)):
@@ -41,7 +43,7 @@ def calculate_leaky_chronological(mrna: mRNA, *penalties: Callable[[int], float]
 
         leaking_of_ranked_weights.append(leaking_factor)
 
-    mrna.metadata['leaking_of_chronological_weights'] = leaking_of_ranked_weights
+    mrna.Metadata['leaking_of_chronological_weights'] = leaking_of_ranked_weights
 
     print()
 
@@ -51,16 +53,16 @@ def calculate_leaky_chronological(mrna: mRNA, *penalties: Callable[[int], float]
 # Is this the job for some other submodule?? put it here anyways i need it
 def calculate_lengths(mrna: mRNA):
     lengths: List[int] = []
-    for x in range(0, len(mrna.code)):
+    for x in range(0, len(mrna.Code)):
         lengths.append(sequence_length(mrna, x))
-    mrna.metadata['sequence_lengths'] = lengths
+    mrna.Metadata['sequence_lengths'] = lengths
 
 
 # Scans an mrna for a stop codon, given the location of a start codon
 def sequence_length(mrna: mRNA, start: int, stop_codons: tuple = ('UAG', 'UUA', 'UGA')) -> int:
     le = 0
-    for i in range(start, len(mrna.code), 3):
-        codon = deindexCodon(mrna.code[i])
+    for i in range(start, len(mrna.Code), 3):
+        codon = deindexCodon(mrna.Code[i])
         le += 1
         if codon in stop_codons:
             break
@@ -69,13 +71,13 @@ def sequence_length(mrna: mRNA, start: int, stop_codons: tuple = ('UAG', 'UUA', 
 
 # Determines whether sequences overlap, starting at position (as first character of starting codon)
 def is_overlap(mrna: mRNA, one: int, two: int) -> bool:
-    if mrna.metadata['sequence_lengths'] is None:
+    if mrna.Metadata['sequence_lengths'] is None:
         calculate_lengths(mrna)
     x = one if (one < two) else two
     y = two if (one < two) else one
-    return mrna.metadata['sequence_lengths'][x] + x > + y
+    return mrna.Metadata['sequence_lengths'][x] + x > + y
 
 # Digital true/false value. Leaking occurs when the first start codon present is higher than a threshold value
 # (default is 0.0).
 def is_leaky(mrna: mRNA, threshold: float = 0.0) -> bool:
-    return mrna.metadata['leaking_of_chronological_weights'][0] > threshold
+    return mrna.Metadata['leaking_of_chronological_weights'][0] > threshold

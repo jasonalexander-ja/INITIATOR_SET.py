@@ -43,11 +43,11 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
         kozak_start_codons.append(i.codon())
 
     kozaks_of_chronological_weights: List[float] = []
-    kozak_contexts: List[KzContext] = []
+    kozakContexts: List[KzContext] = []
 
     # Attach kozak strength to each codon in mrna.code
-    for start_index in range(len(mrna.code)-2):
-        start_codon = deindexCodon(mrna.code[start_index])
+    for start_index in range(len(mrna.Code) - 2):
+        start_codon = deindexCodon(mrna.Code[start_index])
 
         try:
             kz_i = kozak_start_codons.index(start_codon.lower())
@@ -56,7 +56,7 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
             leading_length = kz.codonStart
             context_start = start_index - leading_length
             context_end = context_start + len(kz.sequence)
-            code = deindexRNA(mrna.code)
+            code = deindexRNA(mrna.Code)
 
             # For now, skip kozaks that are too large to fix in mrna
             # This might be undesirable, but probably irrelevant considering:
@@ -76,10 +76,10 @@ def calculate_kozaks(mrna: mRNA, kozaks_or_kozak_file: Union[List[KzConsensus], 
 
             kozak_context = KzContext(context_start=context_start, context_end=context_end, initiator_start=start_index,
                                       strength=similarity, consensus=kz)
-            kozak_contexts.append(kozak_context)
+            kozakContexts.append(kozak_context)
 
         except ValueError:
             kozaks_of_chronological_weights.append(0)
 
-    mrna.metadata["kozak_contexts"] = kozak_contexts
-    mrna.metadata["kozaks_of_starts"] = kozaks_of_chronological_weights
+    mrna.Metadata["kozakContexts"] = kozakContexts
+    mrna.Metadata["kozaksOfStarts"] = kozaks_of_chronological_weights

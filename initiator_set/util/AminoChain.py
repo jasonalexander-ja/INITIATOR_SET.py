@@ -42,7 +42,7 @@ class AminoAcidChain:
 	@classmethod
 	def fromCodingSequence(cls, seq, stcodon =0):
 		if isinstance(seq, mRNA.mRNA):
-			seq = seq.code
+			seq = seq
 		if isinstance(seq, str):
 			seq = indexRNA(seq)
 		if isinstance(seq, list):

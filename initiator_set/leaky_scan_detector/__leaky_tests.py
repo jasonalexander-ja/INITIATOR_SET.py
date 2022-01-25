@@ -22,5 +22,5 @@ def test_penalty(distto5: int) -> float:
 
 calculate_leaky(mrna)
 
-print(mrna.metadata.__str__().replace(", '", "\n"))
+print(mrna.Metadata.__str__().replace(", '", "\n"))
 print(is_leaky(mrna))
