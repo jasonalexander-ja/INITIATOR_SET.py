@@ -22,8 +22,7 @@ modules.
 
 - Danfox Davies
 
-Please view contributing.md before contributing 
-
+Please view [contributing.md](https://gitlab.vulpinedesigns.com/TheGUESSUniversalEditingSuiteandSDK/INITIATOR_SET/-/blob/main/contributing.md) before contributing. 
 
 How to run:
 1. Install pipenv
