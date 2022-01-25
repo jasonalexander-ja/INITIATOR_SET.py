@@ -22,6 +22,8 @@ modules.
 
 - Danfox Davies
 
+Please view contributing.md before contributing 
+
 
 How to run:
 1. Install pipenv
@@ -29,5 +31,4 @@ How to run:
 3. pipenv install - installs some required packages automatically
 4. pipenv shell - goes into a virtual python environment where the installed packages are available
 5. python [runnable script]
-
 
