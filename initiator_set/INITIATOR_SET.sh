@@ -48,4 +48,4 @@ fi
 
 echo "All packages found, launching INITIATOR_SET"
 
-python3 ./mainGUI.py
+python3 ./main.py
