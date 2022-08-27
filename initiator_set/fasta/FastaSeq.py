@@ -97,6 +97,7 @@ def translateSequenceForward(Sequence, FrameNo=0, DesiredType='Protein') -> []:
 
     if Sequence.CodeType == 'DNA':  # DNA to mRNA conversion
         SequenceString = ''
+        mNucleotide = ''
         for pos in range(0, len(Sequence.Seq)):
             if Sequence.Seq[pos] == 'A':
                 mNucleotide = 'U'

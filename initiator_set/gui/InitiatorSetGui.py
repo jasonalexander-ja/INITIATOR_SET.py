@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './InitiatorSetGui-26Aug2022.ui'
+# Form implementation generated from reading ui file './InitiatorSetGui-27Aug2022.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -57,7 +57,6 @@ class Ui_MainWindow(object):
         self.checkBox.setObjectName("checkBox")
         self.gridLayout_2.addWidget(self.checkBox, 0, 0, 1, 1)
         self.displayMapAICsResult = QtWidgets.QCheckBox(self.layoutWidget)
-        self.displayMapAICsResult.setEnabled(False)
         self.displayMapAICsResult.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.displayMapAICsResult.setChecked(True)
         self.displayMapAICsResult.setObjectName("displayMapAICsResult")
