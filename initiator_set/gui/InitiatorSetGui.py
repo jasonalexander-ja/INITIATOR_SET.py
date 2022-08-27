@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './gui/InitiatorSetGui-27Aug2022.ui'
+# Form implementation generated from reading ui file './InitiatorSetGui-27Aug2022.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(1544, 924)
         MainWindow.setMinimumSize(QtCore.QSize(640, 480))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./gui/../../../../../media/Athamanatha/ee533586-5e99-4530-bbd4-33a5088972e4/initiator-set-gui-py-master_03Aug2022/initiator-set-gui-py-master/gui/resources/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("./../../../../../media/Athamanatha/ee533586-5e99-4530-bbd4-33a5088972e4/initiator-set-gui-py-master_03Aug2022/initiator-set-gui-py-master/gui/resources/logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -708,12 +708,12 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionOpen_Fasta_File = QtWidgets.QAction(MainWindow)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("./gui/../../../../../media/Athamanatha/Users/Admin/.designer/backup/resources/file-open.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("./../../../../../media/Athamanatha/Users/Admin/.designer/backup/resources/file-open.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionOpen_Fasta_File.setIcon(icon1)
         self.actionOpen_Fasta_File.setObjectName("actionOpen_Fasta_File")
         self.actionExit = QtWidgets.QAction(MainWindow)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("./gui/../../../../../media/Athamanatha/Users/Admin/.designer/backup/resources/file-exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("./../../../../../media/Athamanatha/Users/Admin/.designer/backup/resources/file-exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionExit.setIcon(icon2)
         self.actionExit.setObjectName("actionExit")
         self.toolBar.addAction(self.actionOpen_Fasta_File)
