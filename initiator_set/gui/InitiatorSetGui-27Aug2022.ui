@@ -45,6 +45,13 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="ProbabilityWaveformDisplayMode">
+      <property name="text">
+       <string>Probability Waveform Display Mode (not available yet in Demo version)</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QTextEdit" name="showProtein">
       <property name="readOnly">
        <bool>true</bool>
@@ -75,7 +82,7 @@ p, li { white-space: pre-wrap; }
        </size>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="MapAICs">
        <property name="toolTip">
@@ -120,22 +127,6 @@ p, li { white-space: pre-wrap; }
               <widget class="QCheckBox" name="checkBox">
                <property name="text">
                 <string>Relative to 100</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="displayMapAICsResult">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="text">
-                <string>Display on sequence</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -911,6 +902,21 @@ p, li { white-space: pre-wrap; }
           <height>231</height>
          </rect>
         </property>
+        <column>
+         <property name="text">
+          <string>Protein</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Locus</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Localisation</string>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="label_3">
         <property name="geometry">
@@ -960,6 +966,21 @@ p, li { white-space: pre-wrap; }
           <height>231</height>
          </rect>
         </property>
+        <column>
+         <property name="text">
+          <string>Environment property</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>ER</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Cytoplasm</string>
+         </property>
+        </column>
        </widget>
        <widget class="QPushButton" name="pushButton_3">
         <property name="geometry">
@@ -998,6 +1019,32 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string>Conditions in ER vs Cytoplasm</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_23">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>170</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_36">
+        <property name="geometry">
+         <rect>
+          <x>1130</x>
+          <y>170</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
         </property>
        </widget>
       </widget>
@@ -1153,6 +1200,45 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string>Proximity of 5` UTR GCs to AIC for each coding sequence</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_24">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>120</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_34">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>190</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_35">
+        <property name="geometry">
+         <rect>
+          <x>1130</x>
+          <y>160</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
         </property>
        </widget>
       </widget>
@@ -1326,30 +1412,501 @@ p, li { white-space: pre-wrap; }
          <string>Define new motifs</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_25">
+        <property name="geometry">
+         <rect>
+          <x>600</x>
+          <y>140</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_32">
+        <property name="geometry">
+         <rect>
+          <x>1020</x>
+          <y>140</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_33">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="uORFProximity">
        <attribute name="title">
         <string>uORF Proximity</string>
        </attribute>
+       <widget class="QGraphicsView" name="graphicsView_3">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>40</y>
+          <width>371</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_11">
+        <property name="geometry">
+         <rect>
+          <x>820</x>
+          <y>240</y>
+          <width>281</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Apply to mRNA annotations</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>290</y>
+          <width>391</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Adjust breadth of uORF presence compunding effect</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>10</y>
+          <width>241</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>uORF Disruptiveness Line Graph</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>850</x>
+          <y>130</y>
+          <width>261</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Adjust impact of uORF presence</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="horizontalSlider_2">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>260</y>
+          <width>361</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QSlider" name="verticalSlider_2">
+        <property name="geometry">
+         <rect>
+          <x>820</x>
+          <y>40</y>
+          <width>20</width>
+          <height>191</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>10</y>
+          <width>361</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sort AICs by ORFs</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_13">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>50</y>
+          <width>361</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sort AICs by mRNA order</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_14">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>90</y>
+          <width>361</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Highlight uORFs by proximity to major AICs</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_15">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>361</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Highlight uORFs by proximity to STOP codons</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_16">
+        <property name="geometry">
+         <rect>
+          <x>820</x>
+          <y>280</y>
+          <width>281</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Run this through Leaky Scanning</string>
+        </property>
+       </widget>
+       <widget class="QGraphicsView" name="graphicsView_4">
+        <property name="geometry">
+         <rect>
+          <x>1130</x>
+          <y>30</y>
+          <width>381</width>
+          <height>271</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_22">
+        <property name="geometry">
+         <rect>
+          <x>1130</x>
+          <y>10</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>uORF view (ASCII art)</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_26">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>120</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_31">
+        <property name="geometry">
+         <rect>
+          <x>1150</x>
+          <y>150</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="RibosomalAssembly">
        <attribute name="title">
         <string>Ribosomal Assembly</string>
        </attribute>
+       <widget class="QTableWidget" name="tableWidget_6">
+        <property name="geometry">
+         <rect>
+          <x>1230</x>
+          <y>40</y>
+          <width>281</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>1230</x>
+          <y>10</y>
+          <width>131</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>snoRNAs available</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_7">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>40</y>
+          <width>471</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_8">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>40</y>
+          <width>321</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>10</y>
+          <width>181</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>tRNAs available</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>10</y>
+          <width>171</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>rRNAs available</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_9">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>371</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>141</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>eIFs available</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>280</y>
+          <width>641</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Calculate the effect of this combo on likelihood of translation at each AIC</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_8">
+        <property name="geometry">
+         <rect>
+          <x>1420</x>
+          <y>10</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Include</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_9">
+        <property name="geometry">
+         <rect>
+          <x>1130</x>
+          <y>10</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Include</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_10">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>10</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Include</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_11">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>10</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Include</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_18">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>280</y>
+          <width>451</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Generate model of Ribosome for viewing and export</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_19">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>240</y>
+          <width>161</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select datasets</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_20">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>240</y>
+          <width>161</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select datasets</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_21">
+        <property name="geometry">
+         <rect>
+          <x>980</x>
+          <y>240</y>
+          <width>161</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select datasets</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_22">
+        <property name="geometry">
+         <rect>
+          <x>1300</x>
+          <y>240</y>
+          <width>161</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select datasets</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_27">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>130</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="AnnotationMatcher">
        <attribute name="title">
         <string>Annotation Matcher</string>
        </attribute>
-      </widget>
-      <widget class="QWidget" name="FunctionalComparison">
-       <attribute name="title">
-        <string>Functional Comparison</string>
-       </attribute>
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>10</y>
           <width>171</width>
           <height>28</height>
@@ -1359,6 +1916,134 @@ p, li { white-space: pre-wrap; }
          <string>BLASTP Alignment</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_21">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>401</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search internal and external databases for exact matches</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_12">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>10</y>
+          <width>291</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Show external database annotations</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_13">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>10</y>
+          <width>301</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Show live changes from other modules</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_23">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>10</y>
+          <width>171</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Motif Alignment</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_10">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>50</y>
+          <width>671</width>
+          <height>241</height>
+         </rect>
+        </property>
+        <column>
+         <property name="text">
+          <string>Motifs</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Matched Motifs</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Out of ORF</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Obscured by AIC positioning</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Obscured by other motifs</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>791</width>
+          <height>231</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_28">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>160</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_29">
+        <property name="geometry">
+         <rect>
+          <x>940</x>
+          <y>160</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="FunctionalComparison">
+       <attribute name="title">
+        <string>Functional Comparison</string>
+       </attribute>
        <widget class="QCheckBox" name="checkBox_2">
         <property name="geometry">
          <rect>
@@ -1396,6 +2081,86 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string>Highlight common transmembrane domains</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_12">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>10</y>
+          <width>1151</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="dragEnabled">
+         <bool>false</bool>
+        </property>
+        <row>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string>3</string>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string>4</string>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>Protein sequence</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Predicted function</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Main differences</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QPushButton" name="pushButton_24">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>270</y>
+          <width>461</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Generate models of selected proteins for viewing and export</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_30">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>130</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Demo version: this part is not complete yet.</string>
         </property>
        </widget>
       </widget>
@@ -1618,22 +2383,6 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>379</x>
      <y>897</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>displayMapAICsResult</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>displayMapAICsResult_clicked(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>383</x>
-     <y>618</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>210</x>
-     <y>878</y>
     </hint>
    </hints>
   </connection>

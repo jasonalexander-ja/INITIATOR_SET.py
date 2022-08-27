@@ -37,13 +37,13 @@ kozaks = None
 codonWeights = None
 codonAdjustedWeights = None
 leakyThreshold = None
-dispMapAics = True
+#dispMapAics = True
 class AppGUI(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.displayMapAICsResult_clicked(True)
-        #dispMapAics = True
+        dispMapAics = True
     def calculateLeaky_clicked(self):
         global leakyThreshold
         try:
@@ -277,9 +277,9 @@ class AppGUI(QMainWindow, Ui_MainWindow):
             mRNASequences[0] = mapAICs(mRNASequences[0], codonWeights)
             dispMapAics = mRNASequences[0].Metadata.get("displayMapAICsResult")
             
-            #if dispMapAics == 'True':
-            self.showProtein.setText(str(mRNASequences[0].Metadata.get('adjustedWeights')))
-            self.showmRNA.setText(self.colorCodonsByWeights(mRNASequences[0].Nucleotide,
+            if dispMapAics == 'True':
+                self.showProtein.setText(str(mRNASequences[0].Metadata.get('adjustedWeights')))
+                self.showmRNA.setText(self.colorCodonsByWeights(mRNASequences[0].Nucleotide,
                                                                 mRNASequences[0].Code,
                                                                 mRNASequences[0].Metadata.get("adjustedWeights")))
         else:
