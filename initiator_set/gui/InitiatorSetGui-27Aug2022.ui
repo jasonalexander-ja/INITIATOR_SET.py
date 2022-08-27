@@ -130,6 +130,19 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="displayMapAICsResult">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Display on sequence</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>
@@ -2383,6 +2396,22 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>379</x>
      <y>897</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>displayMapAICsResult</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>displayMapAICsResult_clicked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>383</x>
+     <y>618</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>210</x>
+     <y>878</y>
     </hint>
    </hints>
   </connection>
