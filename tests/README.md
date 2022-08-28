@@ -28,9 +28,9 @@ NB: The Conserved Threshold and Conserved boxes require some further clarificati
 
 # Leaky Scanning:
 
-1. Click the Calculate button to see whether the sequence so far is likely to cause leaky scanning to be possible. 
+1. Click the Calculate button to see whether the sequence so far is likely to cause leaky scanning to be possible.
 
-2. Click Translate to Protein to see each of the most likely AICs' protein sequences they would lead to. 
+2. Click Translate to Protein to see each of the most likely AICs' protein sequences they would lead to.
 
 NB: The Threshold box needs to be set to match real world leaky scanning thresholds, if they exist. This requires some further clarification in our documentation, for now in the demos please don't go into it.
 
