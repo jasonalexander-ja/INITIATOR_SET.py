@@ -1,0 +1,36 @@
+import os
+
+from kozak_calculator.kozak_calculator import calculate_kozaks
+from kozak_calculator.kozak_loader import interpret_kozak_file
+from map_aic.mapAIC import mapAICs
+# from map_aic.__mapAIC_test import mrna as mrna
+from util import mRNA
+from leaky_scan_detector.leaky_scan_detector import calculate_leaky, is_leaky
+
+# exec('__mapAIC_test')
+
+# fastaMRNA = 'CUGGCUCAGC'
+mRNASequences = 'CUGGCUCAGCGCGGGGGGGCGCGGAGACCGCGAGGCGACCGGGAGCGGCUGGGUUCCCGGCUGCGCGCCCUUCGGCCAGGCCGGGAGCCGCGCCAGUCGGAGCCCCCGGCCCAGCGUGGUCCGCCUCCCUCUGGGCGUCCACCUGCCCGGAGUACUGCCAGCGGGCAUGACCGACCCACCAGGGGCGCCGCCGCCGGCGCUCGCAGGCCGCGGAUGAAGAAGAAAACCCGGCGCCGCUCGACCCGGAGCGAGGAGUUGACCCGGAGCGAGGAGUUGACCCUGAGUGAGGAAGCGACCUGGAGUGAAGAGGCGACCCAGAGUGAGGAGGCGACCCAGGGCGAAGAGAUGAAUCGGAGCCAGGAGGUGACCCGGGACGAGGAGUCGACCCGGAGCGAGGAGGUGACCAGGGAGGAAAUGGCGGCAGCUGGGCUCACCGUGACUGUCACCCACAGCAAUGAGAAGCACGACCUUCAUGUUACCUCCCAGCAGGGCAGCAGUGAACCAGUUGUCCAAGACCUGGCCCAGGUUGUUGAAGAGGUCAUAGGGGUUCCACAGUCUUUUCAGAAACUCAUAUUUAAGGGAAAAUCUCUGAAGGAAAUGGAAACACCGUUGUCAGCACUUGGAAUACAAGAUGGUUGCCGGGUCAUGUUAAUUGGGAAAAAGAACAGUCCACAGGAAGAGGUUGAACUAAAGAAGUUGAAACAUUUGGAGAAGUCUGUGGAGAAGAUAGCUGACCAGCUGGAAGAGUUGAAUAAAGAGCUUACUGGAAUCCAGCAGGGUUUUCUGCCCAAGGAUUUGCAAGCUGAAGCUCUCUGCAAACUUGAUAGGAGAGUAAAAGCCACAAUAGAGCAGUUUAUGAAGAUCUUGGAGGAGAUUGACACACUGAUCCUGCCAGAAAAUUUCAAAGACAGUAGAUUGAAAAGGAAAGGCUUGGUAAAAAAGGUUCAGGCAUUCCUAGCCGAGUGUGACACAGUGGAGCAGAACAUCUGCCAGGAGACUGAGCGGCUGCAGUCUACAAACUUUGCCCUGGCCGAGUGA'
+
+mrna = mRNA.mRNA('testing', mRNASequences)
+
+mrna = mapAICs(mrna)
+
+print('A is ' + str(mRNA.bases.index('A')), '; U is ' + str(mRNA.bases.index('U')), '; G is ' + str(mRNA.bases.index('G')), '; C is ' + str(mRNA.bases.index('C')))
+print(mrna.__str__())
+
+
+try:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                           "kozak_calculator/sample_kozaks.txt")) as kozak_infile:
+        kozaks = interpret_kozak_file(kozak_infile)
+        calculate_kozaks(mrna, kozaks)
+        print(mrna.Metadata.get("kozakContexts")[0].context_start)
+except OSError as e:
+    print("Cannot open Kozak input file" + e)
+
+print(mrna.Metadata.__str__().replace(", '", "\n"))
+
+calculate_leaky(mrna)
+
+print('Is leaky: ' + str(is_leaky(mrna, 0.1)))
