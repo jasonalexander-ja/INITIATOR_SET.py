@@ -18,6 +18,7 @@ Creation Date:  14 Feb 2021
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QMessageBox
 from util.mRNA import mRNA
+from typing import List
 
 
 #
@@ -76,7 +77,7 @@ def readSequence(FastaLines):
     return Sequences
 
 
-def translateSequenceForward(Sequence, FrameNo=0, DesiredType='Protein') -> []:
+def translateSequenceForward(Sequence, FrameNo=0, DesiredType='Protein') -> List:
     # This function takes an individual FASTA_Seq object, and translates from DNA -> mRNA -> Protein
     # Input args:
     #    Sequence - A single FASTA_Seq object
@@ -200,7 +201,7 @@ def translateSequence2Protein(sequences, FrameNo=0, DesiredType='Protein'):
     return translateSequenceForward(sequences, FrameNo, DesiredType)
 
 
-def transDNA2mRNA(fastaFile) -> [FastaStruct]:
+def transDNA2mRNA(fastaFile) -> List[FastaStruct]:
     # Input: fastaFile can include many DNAs
     # Output: mRNASequences, a list of FastaStruct objects
 
@@ -218,7 +219,7 @@ def transDNA2mRNA(fastaFile) -> [FastaStruct]:
     return mRNASequences
 
 
-def convert2mRNAStruct(FastaStructSequences) -> []:
+def convert2mRNAStruct(FastaStructSequences) -> List[mRNA]:
     mRNASequences = [mRNA(FastaStructSequences[i].Id, FastaStructSequences[i].Seq) for i in
                      range(len(FastaStructSequences))]
     return mRNASequences

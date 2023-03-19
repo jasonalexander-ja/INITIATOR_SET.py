@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1230</width>
+    <width>1544</width>
     <height>924</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>resources/logo.png</normaloff>resources/logo.png</iconset>
+    <normaloff>initiator-set-gui-py-master_03Aug2022/initiator-set-gui-py-master/gui/resources/logo.png</normaloff>initiator-set-gui-py-master_03Aug2022/initiator-set-gui-py-master/gui/resources/logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -34,8 +34,8 @@
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;mRNA&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10.5pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt;&quot;&gt;mRNA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -48,13 +48,16 @@ p, li { white-space: pre-wrap; }
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Protein&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10.5pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt;&quot;&gt;Protein&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QTabWidget" name="tabSubmodules">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="minimumSize">
        <size>
         <width>1211</width>
@@ -112,6 +115,9 @@ p, li { white-space: pre-wrap; }
              </item>
              <item row="1" column="0">
               <widget class="QCheckBox" name="displayMapAICsResult">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
@@ -127,12 +133,24 @@ p, li { white-space: pre-wrap; }
            </item>
            <item>
             <widget class="QGroupBox" name="groupBox_3">
+             <property name="maximumSize">
+              <size>
+               <width>10000</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="title">
               <string>From file</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_3">
+              <property name="spacing">
+               <number>0</number>
+              </property>
               <property name="leftMargin">
                <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
               </property>
               <property name="rightMargin">
                <number>0</number>
@@ -142,6 +160,27 @@ p, li { white-space: pre-wrap; }
               </property>
               <item>
                <widget class="QPushButton" name="selectMapAICsData">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>10000</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Select data File</string>
                 </property>
@@ -157,28 +196,64 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="analyzeMapAICs">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>40</height>
-              </size>
-             </property>
+            <widget class="QGroupBox" name="groupBox_6">
              <property name="maximumSize">
               <size>
                <width>10000</width>
                <height>16777215</height>
               </size>
              </property>
-             <property name="toolTip">
-              <string>Analyze AICs</string>
+             <property name="title">
+              <string>Apply probabilities to codons (all reading frames)</string>
              </property>
-             <property name="toolTipDuration">
-              <number>1000</number>
-             </property>
-             <property name="text">
-              <string>Analyze</string>
-             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="analyzeMapAICs">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>10000</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Analyze AICs</string>
+                </property>
+                <property name="toolTipDuration">
+                 <number>1000</number>
+                </property>
+                <property name="text">
+                 <string>Analyze</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
@@ -368,6 +443,11 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
+      </widget>
+      <widget class="QWidget" name="mRNALocalisation">
+       <attribute name="title">
+        <string>mRNA Localisation</string>
+       </attribute>
       </widget>
       <widget class="QWidget" name="KozakCaculator">
        <attribute name="title">
@@ -793,6 +873,91 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="GCCount">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>GC Count</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="MotifPredictor">
+       <attribute name="title">
+        <string>Motif Predictor</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="uORFProximity">
+       <attribute name="title">
+        <string>uORF Proximity</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="RibosomalAssembly">
+       <attribute name="title">
+        <string>Ribosomal Assembly</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="AnnotationMatcher">
+       <attribute name="title">
+        <string>Annotation Matcher</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="FunctionalComparison">
+       <attribute name="title">
+        <string>Functional Comparison</string>
+       </attribute>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>171</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>BLASTP Alignment</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>80</y>
+          <width>241</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Highlight Alpha Helix Motifs</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>231</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Highlight Beta Sheet Motifs</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_4">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>140</y>
+          <width>331</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Highlight common transmembrane domains</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -815,7 +980,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionOpen_Fasta_File">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../Users/Admin/.designer/backup/resources/file-open.png</normaloff>../../../../Users/Admin/.designer/backup/resources/file-open.png</iconset>
+     <normaloff>../Users/Admin/.designer/backup/resources/file-open.png</normaloff>../Users/Admin/.designer/backup/resources/file-open.png</iconset>
    </property>
    <property name="text">
     <string>Open Fasta File</string>
@@ -824,7 +989,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionExit">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../Users/Admin/.designer/backup/resources/file-exit.png</normaloff>../../../../Users/Admin/.designer/backup/resources/file-exit.png</iconset>
+     <normaloff>../Users/Admin/.designer/backup/resources/file-exit.png</normaloff>../Users/Admin/.designer/backup/resources/file-exit.png</iconset>
    </property>
    <property name="text">
     <string>Exit</string>

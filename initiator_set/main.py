@@ -37,13 +37,13 @@ kozaks = None
 codonWeights = None
 codonAdjustedWeights = None
 leakyThreshold = None
-dispMapAics = True
+#dispMapAics = True
 class AppGUI(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.displayMapAICsResult_clicked(True)
-        #dispMapAics = True
+        dispMapAics = True
     def calculateLeaky_clicked(self):
         global leakyThreshold
         try:
