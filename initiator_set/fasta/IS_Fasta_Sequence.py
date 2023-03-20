@@ -15,7 +15,7 @@
 # Information: The classes/functions in this file are designed for reading and basic analysis of the sequences within
 # FASTA-format files
 
-from PyQt5.QtWidgets import QMessageBox
+from PyQt6.QtWidgets import QMessageBox
 
 
 class FASTA_Seq():

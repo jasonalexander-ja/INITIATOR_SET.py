@@ -15,8 +15,8 @@ Contributors: Jordan Eckhoff
 
 Creation Date:  14 Feb 2021
 """
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QMessageBox
+from PyQt6.QtGui import QColor
+from PyQt6.QtWidgets import QMessageBox
 from util.mRNA import mRNA
 from typing import List
 

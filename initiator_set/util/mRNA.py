@@ -4,7 +4,7 @@
 # with it
 #
 # Authored by: Lucianna Osucha (lucianna@vulpinedesigns.com)
-from PyQt5.QtGui import QColor
+from PyQt6.QtGui import QColor
 
 bases = ['A', 'U', 'G', 'C']
 nucleotideTextFormat = []
@@ -13,7 +13,7 @@ codonColors = []
 for i in range(64):  # 64 codons, Hue step = 360/72
     codonColors.append(QColor.fromHsv(i * 5, 255, 255, 64))
     nucleotideTextFormat.append('<span style=\"background-color:' + \
-                                str(codonColors[i].name(QColor.HexArgb)) + ';font-size:12px;\">')
+                                str(codonColors[i].name(QColor.NameFormat.HexArgb)) + ';font-size:12px;\">')
 # For Proteins, it has 21 standard colors
 
 
