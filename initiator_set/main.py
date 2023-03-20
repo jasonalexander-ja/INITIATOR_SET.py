@@ -13,9 +13,9 @@ Creation Date:  10 March 2021
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import sys
-from PyQt5 import QtCore
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem, QErrorMessage
+from PyQt6 import QtCore
+from PyQt6.QtGui import QColor
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem, QErrorMessage
 import fasta.FastaSeq as fa
 from gui.InitiatorSetGui import Ui_MainWindow
 from kozak_calculator.kozak_calculator import calculate_kozaks
@@ -134,7 +134,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
             error_msg.showMessage("There is no Kozak data to analyze with")
 
     def selectKozakData_clicked(self):
-        options = QFileDialog.Options()
+        options = QFileDialog()
         (inputFileName, _) = QFileDialog.getOpenFileName(self, "Select Kozak File", "", "All Files (*)",
                                                 options=options)
         if inputFileName != '':
@@ -178,7 +178,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
 
     def selectMapAICsData_clicked(self):
         global codonWeights, codonAdjustedWeights, mRNASequences
-        options = QFileDialog.Options()
+        options = QFileDialog().options()
         (inputFileName, _) = QFileDialog.getOpenFileName(self, "Select AIC Map Data", "", "All Files (*)",
                                               options=options)
         if inputFileName != '':
@@ -290,7 +290,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
     # TODO exception handling on open() needed?
     def openFastaFile_clicked(self):
         global mRNASequences
-        options = QFileDialog.Options()
+        options = QFileDialog().options()
         (fileName, _) = QFileDialog.getOpenFileName(self, "Select FASTA File", "", "All Files (*)",
                                             options=options)
         if fileName != '':
@@ -310,8 +310,8 @@ def main():
     app = QApplication(sys.argv)
     appGUI = AppGUI(None)
     appGUI.showMaximized()
-    #apply_stylesheet(app, theme='dark_blue.xml')
-    exit(app.exec_())
+    apply_stylesheet(app, theme='dark_teal.xml')
+    exit(app.exec())
 
 
 # Press the green button in the gutter to run the script.

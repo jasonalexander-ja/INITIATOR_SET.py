@@ -7,14 +7,14 @@ if [ "" = "$PKG_OK" ]; then
   sudo apt-get --yes install $REQUIRED
 fi
 
-REQUIRED="python3-pyqt5"
+REQUIRED="python3-pyqt6"
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED|grep "install ok installed")
 if [ "" = "$PKG_OK" ]; then
   echo "No $REQUIRED. Setting up $REQUIRED."
   sudo apt-get --yes install $REQUIRED
 fi
 
-REQUIRED="pyqt5-dev-tools"
+REQUIRED="pyqt6-dev-tools"
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED|grep "install ok installed")
 if [ "" = "$PKG_OK" ]; then
   echo "No $REQUIRED. Setting up $REQUIRED."
