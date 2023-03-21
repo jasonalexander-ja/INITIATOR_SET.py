@@ -134,9 +134,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
             error_msg.showMessage("There is no Kozak data to analyze with")
 
     def selectKozakData_clicked(self):
-        options = QFileDialog()
-        (inputFileName, _) = QFileDialog.getOpenFileName(self, "Select Kozak File", "", "All Files (*)",
-                                                options=options)
+        (inputFileName, _) = QFileDialog.getOpenFileName(self, "Select Kozak File", "", "All Files (*)")
         if inputFileName != '':
             try:
                 with open(inputFileName, 'r') as kozak_infile:
@@ -178,9 +176,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
 
     def selectMapAICsData_clicked(self):
         global codonWeights, codonAdjustedWeights, mRNASequences
-        options = QFileDialog().options()
-        (inputFileName, _) = QFileDialog.getOpenFileName(self, "Select AIC Map Data", "", "All Files (*)",
-                                              options=options)
+        (inputFileName, _) = QFileDialog.getOpenFileName(self, "Select AIC Map Data", "", "All Files (*)")
         if inputFileName != '':
             try:
                 with open(inputFileName, 'r') as inputFile: # with open('map_aic/another_input.txt', 'r') as inputFile:s
@@ -208,7 +204,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
             self.tableWidgetMapAICs.setItem(idx, 0, codon)
             self.tableWidgetMapAICs.setItem(idx, 1, QTableWidgetItem(str("%.3f" % codonWeights[idx])))
             self.tableWidgetMapAICs.setItem(idx, 2, QTableWidgetItem(str("%.3f" % codonAdjustedWeights[idx])))
-        self.tableWidgetMapAICs.sortByColumn(2, QtCore.Qt.DescendingOrder)
+        self.tableWidgetMapAICs.sortByColumn(2, QtCore.Qt.SortOrder.DescendingOrder)
 
     def displayMapAICsResult_clicked(self, displayMapAICsResult: bool):
         global mRNASequences
@@ -258,7 +254,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
                 importance = kozaks[0].sequence[i - contextStart - 1].importance
                 nucleotideSequence = nucleotideSequence[:i - 1] + \
                                      '<span style=\"background-color:' + \
-                                     str(QColor.fromHsv(0, 255, 255, 20*(importance+2)).name(QColor.HexArgb)) + \
+                                     str(QColor.fromHsv(0, 255, 255, 20*(importance+2)).name(QColor.NameFormat.HexArgb)) + \
                                      ";font-size:" + \
                                      str(12 + importance) + "px\">" + \
                                      nucleotideSequence[i - 1:]
@@ -290,9 +286,7 @@ class AppGUI(QMainWindow, Ui_MainWindow):
     # TODO exception handling on open() needed?
     def openFastaFile_clicked(self):
         global mRNASequences
-        options = QFileDialog().options()
-        (fileName, _) = QFileDialog.getOpenFileName(self, "Select FASTA File", "", "All Files (*)",
-                                            options=options)
+        (fileName, _) = QFileDialog.getOpenFileName(self, "Select FASTA File", "", "All Files (*)")
         if fileName != '':
             try:
                 with open(fileName, 'r') as file:
@@ -310,7 +304,7 @@ def main():
     app = QApplication(sys.argv)
     appGUI = AppGUI(None)
     appGUI.showMaximized()
-    apply_stylesheet(app, theme='dark_teal.xml')
+    #apply_stylesheet(app, theme='dark_teal.xml')
     exit(app.exec())
 
 
