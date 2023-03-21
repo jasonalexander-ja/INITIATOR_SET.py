@@ -24,15 +24,10 @@ from leaky_scan_detector.leaky_scan_detector import is_leaky, calculate_leaky
 from map_aic.mapAIC import loadCodonWeightsFromInputFile, mapAICs
 from util.mRNA import indexCodon, deindexCodon, mRNA, nucleotideTextFormat, codonColors
 from qt_material import apply_stylesheet
-# import platform
-# os = platform.uname()[0]
-# # print(os)
-# if os == 'Linux':
-#     Ui_MainWindow = uic.loadUiType('/gui/InitiatorSetGui.ui')[0]
-# elif os == 'Windows':
-#     Ui_MainWindow = uic.loadUiType('gui\InitiatorSetGui.ui')[0]
+
 
 mRNASequences = [mRNA('init', 'AUGC')]
+displayMapAICsResultState = True
 kozaks = None
 codonWeights = None
 codonAdjustedWeights = None
@@ -207,8 +202,8 @@ class AppGUI(QMainWindow, Ui_MainWindow):
         self.tableWidgetMapAICs.sortByColumn(2, QtCore.Qt.SortOrder.DescendingOrder)
 
     def displayMapAICsResult_clicked(self, displayMapAICsResult: bool):
-        global mRNASequences
-        mRNASequences[0].Metadata["displayMapAICsResult"] = str(displayMapAICsResult)
+        global displayMapAICsResultState
+        displayMapAICsResultState = displayMapAICsResult
 
     def colorCodonsByWeights(self, nucleotideSequence: list, codeSequennce: list, adjustedWeights: str) -> str:
         i = -1
@@ -267,13 +262,12 @@ class AppGUI(QMainWindow, Ui_MainWindow):
         return nucleotideSequence
 
     def analyzeMapAICs_clicked(self):
-        global mRNASequences
+        global mRNASequences, displayMapAICsResultState
         # Process for the first mRNA in Sequences
         if codonWeights:
             mRNASequences[0] = mapAICs(mRNASequences[0], codonWeights)
-            dispMapAics = mRNASequences[0].Metadata.get("displayMapAICsResult")
             
-            if dispMapAics == 'True':
+            if displayMapAICsResultState:
                 self.showProtein.setText(str(mRNASequences[0].Metadata.get('adjustedWeights')))
                 self.showmRNA.setText(self.colorCodonsByWeights(mRNASequences[0].Nucleotide,
                                                                 mRNASequences[0].Code,
